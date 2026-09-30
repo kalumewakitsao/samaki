@@ -43,8 +43,7 @@ Rules: teal for actions and links, gold only for highlights and the one accent C
 
 | Use | Font | Licence |
 |---|---|---|
-| Display and headings | Bricolage Grotesque (variable, 200 to 800) | SIL OFL 1.1 |
-| Body and interface | Inter (variable, 100 to 900) | SIL OFL 1.1 |
+| Display, headings and body | Geist (variable, self-hosted Latin subset) | SIL OFL 1.1 |
 
 Both are self-hosted (Latin subset, about 90 KB together), preloaded, `font-display: swap`, with metric-matched fallbacks so text does not shift. Scale: 13, 15, 17 (body), 19, then fluid 21 to 24, 26 to 36, 32 to 52, and 40 to 80 px for the display size. Headings use tight negative tracking and balanced wrapping; body copy is 17 px at 1.6 line height with a 38rem measure for mobile readability.
 
@@ -73,9 +72,13 @@ Both are self-hosted (Latin subset, about 90 KB together), preloaded, `font-disp
 | CTA band | Deep band with one gold action and a phone action |
 | Breadcrumbs, FAQ disclosure, notices | Native elements first (`details`, lists), styled by tokens |
 
+## 2026-09-30 direction: calm and monochrome
+
+The owner asked for an apple.com feel with no unusual colours or backgrounds, citing linear.app, bang-olufsen.com, framer.com and mercury.com. The site now uses white and light grey surfaces (true black and graphite in dark mode), near-black type and one blue accent (`#0071e3`) for actions and links. Headings are Geist at weight 500 with tight tracking; small labels are uppercase and letter-spaced. Motion is CSS scroll-driven: the hero settles in on load and eases back as you scroll, and cards rise softly into place. All of it stops under reduced motion. Older colour notes below describe the first redesign.
+
 ## Calling us is the main action
 
-Phone calls are the main way customers reach Samaki Express, so the number is the primary call to action everywhere: amber `.btn--call` buttons (with `.call-ring`) in the sticky navbar, the hero, product pages, the call band, the closing band and the phone action bar. Quote requests are secondary. An open-now dot and label (Mon to Fri, 9 am to 6 pm, Nairobi time) sits next to the number when the browser can compute it; the server render shows the hours instead.
+Phone calls are the main way customers reach Samaki Express, so the number is the primary call to action everywhere: blue `.btn--call` buttons in the sticky navbar, the hero, product pages, the call band, the closing band and the phone action bar. Quote requests are secondary. An open-now dot and label (Mon to Fri, 9 am to 6 pm, Nairobi time) sits next to the number when the browser can compute it; the server render shows the hours instead.
 
 ## Voice
 

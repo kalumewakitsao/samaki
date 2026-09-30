@@ -61,6 +61,53 @@
 .hero-links sx-icon {
   display: none;
 }
+/* Intro: the hero settles in line by line, then eases back as the page scrolls. */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-inner > * {
+    animation: hero-in 900ms var(--ease-out) both;
+  }
+  .hero-inner > :nth-child(2) {
+    animation-delay: 80ms;
+  }
+  .hero-inner > :nth-child(3) {
+    animation-delay: 180ms;
+  }
+  .hero-inner > :nth-child(4) {
+    animation-delay: 260ms;
+  }
+  .hero-inner > :nth-child(5) {
+    animation-delay: 340ms;
+  }
+  .hero-inner > :nth-child(6) {
+    animation-delay: 400ms;
+  }
+  @supports (animation-timeline: scroll()) {
+    .hero .container {
+      animation: hero-out linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0 70vh;
+    }
+  }
+}
+@keyframes hero-in {
+  from {
+    opacity: 0.01;
+    translate: 0 24px;
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    translate: none;
+    filter: none;
+  }
+}
+@keyframes hero-out {
+  to {
+    opacity: 0.25;
+    translate: 0 -48px;
+    scale: 0.97;
+  }
+}
 @media (max-width: 35.99rem) {
   .hero-links {
     display: none;

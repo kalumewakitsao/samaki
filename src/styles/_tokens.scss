@@ -6,12 +6,8 @@
 @layer tokens {
   :root {
     /* Type */
-    --font-display:
-      -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', 'Inter Fallback', system-ui,
-      sans-serif;
-    --font-body:
-      -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Inter', 'Inter Fallback', system-ui,
-      'Segoe UI', sans-serif;
+    --font-display: 'Geist', 'Geist Fallback', ui-sans-serif, system-ui, sans-serif;
+    --font-body: 'Geist', 'Geist Fallback', ui-sans-serif, system-ui, 'Segoe UI', sans-serif;
     --fs-xs: 0.8125rem;
     --fs-sm: 0.9375rem;
     --fs-base: 1.0625rem;
@@ -23,7 +19,7 @@
     --lh-tight: 1;
     --lh-snug: 1.2;
     --lh-body: 1.6;
-    --tracking-display: -0.03em;
+    --tracking-display: -0.045em;
     --tracking-caps: 0.08em;
 
     /* Space: a 4px base */

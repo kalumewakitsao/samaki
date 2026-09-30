@@ -63,7 +63,7 @@ These are lab numbers from a local server, not field Core Web Vitals. LCP is tex
 - Overflow sweep: 12 routes x 15 widths (320 to 2560), dark theme, 0 pages with sideways scroll.
 - axe: 80 page views (320, 768, 1024, 1920; light and dark), 0 violations. Keyboard checks: 18 of 18 pass.
 - Unit tests: 19 of 19 (adds the open-now status in Nairobi time).
-- Lighthouse mobile: home 88/100/100/100 (LCP 3.0 s, CLS 0.004), fingerlings 90/100/100/100, contact 86/100/100/100 (performance, accessibility, best practices, SEO).
+- Lighthouse mobile after the monochrome restyle: home 91/100/100/100 (LCP 2.6 s, CLS 0.062), fingerlings 90/100/100/100 (performance, accessibility, best practices, SEO).
 - Screenshots in `docs/screenshots/premium/`.
 
 ## Browsers

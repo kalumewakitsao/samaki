@@ -45,7 +45,7 @@ Rules: teal for actions and links, gold only for highlights and the one accent C
 |---|---|---|
 | Display, headings and body | Geist (variable, self-hosted Latin subset) | SIL OFL 1.1 |
 
-Both are self-hosted (Latin subset, about 90 KB together), preloaded, `font-display: swap`, with metric-matched fallbacks so text does not shift. Scale: 13, 15, 17 (body), 19, then fluid 21 to 24, 26 to 36, 32 to 52, and 40 to 80 px for the display size. Headings use tight negative tracking and balanced wrapping; body copy is 17 px at 1.6 line height with a 38rem measure for mobile readability.
+Self-hosted (Latin subset, about 31 KB), preloaded, `font-display: swap`, with metric-matched fallbacks so text does not shift. Scale: 13, 15, 17 (body), 19, then fluid 21 to 24, 26 to 36, 32 to 52, and 40 to 80 px for the display size. Headings use tight negative tracking and balanced wrapping; body copy is 17 px at 1.6 line height with a 38rem measure for mobile readability.
 
 ## Spacing, radius, elevation, motion
 

@@ -40,19 +40,21 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
     :host {
       display: inline-flex;
       align-items: center;
-      gap: 0.6rem;
+      gap: calc(var(--logo-size, 1.3rem) * 0.46);
       color: var(--c-ink);
     }
     .mark {
-      width: 2.25rem;
-      height: 2.25rem;
+      flex-shrink: 0;
+      width: calc(var(--logo-size, 1.3rem) * 1.73);
+      height: calc(var(--logo-size, 1.3rem) * 1.73);
     }
     .word {
       display: inline-flex;
       align-items: baseline;
       gap: 0.3rem;
       font-family: var(--font-display);
-      font-size: 1.3rem;
+      font-size: var(--logo-size, 1.3rem);
+      white-space: nowrap;
       line-height: 1;
       letter-spacing: -0.03em;
     }

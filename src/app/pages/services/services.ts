@@ -33,7 +33,7 @@ import { OfferingCard } from '../../ui/offering-card';
         <h2 class="visually-hidden" id="list-title">Our services</h2>
         <ul class="grid grid--3" role="list">
           @for (s of services; track s.slug) {
-            <li class="reveal"><sx-offering-card [offering]="s" /></li>
+            <li class="reveal"><sx-offering-card class="card--row" [offering]="s" /></li>
           }
         </ul>
       </div>

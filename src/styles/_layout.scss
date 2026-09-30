@@ -66,8 +66,35 @@
     @media (min-width: 36rem) {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
-    @media (min-width: 64rem) {
+    @media (min-width: 72rem) {
       grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+  /*
+   * Phones: a list of cards becomes a swipeable row that shows a slice of the
+   * next card, so a long run of cards doesn't turn into a very long page.
+   * From 36rem up it falls back to whatever grid it also carries.
+   */
+  @media (max-width: 35.99rem) {
+    .rail {
+      display: grid;
+      grid-auto-flow: column;
+      grid-template-columns: none;
+      grid-auto-columns: min(82%, 19rem);
+      gap: var(--s-4);
+      overflow-x: auto;
+      overscroll-behavior-x: contain;
+      scroll-snap-type: x mandatory;
+      scroll-padding-inline: max(var(--gutter), env(safe-area-inset-left));
+      margin-inline: calc(-1 * max(var(--gutter), env(safe-area-inset-left)));
+      padding: var(--s-1) max(var(--gutter), env(safe-area-inset-left)) var(--s-4);
+      scrollbar-width: none;
+    }
+    .rail::-webkit-scrollbar {
+      display: none;
+    }
+    .rail > * {
+      scroll-snap-align: start;
     }
   }
   .stack {

@@ -7,9 +7,20 @@
   gap: clamp(2.5rem, 1.5rem + 3vw, 4rem);
   align-items: center;
 }
-@media (min-width: 62rem) {
+@media (min-width: 48rem) {
   .hero-grid {
-    grid-template-columns: 1.1fr 1fr;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  }
+}
+/* Tablets and small laptops: two columns, so the headline steps down to keep short lines. */
+@media (min-width: 48rem) and (max-width: 79.99rem) {
+  .hero-copy .display {
+    font-size: clamp(2.4rem, 0.6rem + 4vw, 4rem);
+  }
+}
+@media (min-width: 48rem) and (max-width: 63.99rem) {
+  .hero-copy .lead {
+    font-size: var(--fs-base);
   }
 }
 .hero-copy {
@@ -37,6 +48,9 @@
 
 .hero-art {
   position: relative;
+  width: 100%;
+  max-width: 34rem;
+  justify-self: center;
 }
 .hero-art sx-illustration {
   aspect-ratio: 56 / 52;
@@ -115,18 +129,26 @@
 }
 .tiles {
   display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--s-3);
   list-style: none;
   padding: 0;
 }
-@media (min-width: 40rem) {
+/* Seven tiles: on two-column layouts the last (services) tile spans the row. */
+.tiles > :last-child {
+  grid-column: 1 / -1;
+}
+@media (min-width: 48rem) {
   .tiles {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
-@media (min-width: 64rem) {
+@media (min-width: 80rem) {
   .tiles {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .tiles > :last-child {
+    grid-column: auto;
   }
 }
 .tile {
@@ -177,6 +199,8 @@
 
 ul.grid {
   list-style: none;
+}
+ul.grid:not(.rail) {
   padding: 0;
 }
 .audience {
@@ -315,4 +339,48 @@ ul.grid {
 }
 .why-list strong {
   color: var(--c-ink);
+}
+
+/* Below laptop width the tiles are narrow: icon above the name, short line only where it fits. */
+@media (max-width: 63.99rem) {
+  .tile {
+    grid-template-columns: minmax(0, 1fr);
+    align-content: start;
+    gap: var(--s-3);
+    padding: var(--s-4);
+  }
+  .tile .go {
+    display: none;
+  }
+  .tiles > :last-child .tile {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+  }
+  .tiles > :last-child .go {
+    display: block;
+  }
+}
+@media (max-width: 29.99rem) {
+  .tile .tile-text .muted {
+    display: none;
+  }
+  .tiles > :last-child .tile-text .muted {
+    display: block;
+  }
+}
+
+/* Phones: number beside the step, so the four steps read as one compact list. */
+@media (max-width: 35.99rem) {
+  .process {
+    gap: var(--s-3);
+  }
+  .process li {
+    grid-template-columns: auto minmax(0, 1fr);
+    column-gap: var(--s-4);
+    row-gap: var(--s-1);
+    padding: var(--s-5);
+  }
+  .process .num {
+    grid-row: span 2;
+  }
 }

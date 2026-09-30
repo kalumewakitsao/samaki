@@ -78,7 +78,7 @@ import { Icon } from '../../ui/icon';
                 <sx-icon name="mail" /><a
                   [href]="'mailto:' + business.email"
                   (click)="analytics.track('contact_click', { channel: 'email', page: 'quote' })"
-                  >{{ business.email }}</a
+                  >{{ business.emailParts[0] }}@<wbr />{{ business.emailParts[1] }}</a
                 >
               </li>
               <li>
@@ -105,6 +105,7 @@ import { Icon } from '../../ui/icon';
     }
     .layout {
       display: grid;
+      grid-template-columns: minmax(0, 1fr);
       gap: var(--s-8);
       align-items: start;
     }
@@ -123,6 +124,12 @@ import { Icon } from '../../ui/icon';
     .aside {
       display: grid;
       gap: var(--s-4);
+    }
+    @media (min-width: 40rem) and (max-width: 61.99rem) {
+      .aside {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        align-items: start;
+      }
     }
     @media (min-width: 62rem) {
       .aside {

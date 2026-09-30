@@ -57,7 +57,9 @@ import { Illustration } from '../../ui/illustration';
             <a class="channel" [href]="'mailto:' + business.email" (click)="track('email')">
               <span class="icon-tile"><sx-icon name="mail" /></span>
               <span class="c-label">Email</span>
-              <strong class="email">{{ business.email }}</strong>
+              <strong class="email"
+                >{{ business.emailParts[0] }}@<wbr />{{ business.emailParts[1] }}</strong
+              >
               <span class="small muted">Good for detailed questions</span>
             </a>
           </li>
@@ -173,6 +175,7 @@ import { Illustration } from '../../ui/illustration';
     }
     .layout {
       display: grid;
+      grid-template-columns: minmax(0, 1fr);
       gap: var(--s-8);
       align-items: start;
     }

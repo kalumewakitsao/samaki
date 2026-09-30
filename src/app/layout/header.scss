@@ -10,11 +10,13 @@
 .row {
   display: flex;
   align-items: center;
-  gap: var(--s-4);
+  gap: var(--s-3);
   min-height: 4.25rem;
 }
 .brand {
+  --logo-size: clamp(1.1rem, 0.9rem + 1vw, 1.3rem);
   display: inline-flex;
+  min-width: 0;
   text-decoration: none;
   margin-right: auto;
   border-radius: var(--r-sm);
@@ -52,6 +54,16 @@
   display: flex;
   align-items: center;
   gap: var(--s-2);
+  flex-shrink: 0;
+}
+/* Small phones: the theme switch moves into the menu so the bar never scrolls sideways. */
+@media (max-width: 23.99rem) {
+  .tools {
+    gap: var(--s-1);
+  }
+  .tools sx-theme-toggle {
+    display: none;
+  }
 }
 .list-link,
 .menu-btn {
@@ -149,4 +161,15 @@
 .m-actions {
   display: grid;
   gap: var(--s-3);
+}
+.m-theme {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+  margin-top: var(--s-6);
+  padding-top: var(--s-4);
+  border-top: 1px solid var(--c-line);
+  color: var(--c-ink-2);
+  font-size: var(--fs-sm);
 }

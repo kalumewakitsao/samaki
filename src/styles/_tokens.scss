@@ -39,7 +39,7 @@
     --s-24: 6rem;
     --section-y: clamp(3.5rem, 2rem + 6vw, 7.5rem);
     --gutter: clamp(1rem, 0.5rem + 2.5vw, 2.5rem);
-    --container: 76rem;
+    --container: clamp(76rem, 60rem + 16vw, 86rem);
     --measure: 38rem;
 
     /* Radius */

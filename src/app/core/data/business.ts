@@ -15,6 +15,8 @@ export const BUSINESS = {
     tel: '+254704944034',
   },
   email: 'samakiexpresske@gmail.com',
+  /** The address split at the @, so long lines can wrap there instead of mid-word. */
+  emailParts: ['samakiexpresske', 'gmail.com'] as const,
   address: {
     street: 'Kairo, Waiyaki Way, next to Nairobi School',
     locality: 'Nairobi',

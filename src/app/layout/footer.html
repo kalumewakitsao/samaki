@@ -69,7 +69,7 @@
               <sx-icon name="mail" /><a
                 [href]="'mailto:' + business.email"
                 (click)="analytics.track('contact_click', { channel: 'email', page: 'footer' })"
-                >{{ business.email }}</a
+                >{{ business.emailParts[0] }}@<wbr />{{ business.emailParts[1] }}</a
               >
             </li>
             <li>

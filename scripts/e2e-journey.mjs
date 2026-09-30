@@ -27,7 +27,11 @@ const assert = (c, m) => {
 };
 
 await page.goto(base + '/', { waitUntil: 'networkidle' });
-await page.getByRole('link', { name: 'Fingerlings', exact: true }).first().click();
+await page
+  .locator('sx-offering-card')
+  .getByRole('link', { name: 'Fingerlings', exact: true })
+  .first()
+  .click();
 await page.waitForURL('**/products/fingerlings');
 assert(
   (await page.locator('h1').innerText()) === 'Fingerlings',

@@ -349,6 +349,12 @@
         animation-timeline: view();
         animation-range: entry 0% entry 40%;
       }
+      /* Inside a sideways rail the block-axis view timeline never runs; show the cards as they are. */
+      @media (max-width: 35.99rem) {
+        .rail > .reveal {
+          animation: none;
+        }
+      }
     }
   }
   @keyframes reveal-up {

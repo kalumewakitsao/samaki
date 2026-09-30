@@ -7,10 +7,21 @@
   margin-top: var(--s-6);
   align-items: start;
 }
-@media (min-width: 60rem) {
+@media (min-width: 48rem) {
   .layout {
-    grid-template-columns: 1.1fr 1fr;
-    gap: var(--s-16);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(2rem, -2rem + 6vw, 4rem);
+  }
+}
+@media (min-width: 64rem) {
+  .layout {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  }
+}
+/* Phones: a shorter picture so the name and the quote button show sooner. */
+@media (max-width: 47.99rem) {
+  .media sx-illustration {
+    aspect-ratio: 16 / 10;
   }
 }
 .media sx-illustration {
@@ -19,7 +30,7 @@
   border: 1px solid var(--c-line);
   box-shadow: var(--shadow-2);
 }
-@media (min-width: 60rem) {
+@media (min-width: 48rem) {
   .media {
     position: sticky;
     top: 6rem;
@@ -98,9 +109,9 @@
   display: grid;
   gap: var(--s-10);
 }
-@media (min-width: 60rem) {
+@media (min-width: 48rem) {
   .detail-grid {
-    grid-template-columns: 1.4fr 1fr;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
     gap: var(--s-16);
   }
 }
@@ -128,6 +139,8 @@
 }
 ul.grid {
   list-style: none;
+}
+ul.grid:not(.rail) {
   padding: 0;
 }
 .missing {

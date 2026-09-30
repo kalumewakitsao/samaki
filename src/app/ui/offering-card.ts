@@ -43,10 +43,17 @@ import { Illustration } from './illustration';
   styles: `
     :host {
       height: 100%;
+      container-type: inline-size;
     }
     .art {
       aspect-ratio: 4 / 3;
       border-bottom: 1px solid var(--c-line);
+    }
+    /* Wide cards (two across on tablets) get a shorter picture. */
+    @container (min-width: 24rem) {
+      .art {
+        aspect-ratio: 16 / 9;
+      }
     }
     .art ::ng-deep svg {
       transition: transform var(--dur-4) var(--ease-out);
@@ -59,9 +66,10 @@ import { Illustration } from './illustration';
     }
     .foot {
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
-      gap: var(--s-3);
+      gap: var(--s-2) var(--s-3);
       padding: 0 var(--s-6) var(--s-5);
     }
     .foot .text-link {
@@ -70,6 +78,42 @@ import { Illustration } from './illustration';
     .foot .btn {
       position: relative;
       z-index: 2;
+    }
+    /* Catalogue rows on phones: thumbnail beside the text, so a list of 13 stays scannable. */
+    @media (max-width: 35.99rem) {
+      :host(.card--row) {
+        display: grid;
+        grid-template-columns: clamp(5.5rem, 26vw, 7.5rem) minmax(0, 1fr);
+        grid-template-rows: 1fr auto;
+      }
+      :host(.card--row) .art {
+        grid-row: 1 / span 2;
+        aspect-ratio: auto;
+        height: 100%;
+        min-height: 9rem;
+        border-bottom: 0;
+        border-right: 1px solid var(--c-line);
+      }
+      :host(.card--row) .card__body {
+        gap: var(--s-1);
+        padding: var(--s-4) var(--s-4) var(--s-2);
+      }
+      :host(.card--row) .card__body .muted {
+        font-size: var(--fs-sm);
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+      :host(.card--row) .h3 {
+        font-size: var(--fs-lg);
+      }
+      :host(.card--row) .badge {
+        justify-self: start;
+      }
+      :host(.card--row) .foot {
+        padding: 0 var(--s-4) var(--s-4);
+      }
     }
   `,
 })

@@ -109,7 +109,12 @@ const ICONS: Record<string, string[]> = {
 @Component({
   selector: 'sx-icon',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { '[class]': "'icon icon--' + name()", style: 'display:inline-flex' },
+  host: { '[class]': "'icon icon--' + name()" },
+  styles: `
+    :host {
+      display: inline-flex;
+    }
+  `,
   template: `
     <svg
       viewBox="0 0 24 24"

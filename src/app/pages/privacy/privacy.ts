@@ -57,8 +57,10 @@ import { Breadcrumbs } from '../../ui/breadcrumbs';
           <p>
             You can ask to see the information we hold about you, correct it, delete it, or stop
             receiving tips and offers. Email
-            <a [href]="'mailto:' + business.email">{{ business.email }}</a> or call
-            {{ business.phone.display }}.
+            <a [href]="'mailto:' + business.email"
+              >{{ business.emailParts[0] }}@<wbr />{{ business.emailParts[1] }}</a
+            >
+            or call {{ business.phone.display }}.
           </p>
 
           <p><a routerLink="/contact">Contact us</a> with any questions about this notice.</p>

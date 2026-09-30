@@ -20,17 +20,37 @@ Run on 30 September 2026 against a production build served by the SSR server (`n
 |---|---|---|
 | Production build | `npm run build` | Passes. Initial JS 134 KB transferred |
 | Unit tests | `npm test` | 14 of 14 pass (validation, lead endpoint incl. dedupe, spam, failure and rate limit, quote list, app shell) |
-| Route, theme and viewport sweep with axe-core | `node scripts/qa.mjs` | 13 routes x 2 viewports x 2 themes = 52 page views: 0 axe violations (WCAG 2.2 A/AA and best practice), 0 horizontal overflow, 0 page errors, one `h1` per page. The only console messages are the expected 404 on the not-found route |
+| Route, theme and viewport sweep with axe-core | `node scripts/qa.mjs` | 13 routes x 2 viewports x 2 themes = 52 page views: 0 axe violations (WCAG 2.2 A/AA and best practice), 0 horizontal overflow at these two widths (see the responsive pass below for the full width range), 0 page errors, one `h1` per page. The only console messages are the expected 404 on the not-found route |
 | Conversion journey | `node scripts/e2e-journey.mjs` | Home → Fingerlings → reload → quote with product carried over → back and forward → submit → lead delivered to the webhook with a valid signature, reference shown, focus on confirmation, list cleared, "Repeat my last request" offered |
 | Failure states | same, with a dead webhook and with no destination | Both show "Nothing was sent", keep inputs, and offer email and phone |
 | Keyboard, focus, theme, motion | `node scripts/a11y-interactions.mjs` | Skip link, focus to heading after navigation, visible focus rings, keyboard filters, menu opens and closes with focus returned, contact bar hides while typing, system theme applied before hydration, manual theme remembered with no flash, no running animations under reduced motion |
 | API | curl | 201 valid, 200 duplicate with same reference, 422 invalid, 400 too fast, silent drop for honeypot, 301 for `/contacts` and `/about/`, 404 for unknown pages and unknown product slugs |
 
+## Responsive pass
+
+The first sweep only used 390 px and 1440 px. A wider sweep found sideways scrolling at 320, 360, 480 and 900 px that it had missed: the header tools pushed the menu button off small phones, and a long email address widened the footer. Both are fixed, and the check now covers:
+
+| Check | Result |
+|---|---|
+| Sideways scroll | 13 routes x 18 widths (320, 360, 375, 390, 414, 480, 600, 768, 834, 900, 1024, 1180, 1280, 1366, 1440, 1680, 1920, 2560) = 234 page views in dark theme, plus 132 in light: 0 with horizontal overflow |
+| axe-core at 320, 768, 1024 and 1920 px | 10 routes x 4 widths x 2 themes = 80 page views: 0 violations |
+| Landscape phone (844 x 390) | Home and quote pages checked by eye |
+
+What changed by screen size:
+
+- **Small phones (under 384 px)**: the logo scales down and the theme switch moves into the menu, so the header fits at 320 px.
+- **Phones**: category tiles sit two across with the icon above the name; popular products and "who we work with" become swipeable rows that show a slice of the next card; the catalogue and services lists use compact rows (picture beside the text); process steps put the number beside the text; product pages use a shorter picture; the form progress is a three-part bar; checkboxes and radios are 24 px; email addresses wrap at the @ instead of mid-word; footer links sit in two columns. The home page at 320 px went from 12,463 px tall to 9,313 px.
+- **Tablets (768 px up)**: the hero and product pages go two-column instead of stacking a very large picture above the text; the quote page's side boxes sit side by side; the footer uses three columns.
+- **Laptops (1024 to 1279 px)**: the hero headline steps down a size, category tiles go three across, and four-up card grids wait until 1152 px so cards are not squeezed (two-across cards get a wider, shorter picture).
+- **Large screens**: the content width grows gently from 76rem to 86rem at 2560 px.
+
+Before and after images: `docs/screenshots/responsive/`.
+
 ## Lighthouse (mobile, simulated slow 4G, Lighthouse 12)
 
 | Page | Performance | Accessibility | Best practices | SEO | FCP | LCP | TBT | CLS |
 |---|---|---|---|---|---|---|---|---|
-| `/` | 91 | 100 | 100 | 100 | 2.5 s | 2.8 s | 140 ms | 0 |
+| `/` | 91 (88 after the responsive pass, within run-to-run noise) | 100 | 100 | 100 | 2.5 s | 2.8 s | 140 ms | 0 |
 | `/products` | 90 | 100 | 100 | 100 | 2.5 s | 3.1 s | 120 ms | 0 |
 | `/products/artemia` | 89 | 100 | 100 | 100 | 2.5 s | 2.9 s | 190 ms | 0 |
 | `/quote` | 87 | 100 | 100 | 100 | 2.8 s | 3.1 s | 180 ms | 0 |

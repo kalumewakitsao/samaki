@@ -1,0 +1,55 @@
+<footer class="footer">
+  <div class="container">
+    <div class="top">
+      <div class="about stack">
+        <sx-logo />
+        <p class="muted">Fingerlings, hatchery inputs, water testing, aeration and hands-on support for fish farmers.</p>
+        <a routerLink="/quote" class="btn">Request a quote <sx-icon name="arrow-right" class="icon--arrow" /></a>
+      </div>
+
+      <nav class="cols" aria-label="Footer">
+        <div>
+          <h2 class="col-title">Products</h2>
+          <ul role="list">
+            @for (c of categories; track c.id) {
+              <li><a routerLink="/products" [queryParams]="{ category: c.id }">{{ c.name }}</a></li>
+            }
+          </ul>
+        </div>
+        <div>
+          <h2 class="col-title">Services</h2>
+          <ul role="list">
+            @for (s of services; track s.slug) {
+              <li><a [routerLink]="['/services', s.slug]">{{ s.name }}</a></li>
+            }
+          </ul>
+        </div>
+        <div>
+          <h2 class="col-title">Company</h2>
+          <ul role="list">
+            <li><a routerLink="/about">About us</a></li>
+            <li><a routerLink="/faq">Questions and answers</a></li>
+            <li><a routerLink="/contact">Contact</a></li>
+            <li><a routerLink="/privacy">Privacy notice</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="col-title">Talk to us</h2>
+          <ul role="list" class="contact">
+            <li><sx-icon name="phone" /><a [href]="'tel:' + business.phone.tel" (click)="analytics.track('contact_click', { channel: 'phone', page: 'footer' })">{{ business.phone.display }}</a></li>
+            @if (whatsapp) {
+              <li><sx-icon name="chat" /><a [href]="whatsapp" target="_blank" rel="noopener" (click)="analytics.track('contact_click', { channel: 'whatsapp', page: 'footer' })">WhatsApp us</a></li>
+            }
+            <li><sx-icon name="mail" /><a [href]="'mailto:' + business.email" (click)="analytics.track('contact_click', { channel: 'email', page: 'footer' })">{{ business.email }}</a></li>
+            <li><sx-icon name="pin" /><span>{{ business.address.street }}, {{ business.address.locality }}</span></li>
+            <li><sx-icon name="clock" /><span>{{ business.hours.short }}</span></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div class="bottom small">
+      <p>&copy; {{ year }} {{ business.legalName }}</p>
+      <p>Nairobi, Kenya</p>
+    </div>
+  </div>
+</footer>

@@ -25,6 +25,15 @@ const assert = (c, m) => {
     await page.evaluate(() => document.activeElement?.id === 'main'),
     'skip link moves focus to main content',
   );
+  await page.evaluate(() => window.scrollTo(0, 1500));
+  await page.waitForTimeout(200);
+  const header = await page.evaluate(
+    () => document.querySelector('sx-header .bar').getBoundingClientRect().top,
+  );
+  assert(header === 0, 'navbar stays at the top of the screen while scrolling');
+  const callLink = page.locator('sx-header a[href^="tel:"]:visible');
+  assert((await callLink.count()) === 1, 'navbar shows a call button with the phone number');
+  await page.evaluate(() => window.scrollTo(0, 0));
   await page.getByRole('link', { name: 'Products', exact: true }).first().focus();
   await page.keyboard.press('Enter');
   await page.waitForURL('**/products');

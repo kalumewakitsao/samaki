@@ -46,13 +46,13 @@ import { Illustration } from './illustration';
       container-type: inline-size;
     }
     .art {
-      aspect-ratio: 4 / 3;
+      aspect-ratio: 16 / 10;
       border-bottom: 1px solid var(--c-line);
     }
     /* Wide cards (two across on tablets) get a shorter picture. */
     @container (min-width: 24rem) {
       .art {
-        aspect-ratio: 16 / 9;
+        aspect-ratio: 2 / 1;
       }
     }
     .art ::ng-deep svg {
@@ -62,7 +62,14 @@ import { Illustration } from './illustration';
       transform: scale(1.04);
     }
     .card__body {
-      padding-bottom: var(--s-3);
+      gap: var(--s-1);
+      padding: var(--s-4) var(--s-5) var(--s-3);
+    }
+    .card__body .h3 {
+      font-size: var(--fs-lg);
+    }
+    .card__body .muted {
+      font-size: var(--fs-sm);
     }
     .foot {
       display: flex;
@@ -70,7 +77,7 @@ import { Illustration } from './illustration';
       align-items: center;
       justify-content: space-between;
       gap: var(--s-2) var(--s-3);
-      padding: 0 var(--s-6) var(--s-5);
+      padding: 0 var(--s-5) var(--s-4);
     }
     .foot .text-link {
       font-size: var(--fs-sm);
@@ -78,6 +85,37 @@ import { Illustration } from './illustration';
     .foot .btn {
       position: relative;
       z-index: 2;
+    }
+    /* Compact rows for "related" lists: small thumbnail beside a short summary. */
+    :host(.card--mini) {
+      display: grid;
+      grid-template-columns: 5.5rem minmax(0, 1fr);
+      grid-template-rows: 1fr auto;
+    }
+    :host(.card--mini) .art {
+      grid-row: 1 / span 2;
+      aspect-ratio: auto;
+      height: 100%;
+      border-bottom: 0;
+      border-right: 1px solid var(--c-line);
+    }
+    :host(.card--mini) .card__body {
+      padding: var(--s-3) var(--s-4) var(--s-1);
+    }
+    :host(.card--mini) .badge {
+      justify-self: start;
+    }
+    :host(.card--mini) .h3 {
+      font-size: var(--fs-base);
+    }
+    :host(.card--mini) .card__body .muted {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    :host(.card--mini) .foot {
+      padding: 0 var(--s-4) var(--s-3);
     }
     /* Catalogue rows on phones: thumbnail beside the text, so a list of 13 stays scannable. */
     @media (max-width: 35.99rem) {

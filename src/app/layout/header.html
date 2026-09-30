@@ -17,24 +17,30 @@
     </nav>
 
     <div class="tools">
-      <sx-theme-toggle />
+      <sx-theme-toggle class="theme" />
       <a
-        routerLink="/quote"
-        class="list-link"
-        [attr.aria-label]="
-          'Quote list, ' + list.count() + (list.count() === 1 ? ' item' : ' items')
-        "
+        class="call-pill"
+        [href]="'tel:' + business.phone.tel"
+        (click)="analytics.track('contact_click', { channel: 'phone', page: 'header' })"
       >
-        <sx-icon name="list" />
-        @if (list.count() > 0) {
-          <span class="count" aria-hidden="true">{{ list.count() }}</span>
-        }
+        <sx-icon name="phone" />
+        <span
+          >Call <strong>{{ business.phone.display }}</strong></span
+        >
+      </a>
+      <a
+        class="call-icon"
+        [href]="'tel:' + business.phone.tel"
+        [attr.aria-label]="'Call ' + business.phone.display"
+        (click)="analytics.track('contact_click', { channel: 'phone', page: 'header' })"
+      >
+        <sx-icon name="phone" />
       </a>
       <a
         routerLink="/quote"
-        class="btn btn--sm quote-btn"
+        class="quote-btn"
         (click)="analytics.track('cta_click', { cta: 'header_quote' })"
-        >Request a quote</a
+        >{{ list.count() > 0 ? 'Quote list (' + list.count() + ')' : 'Get a quote' }}</a
       >
       <button
         #menuTrigger
@@ -59,6 +65,7 @@
     [blockScroll]="true"
     ariaCloseLabel="Close menu"
     styleClass="sx-menu"
+    appendTo="body"
     header="Menu"
     [pt]="{ root: { role: 'dialog', 'aria-modal': 'true', 'aria-label': 'Menu' } }"
   >
@@ -83,15 +90,18 @@
       </ul>
     </nav>
     <div class="m-actions">
-      <a routerLink="/quote" class="btn btn--block">Request a quote</a>
       <a
-        class="btn btn--secondary btn--block"
+        class="btn btn--call btn--block btn--lg"
         [href]="'tel:' + business.phone.tel"
         (click)="analytics.track('contact_click', { channel: 'phone', page: 'menu' })"
       >
         <sx-icon name="phone" /> Call {{ business.phone.display }}
       </a>
-      <p class="small muted">{{ business.hours.display }}</p>
+      <a routerLink="/quote" class="btn btn--secondary btn--block">Request a quote</a>
+      <p class="small muted m-hours">
+        <span class="status-dot" [class.is-open]="status()?.open" aria-hidden="true"></span>
+        {{ status()?.label ?? business.hours.display }}
+      </p>
     </div>
     <div class="m-theme">
       <span>Light or dark theme</span>

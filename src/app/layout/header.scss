@@ -1,17 +1,42 @@
-.bar {
+:host {
   position: sticky;
   top: 0;
   z-index: var(--z-header);
-  background: color-mix(in srgb, var(--c-bg) 82%, transparent);
-  backdrop-filter: saturate(1.4) blur(14px);
-  -webkit-backdrop-filter: saturate(1.4) blur(14px);
-  border-bottom: 1px solid var(--c-line);
+  display: block;
+}
+.bar {
+  background: color-mix(in srgb, var(--c-bg) 80%, transparent);
+  backdrop-filter: saturate(1.8) blur(20px);
+  -webkit-backdrop-filter: saturate(1.8) blur(20px);
+  border-bottom: 1px solid transparent;
+  transition:
+    box-shadow var(--dur-3) var(--ease-out),
+    border-color var(--dur-3);
+}
+/* Once the page scrolls, the bar lifts off the content (no script needed where supported). */
+@supports (animation-timeline: scroll()) {
+  .bar {
+    animation: bar-lift linear both;
+    animation-timeline: scroll(root);
+    animation-range: 0 96px;
+  }
+}
+@supports not (animation-timeline: scroll()) {
+  .bar {
+    border-bottom-color: var(--c-line);
+  }
+}
+@keyframes bar-lift {
+  to {
+    border-bottom-color: var(--c-line);
+    background: color-mix(in srgb, var(--c-bg) 86%, transparent);
+  }
 }
 .row {
   display: flex;
   align-items: center;
   gap: var(--s-3);
-  min-height: 4.25rem;
+  min-height: var(--header-h);
 }
 .brand {
   --logo-size: clamp(1.1rem, 0.9rem + 1vw, 1.3rem);
@@ -32,23 +57,21 @@
   display: inline-flex;
   align-items: center;
   min-height: var(--tap);
-  padding: 0 0.85rem;
-  border-radius: var(--r-pill);
+  padding: 0 0.8rem;
   color: var(--c-ink-2);
-  font-weight: 540;
+  font-weight: 400;
   font-size: var(--fs-sm);
   text-decoration: none;
   transition:
     color var(--dur-2),
     background-color var(--dur-2);
 }
-.primary a:hover {
-  color: var(--c-ink);
-  background: var(--c-surface-2);
-}
+.primary a:hover,
 .primary a.is-active {
   color: var(--c-ink);
-  background: var(--c-surface-3);
+}
+.primary a.is-active {
+  font-weight: 600;
 }
 .tools {
   display: flex;
@@ -56,16 +79,6 @@
   gap: var(--s-2);
   flex-shrink: 0;
 }
-/* Small phones: the theme switch moves into the menu so the bar never scrolls sideways. */
-@media (max-width: 23.99rem) {
-  .tools {
-    gap: var(--s-1);
-  }
-  .tools sx-theme-toggle {
-    display: none;
-  }
-}
-.list-link,
 .menu-btn {
   position: relative;
   display: grid;
@@ -74,49 +87,91 @@
   height: var(--tap);
   border-radius: var(--r-pill);
   color: var(--c-ink);
-  border: 1px solid var(--c-line);
-  background: var(--c-surface);
+  border: 0;
+  background: transparent;
 }
-.list-link:hover,
 .menu-btn:hover {
   background: var(--c-surface-2);
 }
-.list-link sx-icon,
 .menu-btn sx-icon {
   width: 1.25rem;
   height: 1.25rem;
 }
-.count {
-  position: absolute;
-  top: -4px;
-  right: -4px;
-  min-width: 1.25rem;
-  height: 1.25rem;
-  padding: 0 4px;
+/* Phone first: a round call button on phones, the number itself from tablets up. */
+.call-icon {
   display: grid;
   place-items: center;
+  width: var(--tap);
+  height: var(--tap);
   border-radius: var(--r-pill);
-  background: var(--c-accent);
-  color: #1d1400;
-  font-size: 0.72rem;
-  font-weight: 700;
-  animation: pop var(--dur-3) var(--ease-out);
+  background: var(--c-brand);
+  color: var(--c-brand-ink);
 }
-@keyframes pop {
-  from {
-    transform: scale(0.4);
-  }
-  to {
-    transform: scale(1);
-  }
+.call-icon sx-icon {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+.call-pill {
+  display: none;
+  align-items: center;
+  gap: var(--s-2);
+  min-height: 40px;
+  padding: 0 1.1rem;
+  border-radius: var(--r-pill);
+  background: var(--c-brand);
+  color: var(--c-brand-ink);
+  font-size: var(--fs-sm);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color var(--dur-2);
+}
+.call-pill:hover {
+  background: var(--c-brand-hover);
+  text-decoration: none;
+}
+.call-pill sx-icon {
+  width: 1rem;
+  height: 1rem;
+}
+.call-pill strong {
+  font-weight: 600;
 }
 .quote-btn {
+  align-items: center;
+  min-height: var(--tap);
+  padding: 0 0.6rem;
+  color: var(--c-brand-text);
+  font-size: var(--fs-sm);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.quote-btn:hover {
+  text-decoration: underline;
+}
+.quote-btn,
+.theme {
   display: none;
 }
-
 @media (min-width: 40rem) {
+  .call-icon {
+    display: none;
+  }
+  .call-pill {
+    display: inline-flex;
+  }
+  .theme {
+    display: block;
+  }
+}
+@media (min-width: 48rem) {
   .quote-btn {
     display: inline-flex;
+  }
+}
+/* Laptops: the full menu needs the room, so the theme switch waits for wider screens. */
+@media (min-width: 62rem) and (max-width: 79.99rem) {
+  .theme {
+    display: none;
   }
 }
 @media (min-width: 62rem) {
@@ -134,7 +189,8 @@
   }
 }
 
-:host ::ng-deep .sx-menu {
+/* The menu is moved to <body> so it stacks above the sticky header. */
+::ng-deep .sx-menu {
   width: min(22rem, 88vw);
 }
 .m-links {
@@ -152,7 +208,7 @@
   text-decoration: none;
   font-family: var(--font-display);
   font-size: var(--fs-xl);
-  font-weight: 650;
+  font-weight: 600;
 }
 .m-links a:hover,
 .m-links a.is-active {
@@ -161,6 +217,11 @@
 .m-actions {
   display: grid;
   gap: var(--s-3);
+}
+.m-hours {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
 }
 .m-theme {
   display: flex;

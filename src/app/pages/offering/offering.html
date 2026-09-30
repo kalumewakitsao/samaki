@@ -28,6 +28,20 @@
                 request.
               </p>
             </div>
+            <a
+              class="btn btn--call btn--xl btn--block"
+              [href]="'tel:' + business.phone.tel"
+              (click)="
+                analytics.track('contact_click', {
+                  channel: 'phone',
+                  page: 'offering_buy',
+                  offering: o.slug,
+                })
+              "
+            >
+              <span class="call-ring"><sx-icon name="phone" /></span> Call
+              <span class="nowrap">{{ business.phone.display }}</span>
+            </a>
             <button type="button" class="btn btn--lg btn--block" (click)="requestQuote()">
               {{
                 o.kind === 'product'
@@ -46,18 +60,7 @@
               {{ inList() ? 'Added to your quote list' : 'Add to quote list and keep browsing' }}
             </button>
             <div class="ask small">
-              <span>Have a question first?</span>
-              <a
-                [href]="'tel:' + business.phone.tel"
-                (click)="
-                  analytics.track('contact_click', {
-                    channel: 'phone',
-                    page: 'offering',
-                    offering: o.slug,
-                  })
-                "
-                >Call {{ business.phone.display }}</a
-              >
+              <span>Prefer to write?</span>
               @if (askWhatsapp(); as wa) {
                 <a
                   [href]="wa"
@@ -130,11 +133,11 @@
       <div class="container">
         <div class="section-head">
           <p class="eyebrow">Often requested together</p>
-          <h2 class="h2" id="related-title">Related products and services</h2>
+          <h2 class="h3" id="related-title">Related products and services</h2>
         </div>
-        <ul class="grid grid--3 rail" role="list">
+        <ul class="related" role="list">
           @for (r of related(); track r.slug) {
-            <li><sx-offering-card [offering]="r" /></li>
+            <li><sx-offering-card class="card--mini" [offering]="r" /></li>
           }
         </ul>
       </div>

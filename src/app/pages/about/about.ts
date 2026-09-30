@@ -208,12 +208,12 @@ import { Illustration } from '../../ui/illustration';
       font-weight: 700;
     }
     .team li:nth-child(3n + 2) .avatar {
-      background: var(--c-accent);
-      color: #1d1400;
+      background: var(--c-surface-3);
+      color: var(--c-ink);
     }
     .team li:nth-child(3n) .avatar {
-      background: var(--c-deep);
-      color: var(--c-deep-ink);
+      background: var(--c-ink);
+      color: var(--c-bg);
     }
     .name {
       font-family: var(--font-body);

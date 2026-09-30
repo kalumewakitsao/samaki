@@ -5,46 +5,46 @@
     align-items: center;
     gap: var(--s-2);
     font-size: var(--fs-xs);
-    font-weight: 650;
-    letter-spacing: var(--tracking-caps);
+    font-weight: 500;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--c-brand-text);
-  }
-  .eyebrow::before {
-    content: '';
-    width: 1.25rem;
-    height: 2px;
-    border-radius: 2px;
-    background: var(--c-accent);
+    color: var(--c-ink-3);
   }
   .display {
     font-size: var(--fs-display);
     line-height: var(--lh-tight);
     letter-spacing: var(--tracking-display);
-    font-weight: 750;
+    font-weight: 500;
   }
   .h1 {
     font-size: var(--fs-3xl);
-    line-height: 1.08;
-    letter-spacing: -0.03em;
-    font-weight: 720;
+    line-height: 1.04;
+    letter-spacing: -0.04em;
+    font-weight: 500;
   }
   .h2 {
     font-size: var(--fs-2xl);
-    line-height: 1.12;
-    letter-spacing: -0.025em;
+    line-height: 1.06;
+    letter-spacing: -0.035em;
+    font-weight: 500;
   }
   .h3 {
     font-size: var(--fs-xl);
     line-height: 1.25;
+    font-weight: 500;
+    letter-spacing: -0.02em;
   }
   .lead {
     font-size: var(--fs-lg);
+    line-height: 1.5;
     color: var(--c-ink-2);
     max-width: var(--measure);
   }
   .muted {
     color: var(--c-ink-2);
+  }
+  .nowrap {
+    white-space: nowrap;
   }
   .small {
     font-size: var(--fs-sm);
@@ -128,9 +128,9 @@
     padding-inline: 0.9rem;
   }
   .btn--accent {
-    --btn-bg: var(--c-accent);
-    --btn-ink: #1d1400;
-    --btn-bg-hover: #f7c665;
+    --btn-bg: var(--c-brand);
+    --btn-ink: var(--c-brand-ink);
+    --btn-bg-hover: var(--c-brand-hover);
   }
   .btn--sm {
     min-height: 40px;
@@ -144,6 +144,53 @@
   }
   .btn--block {
     width: 100%;
+  }
+  .btn--xl {
+    min-height: 64px;
+    padding: 0.75rem 1.9rem;
+    font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  @media (max-width: 23.99rem) {
+    .btn--xl {
+      padding-inline: 1.2rem;
+      font-size: 1.0625rem;
+    }
+  }
+  /* The call button: the phone is the main way people order. Plain filled blue, no glow. */
+  .btn--call {
+    --btn-bg: var(--c-brand);
+    --btn-ink: var(--c-brand-ink);
+    --btn-bg-hover: var(--c-brand-hover);
+  }
+  .call-ring {
+    display: inline-grid;
+    place-items: center;
+    flex-shrink: 0;
+  }
+  .btn .call-ring .icon {
+    width: 1.1em;
+    height: 1.1em;
+  }
+  /* Outlined blue secondary action, as on apple.com. */
+  .btn--glass {
+    --btn-bg: transparent;
+    --btn-ink: var(--c-brand-text);
+    --btn-border: var(--c-brand-text);
+    --btn-bg-hover: var(--c-brand-soft);
+  }
+  /* Open or closed dot next to the phone number */
+  .status-dot {
+    display: inline-block;
+    flex-shrink: 0;
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: var(--r-pill);
+    background: var(--c-ink-3);
+  }
+  .status-dot.is-open {
+    background: var(--c-success);
   }
 
   .text-link {
@@ -341,30 +388,41 @@
     border: 0;
   }
 
-  /* Section entrances: CSS scroll-driven, no JavaScript, never hides content where unsupported. */
+  /* Motion, in the spirit of mercury.com: content rises softly into place as it scrolls in.
+     CSS scroll-driven only, no JavaScript, and nothing is hidden where it is unsupported. */
   @supports (animation-timeline: view()) {
     @media (prefers-reduced-motion: no-preference) {
-      .reveal {
+      .reveal,
+      .card,
+      .tile,
+      .audience,
+      .process > li,
+      .channel,
+      .section-head {
         animation: reveal-up linear both;
         animation-timeline: view();
-        animation-range: entry 0% entry 40%;
+        animation-range: entry 0% entry 55%;
       }
       /* Inside a sideways rail the block-axis view timeline never runs; show the cards as they are. */
       @media (max-width: 35.99rem) {
-        .rail > .reveal {
+        .rail > .reveal,
+        .rail .card {
           animation: none;
         }
       }
     }
   }
   @keyframes reveal-up {
+    /* Individual translate and scale leave transform free for hover lifts. */
     from {
       opacity: 0;
-      transform: translateY(24px);
+      translate: 0 32px;
+      scale: 0.985;
     }
     to {
       opacity: 1;
-      transform: none;
+      translate: none;
+      scale: none;
     }
   }
 }

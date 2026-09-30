@@ -59,7 +59,7 @@ interface Fish {
       @switch (name()) {
         @case ('hero') {
           <rect width="560" height="520" fill="var(--ill-water-1)" />
-          <circle cx="440" cy="92" r="46" fill="var(--c-accent)" opacity="0.9" />
+          <circle cx="440" cy="92" r="46" fill="var(--ill-fish)" opacity="0.9" />
           <path
             d="M0 150 Q70 132 140 150 T280 150 T420 150 T560 150 V520 H0 Z"
             fill="var(--ill-water-2)"

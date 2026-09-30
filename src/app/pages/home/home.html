@@ -1,48 +1,46 @@
-<section class="hero">
-  <div class="container hero-grid">
-    <div class="hero-copy">
-      <p class="eyebrow">Aquaculture supplies and support</p>
-      <h1 class="display">Fingerlings, feeds and expert help for your fish farm.</h1>
-      <p class="lead">
-        We supply fingerlings, hatchery inputs, water testing kits and aeration equipment, and back
-        them with training and on-farm support. Tell us what you need and we will confirm price,
-        availability and delivery.
-      </p>
-      <div class="cluster hero-ctas">
-        <a
-          class="btn btn--lg"
-          routerLink="/quote"
-          (click)="analytics.track('cta_click', { cta: 'hero_quote' })"
-        >
-          Request a quote <sx-icon name="arrow-right" class="icon--arrow" />
-        </a>
-        <a
-          class="btn btn--secondary btn--lg"
-          routerLink="/products"
-          (click)="analytics.track('cta_click', { cta: 'hero_products' })"
-          >Browse products</a
-        >
-      </div>
-      <p class="hero-call small">
-        Prefer to talk? Call
-        <a
-          [href]="'tel:' + business.phone.tel"
-          (click)="analytics.track('contact_click', { channel: 'phone', page: 'home_hero' })"
-          >{{ business.phone.display }}</a
-        >, {{ business.hours.short }}.
-      </p>
+<section class="hero" aria-labelledby="hero-title">
+  <div class="container hero-inner">
+    <p class="hero-kicker">
+      <span class="status-dot" [class.is-open]="status()?.open" aria-hidden="true"></span>
+      Aquaculture supplies and support, Nairobi
+    </p>
+    <h1 class="display" id="hero-title">Everything your fish farm needs.</h1>
+    <p class="lead hero-lead">
+      Fingerlings, hatchery feeds, water testing and aeration, with specialists who visit your farm.
+      Call us and we will confirm price, availability and delivery.
+    </p>
+    <div class="hero-ctas">
+      <a
+        class="btn btn--call btn--xl"
+        [href]="'tel:' + business.phone.tel"
+        (click)="analytics.track('contact_click', { channel: 'phone', page: 'home_hero' })"
+      >
+        <span class="call-ring"><sx-icon name="phone" /></span>
+        Call {{ business.phone.display }}
+      </a>
+      <a
+        class="btn btn--glass btn--xl"
+        routerLink="/quote"
+        (click)="analytics.track('cta_click', { cta: 'hero_quote' })"
+      >
+        Request a quote <sx-icon name="arrow-right" class="icon--arrow" />
+      </a>
     </div>
-    <div class="hero-art">
-      <sx-illustration
-        name="hero"
-        label="Illustration of a fish pond with fingerlings and an air stone releasing bubbles"
-      />
-      <ul class="floating" role="list" aria-label="What we offer">
-        <li class="f1"><sx-icon name="fish" /> Fingerlings</li>
-        <li class="f2"><sx-icon name="gauge" /> Water testing</li>
-        <li class="f3"><sx-icon name="pin" /> Farm visits</li>
-      </ul>
-    </div>
+    <p class="hero-meta small">
+      @if (status(); as st) {
+        <span class="nowrap">{{ st.label }}</span
+        ><span aria-hidden="true"> · </span>
+      }
+      <span class="nowrap">{{ business.hours.short }}</span
+      ><span aria-hidden="true"> · </span><span class="nowrap">Kairo, Waiyaki Way, Nairobi</span>
+    </p>
+    <nav class="hero-links" aria-label="Product categories">
+      @for (c of categories; track c.id) {
+        <a routerLink="/products" [queryParams]="{ category: c.id }"
+          ><sx-icon [name]="c.icon" /> {{ c.shortName }}</a
+        >
+      }
+    </nav>
   </div>
 </section>
 
@@ -61,7 +59,7 @@
       @for (c of categories; track c.id) {
         <li class="reveal">
           <a class="tile" routerLink="/products" [queryParams]="{ category: c.id }">
-            <span class="icon-tile"><sx-icon [name]="c.icon" /></span>
+            <sx-illustration class="tile-art" [name]="c.id" />
             <span class="tile-text">
               <strong>{{ c.name }}</strong>
               <span class="small muted">{{ c.blurb }}</span>
@@ -72,10 +70,24 @@
       }
       <li class="reveal">
         <a class="tile tile--service" routerLink="/services">
-          <span class="icon-tile"><sx-icon name="people" /></span>
+          <sx-illustration class="tile-art" name="support" />
           <span class="tile-text">
             <strong>Farm services</strong>
             <span class="small muted">Visits, training, audits and delivery.</span>
+          </span>
+          <sx-icon name="arrow-right" class="go" />
+        </a>
+      </li>
+      <li class="reveal">
+        <a
+          class="tile tile--call"
+          [href]="'tel:' + business.phone.tel"
+          (click)="analytics.track('contact_click', { channel: 'phone', page: 'home_tiles' })"
+        >
+          <span class="tile-call-icon"><sx-icon name="phone" /></span>
+          <span class="tile-text">
+            <strong>Not sure what you need?</strong>
+            <span class="small">Call {{ business.phone.display }}</span>
           </span>
           <sx-icon name="arrow-right" class="go" />
         </a>
@@ -102,6 +114,8 @@
     </ul>
   </div>
 </section>
+
+<sx-call-band source="home" />
 
 <section class="section" aria-labelledby="audience-title">
   <div class="container">

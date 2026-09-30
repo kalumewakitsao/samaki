@@ -1,0 +1,164 @@
+@if (item(); as o) {
+  <section class="top">
+    <div class="container">
+      <sx-breadcrumbs [trail]="trail()" />
+      <div class="layout">
+        <div class="media">
+          <sx-illustration [name]="art()" [label]="'Illustration: ' + o.name" />
+          <p class="small muted note">Illustration. Ask us for photos or specifications.</p>
+        </div>
+        <div class="info">
+          <span class="badge">{{ tag() }}</span>
+          <h1 class="h1">{{ o.name }}</h1>
+          <p class="lead">{{ o.summary }}</p>
+
+          @if (o.kind === 'product') {
+            <div class="chips" aria-label="Good for">
+              @for (g of o.goodFor; track g) {
+                <span class="goodfor"><sx-icon name="check" /> {{ g }}</span>
+              }
+            </div>
+          }
+
+          <div class="buy">
+            <div class="price-row">
+              <sx-icon name="info" />
+              <p class="small">
+                Price, pack sizes and availability are confirmed with you when we reply to your
+                request.
+              </p>
+            </div>
+            <button type="button" class="btn btn--lg btn--block" (click)="requestQuote()">
+              {{
+                o.kind === 'product'
+                  ? 'Request a quote for ' + o.name
+                  : 'Request ' + o.name.toLowerCase()
+              }}
+              <sx-icon name="arrow-right" class="icon--arrow" />
+            </button>
+            <button
+              type="button"
+              class="btn btn--secondary btn--block"
+              (click)="toggleList()"
+              [attr.aria-pressed]="inList()"
+            >
+              <sx-icon [name]="inList() ? 'check' : 'plus'" />
+              {{ inList() ? 'Added to your quote list' : 'Add to quote list and keep browsing' }}
+            </button>
+            <div class="ask small">
+              <span>Have a question first?</span>
+              <a
+                [href]="'tel:' + business.phone.tel"
+                (click)="
+                  analytics.track('contact_click', {
+                    channel: 'phone',
+                    page: 'offering',
+                    offering: o.slug,
+                  })
+                "
+                >Call {{ business.phone.display }}</a
+              >
+              @if (askWhatsapp(); as wa) {
+                <a
+                  [href]="wa"
+                  target="_blank"
+                  rel="noopener"
+                  (click)="
+                    analytics.track('contact_click', {
+                      channel: 'whatsapp',
+                      page: 'offering',
+                      offering: o.slug,
+                    })
+                  "
+                  >WhatsApp</a
+                >
+              }
+              <a
+                [href]="askEmail()"
+                (click)="
+                  analytics.track('contact_click', {
+                    channel: 'email',
+                    page: 'offering',
+                    offering: o.slug,
+                  })
+                "
+                >Email</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--surface details">
+    <div class="container detail-grid">
+      <div class="stack">
+        <h2 class="h2">About {{ o.kind === 'product' ? o.name : 'this service' }}</h2>
+        @for (p of o.description; track $index) {
+          <p class="muted body">{{ p }}</p>
+        }
+        @if (o.kind === 'service') {
+          <h3 class="h3 sub">What is included</h3>
+          <ul class="ticks" role="list">
+            @for (i of o.includes; track i) {
+              <li>
+                <sx-icon name="check" /><span>{{ i }}</span>
+              </li>
+            }
+          </ul>
+        }
+      </div>
+      <aside class="tell" aria-labelledby="tell-title">
+        <h2 class="h3" id="tell-title">For a fast, accurate quote, tell us</h2>
+        <ul class="ticks" role="list">
+          @for (t of o.tellUs; track t) {
+            <li>
+              <sx-icon name="chevron-right" /><span>{{ t }}</span>
+            </li>
+          }
+        </ul>
+        <button type="button" class="btn btn--block" (click)="requestQuote()">
+          Start my request
+        </button>
+      </aside>
+    </div>
+  </section>
+
+  @if (related().length) {
+    <section class="section" aria-labelledby="related-title">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Often requested together</p>
+          <h2 class="h2" id="related-title">Related products and services</h2>
+        </div>
+        <ul class="grid grid--3 rail" role="list">
+          @for (r of related(); track r.slug) {
+            <li><sx-offering-card [offering]="r" /></li>
+          }
+        </ul>
+      </div>
+    </section>
+  }
+
+  <sx-cta-band
+    [source]="'offering_' + o.slug"
+    heading="Need more than one item?"
+    body="Add everything to your quote list and send one request. We will confirm the whole order with you, including delivery."
+  />
+} @else {
+  <section class="section">
+    <div class="container missing stack">
+      <sx-breadcrumbs [trail]="trail()" />
+      <h1 class="h1">We could not find that {{ kind() }}</h1>
+      <p class="lead">
+        It may have been renamed or is no longer listed. Browse what we offer today, or ask us
+        directly.
+      </p>
+      <div class="cluster">
+        <a class="btn" [routerLink]="section().path">See all {{ section().label.toLowerCase() }}</a>
+        <a class="btn btn--secondary" routerLink="/contact">Contact us</a>
+      </div>
+    </div>
+  </section>
+}

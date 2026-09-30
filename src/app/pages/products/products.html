@@ -1,0 +1,105 @@
+<section class="head">
+  <div class="container">
+    <sx-breadcrumbs [trail]="[{ label: 'Home', path: '/' }, { label: 'Products' }]" />
+    <div class="intro">
+      <h1 class="h1">Products for healthier, faster-growing fish</h1>
+      <p class="lead">
+        Stock, feeds, hatchery inputs and the equipment that keeps water right. Add what you need to
+        your quote list and send one request.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="catalogue">
+  <div class="container">
+    <div class="controls">
+      <div class="search">
+        <label for="catalogue-search" class="visually-hidden">Search products</label>
+        <sx-icon name="search" />
+        <input
+          pInputText
+          id="catalogue-search"
+          type="search"
+          placeholder="Search products"
+          [value]="search()"
+          (input)="onSearch($event)"
+          (change)="commitSearch()"
+          autocomplete="off"
+        />
+      </div>
+      <div class="chips" role="group" aria-label="Filter by category">
+        <button
+          type="button"
+          class="chip"
+          [attr.aria-pressed]="active() === null"
+          (click)="setCategory(null)"
+        >
+          All
+        </button>
+        @for (c of categories; track c.id) {
+          <button
+            type="button"
+            class="chip"
+            [attr.aria-pressed]="active() === c.id"
+            (click)="setCategory(c.id)"
+          >
+            <sx-icon [name]="c.icon" /> {{ c.shortName }}
+            <span class="n">{{ counts()[c.id] }}</span>
+          </button>
+        }
+      </div>
+    </div>
+
+    <div class="results-head">
+      <h2 class="h3">{{ heading() }}</h2>
+      <p class="small muted" role="status" aria-live="polite">
+        {{ results().length }} {{ results().length === 1 ? 'product' : 'products' }}
+      </p>
+    </div>
+
+    @if (results().length) {
+      <ul class="grid grid--3" role="list">
+        @for (p of results(); track p.slug) {
+          <li><sx-offering-card class="card--row" [offering]="p" /></li>
+        }
+      </ul>
+    } @else {
+      <div class="empty">
+        <sx-icon name="search" />
+        <h3 class="h3">Nothing matches that search</h3>
+        <p class="muted">
+          Try another word or show all products. Looking for something we do not list? Ask us and we
+          will tell you what we can supply.
+        </p>
+        <div class="cluster">
+          <button type="button" class="btn btn--secondary" (click)="clear()">
+            Show all products
+          </button>
+          <a class="btn" routerLink="/contact">Ask us</a>
+        </div>
+      </div>
+    }
+  </div>
+</section>
+
+<section class="section">
+  <div class="container services-teaser">
+    <div class="stack">
+      <p class="eyebrow">Need a hand choosing?</p>
+      <h2 class="h2">Get advice before you buy</h2>
+      <p class="muted">
+        Tell us your farm type and size and we will suggest what to order and how much. Our field
+        team can also visit.
+      </p>
+    </div>
+    <div class="cluster">
+      <a class="btn btn--secondary" routerLink="/services">See farm services</a>
+      <a class="btn btn--quiet" routerLink="/faq"
+        >Read common questions <sx-icon name="arrow-right"
+      /></a>
+    </div>
+  </div>
+</section>
+
+<sx-cta-band source="products" />

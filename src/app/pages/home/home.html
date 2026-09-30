@@ -1,0 +1,232 @@
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow">Aquaculture supplies and support</p>
+      <h1 class="display">Fingerlings, feeds and expert help for your fish farm.</h1>
+      <p class="lead">
+        We supply fingerlings, hatchery inputs, water testing kits and aeration equipment, and back
+        them with training and on-farm support. Tell us what you need and we will confirm price,
+        availability and delivery.
+      </p>
+      <div class="cluster hero-ctas">
+        <a
+          class="btn btn--lg"
+          routerLink="/quote"
+          (click)="analytics.track('cta_click', { cta: 'hero_quote' })"
+        >
+          Request a quote <sx-icon name="arrow-right" class="icon--arrow" />
+        </a>
+        <a
+          class="btn btn--secondary btn--lg"
+          routerLink="/products"
+          (click)="analytics.track('cta_click', { cta: 'hero_products' })"
+          >Browse products</a
+        >
+      </div>
+      <p class="hero-call small">
+        Prefer to talk? Call
+        <a
+          [href]="'tel:' + business.phone.tel"
+          (click)="analytics.track('contact_click', { channel: 'phone', page: 'home_hero' })"
+          >{{ business.phone.display }}</a
+        >, {{ business.hours.short }}.
+      </p>
+    </div>
+    <div class="hero-art">
+      <sx-illustration
+        name="hero"
+        label="Illustration of a fish pond with fingerlings and an air stone releasing bubbles"
+      />
+      <ul class="floating" role="list" aria-label="What we offer">
+        <li class="f1"><sx-icon name="fish" /> Fingerlings</li>
+        <li class="f2"><sx-icon name="gauge" /> Water testing</li>
+        <li class="f3"><sx-icon name="pin" /> Farm visits</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section discover" aria-labelledby="discover-title">
+  <div class="container">
+    <div class="section-head section-head--split">
+      <div class="stack">
+        <p class="eyebrow">Shop by need</p>
+        <h2 class="h2" id="discover-title">What does your farm need today?</h2>
+      </div>
+      <p class="muted">
+        Pick a category to see what we stock, or add several items to one quote request.
+      </p>
+    </div>
+    <ul class="tiles" role="list">
+      @for (c of categories; track c.id) {
+        <li class="reveal">
+          <a class="tile" routerLink="/products" [queryParams]="{ category: c.id }">
+            <span class="icon-tile"><sx-icon [name]="c.icon" /></span>
+            <span class="tile-text">
+              <strong>{{ c.name }}</strong>
+              <span class="small muted">{{ c.blurb }}</span>
+            </span>
+            <sx-icon name="arrow-right" class="go" />
+          </a>
+        </li>
+      }
+      <li class="reveal">
+        <a class="tile tile--service" routerLink="/services">
+          <span class="icon-tile"><sx-icon name="people" /></span>
+          <span class="tile-text">
+            <strong>Farm services</strong>
+            <span class="small muted">Visits, training, audits and delivery.</span>
+          </span>
+          <sx-icon name="arrow-right" class="go" />
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="section section--surface" aria-labelledby="featured-title">
+  <div class="container">
+    <div class="section-head section-head--split">
+      <div class="stack">
+        <p class="eyebrow">Popular requests</p>
+        <h2 class="h2" id="featured-title">Start with the essentials</h2>
+      </div>
+      <a class="text-link" routerLink="/products"
+        >See all products <sx-icon name="arrow-right"
+      /></a>
+    </div>
+    <ul class="grid grid--4 rail" role="list">
+      @for (p of featured; track p.slug) {
+        <li class="reveal"><sx-offering-card [offering]="p" /></li>
+      }
+    </ul>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="audience-title">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Who we work with</p>
+      <h2 class="h2" id="audience-title">Support for every stage of fish farming</h2>
+    </div>
+    <ul class="grid grid--4 rail" role="list">
+      @for (a of audiences; track a.title) {
+        <li class="audience reveal">
+          <span class="icon-tile"><sx-icon [name]="a.icon" /></span>
+          <h3 class="h3">{{ a.title }}</h3>
+          <p class="muted">{{ a.body }}</p>
+          <a class="text-link" [routerLink]="a.link" [queryParams]="a.query"
+            >{{ a.cta }} <sx-icon name="arrow-right"
+          /></a>
+        </li>
+      }
+    </ul>
+  </div>
+</section>
+
+<section class="section section--deep" aria-labelledby="services-title">
+  <div class="container">
+    <div class="section-head section-head--split">
+      <div class="stack">
+        <p class="eyebrow">Beyond supply</p>
+        <h2 class="h1" id="services-title">
+          Inputs are half the job. We help with the other half.
+        </h2>
+      </div>
+      <p class="muted">
+        Good stock and good feed only pay off when water, health and daily routines are right. That
+        is where our field team comes in.
+      </p>
+    </div>
+    <ol class="process" role="list">
+      @for (step of process; track step.title; let i = $index) {
+        <li class="reveal">
+          <span class="num" aria-hidden="true">{{ i + 1 }}</span>
+          <h3 class="h3">{{ step.title }}</h3>
+          <p class="muted">{{ step.body }}</p>
+        </li>
+      }
+    </ol>
+    <ul class="svc-links" role="list">
+      @for (s of services; track s.slug) {
+        <li>
+          <a [routerLink]="['/services', s.slug]"
+            ><sx-icon [name]="s.icon" /> {{ s.name }} <sx-icon name="arrow-right" class="go"
+          /></a>
+        </li>
+      }
+    </ul>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="journey-title">
+  <div class="container">
+    <div class="section-head section-head--center">
+      <p class="eyebrow">How ordering works</p>
+      <h2 class="h2" id="journey-title">One request. A real person confirms it.</h2>
+      <p class="lead">
+        No account, no checkout. Send us what you need and we come back to you with the details.
+      </p>
+    </div>
+    <ol class="journey" role="list">
+      @for (j of journey; track j.title; let i = $index) {
+        <li class="reveal">
+          <span class="icon-tile"><sx-icon [name]="j.icon" /></span>
+          <p class="step small">Step {{ i + 1 }}</p>
+          <h3 class="h3">{{ j.title }}</h3>
+          <p class="muted">{{ j.body }}</p>
+        </li>
+      }
+    </ol>
+    <div class="journey-cta">
+      <a
+        class="btn btn--lg"
+        routerLink="/quote"
+        (click)="analytics.track('cta_click', { cta: 'journey_quote' })"
+        >Start your request <sx-icon name="arrow-right" class="icon--arrow"
+      /></a>
+    </div>
+  </div>
+</section>
+
+<section class="section section--surface" aria-labelledby="why-title">
+  <div class="container why">
+    <div class="stack">
+      <p class="eyebrow">Why Samaki Express</p>
+      <h2 class="h2" id="why-title">Supplies and know-how from the same team</h2>
+      <p class="lead">
+        We started Samaki Express because farmers need dependable access to quality fingerlings,
+        feeds and expertise, and too often have to find them in different places.
+      </p>
+      <a class="text-link" routerLink="/about">Meet the team <sx-icon name="arrow-right" /></a>
+    </div>
+    <ul class="ticks why-list" role="list">
+      <li>
+        <sx-icon name="check" /><span
+          ><strong>One place for your inputs.</strong> Stock, feeds, testing, aeration and
+          filtration in a single request.</span
+        >
+      </li>
+      <li>
+        <sx-icon name="check" /><span
+          ><strong>People who work in the field.</strong> Our team includes a field specialist, a
+          hatchery technician and a training coordinator.</span
+        >
+      </li>
+      <li>
+        <sx-icon name="check" /><span
+          ><strong>Advice before you buy.</strong> Not sure what size or how many? Ask, and we will
+          help you choose.</span
+        >
+      </li>
+      <li>
+        <sx-icon name="check" /><span
+          ><strong>Easy to find.</strong> Visit us at {{ business.address.street }},
+          {{ business.address.locality }}.</span
+        >
+      </li>
+    </ul>
+  </div>
+</section>
+
+<sx-cta-band source="home" />

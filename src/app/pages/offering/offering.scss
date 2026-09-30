@@ -1,0 +1,148 @@
+.top {
+  padding-block: var(--s-6) var(--s-16);
+}
+.layout {
+  display: grid;
+  gap: var(--s-10);
+  margin-top: var(--s-6);
+  align-items: start;
+}
+@media (min-width: 48rem) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(2rem, -2rem + 6vw, 4rem);
+  }
+}
+@media (min-width: 64rem) {
+  .layout {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  }
+}
+/* Phones: a shorter picture so the name and the quote button show sooner. */
+@media (max-width: 47.99rem) {
+  .media sx-illustration {
+    aspect-ratio: 16 / 10;
+  }
+}
+.media sx-illustration {
+  aspect-ratio: 4 / 3;
+  border-radius: var(--r-xl);
+  border: 1px solid var(--c-line);
+  box-shadow: var(--shadow-2);
+}
+@media (min-width: 48rem) {
+  .media {
+    position: sticky;
+    top: 6rem;
+  }
+}
+.note {
+  margin-top: var(--s-3);
+}
+.info {
+  display: grid;
+  gap: var(--s-5);
+}
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+}
+.goodfor {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  padding: 0.4rem 0.8rem;
+  border-radius: var(--r-pill);
+  background: var(--c-surface-2);
+  border: 1px solid var(--c-line);
+  font-size: var(--fs-sm);
+}
+.goodfor sx-icon {
+  width: 1rem;
+  height: 1rem;
+  color: var(--c-brand-text);
+}
+.buy {
+  display: grid;
+  gap: var(--s-3);
+  padding: var(--s-6);
+  border-radius: var(--r-lg);
+  background: var(--c-surface);
+  border: 1px solid var(--c-line);
+  box-shadow: var(--shadow-2);
+}
+.buy .btn {
+  white-space: normal;
+  text-align: center;
+}
+.price-row {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--s-3);
+  align-items: start;
+  color: var(--c-ink-2);
+  margin-bottom: var(--s-2);
+}
+.price-row sx-icon {
+  width: 1.2rem;
+  height: 1.2rem;
+  margin-top: 2px;
+  color: var(--c-brand-text);
+}
+.ask {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-1) var(--s-4);
+  align-items: center;
+  justify-content: center;
+  color: var(--c-ink-2);
+  padding-top: var(--s-2);
+}
+.ask a {
+  font-weight: 620;
+  min-height: var(--tap);
+  display: inline-flex;
+  align-items: center;
+}
+.detail-grid {
+  display: grid;
+  gap: var(--s-10);
+}
+@media (min-width: 48rem) {
+  .detail-grid {
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    gap: var(--s-16);
+  }
+}
+.body {
+  font-size: var(--fs-lg);
+  max-width: var(--measure);
+}
+.sub {
+  margin-top: var(--s-4);
+}
+.tell {
+  display: grid;
+  gap: var(--s-5);
+  align-content: start;
+  padding: var(--s-6);
+  border-radius: var(--r-lg);
+  background: var(--c-brand-soft);
+  color: var(--c-brand-soft-ink);
+}
+.tell h2 {
+  color: var(--c-brand-soft-ink);
+}
+.tell .ticks li {
+  color: var(--c-brand-soft-ink);
+}
+ul.grid {
+  list-style: none;
+}
+ul.grid:not(.rail) {
+  padding: 0;
+}
+.missing {
+  max-width: 40rem;
+}

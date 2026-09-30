@@ -1,0 +1,64 @@
+/*
+ * Brand polish for PrimeNG form controls. Colours and radii come from the
+ * preset in app/core/theme/samaki-preset.ts; this layer only sets sizing so
+ * controls meet the 44px touch target and match native buttons.
+ */
+@layer components {
+  .p-inputtext,
+  .p-select,
+  .p-textarea {
+    width: 100%;
+    font-size: var(--fs-base);
+  }
+  .p-inputtext:not(.p-select-label),
+  .p-select {
+    min-height: 48px;
+  }
+  .p-select {
+    min-width: 0;
+  }
+  .p-select-label {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .p-select-option {
+    min-height: var(--tap);
+  }
+  .p-checkbox,
+  .p-radiobutton {
+    flex-shrink: 0;
+  }
+  /* 24px boxes meet WCAG 2.2 target size on their own, before the label adds more. */
+  .p-checkbox,
+  .p-checkbox .p-checkbox-box {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  .p-radiobutton,
+  .p-radiobutton .p-radiobutton-box {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  .p-drawer {
+    max-width: 100vw;
+  }
+}
+
+/* PrimeNG focuses an inner element; draw one ring around the whole control instead. */
+@layer components {
+  .p-select :focus-visible,
+  .p-checkbox :focus-visible {
+    box-shadow: none;
+  }
+  .p-select:has(:focus-visible),
+  .p-checkbox:has(:focus-visible) {
+    box-shadow: var(--ring);
+  }
+  .p-checkbox:has(:focus-visible) {
+    border-radius: var(--r-xs);
+  }
+}

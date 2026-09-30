@@ -1,27 +1,35 @@
-# Samaki
+# Samaki Express website
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.8.
+Public website for Samaki Express EA Ltd: fingerlings, hatchery inputs, water testing, aeration equipment and farm support for fish farmers. Angular 21 with server-side rendering and prerendering, PrimeNG 21 form controls, and a small Express API that delivers quote requests.
 
-## Development server
+## Run it
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+```bash
+npm ci
+npm start                 # dev server on http://localhost:4200
+npm run build             # production build, prerenders 28 routes
+npm run serve:ssr         # serve the build on http://localhost:4000
+npm test                  # unit tests (Vitest)
+```
 
-## Code scaffolding
+Copy `.env.example` and set at least one lead destination before going live; without one the form refuses to accept requests and points people to phone and email.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Where things live
 
-## Build
+| Path | What |
+|---|---|
+| `src/app/core/data/` | Business facts (`business.ts`) and the product and service catalogue (`catalogue.ts`) |
+| `src/app/core/enquiry/` | Shared enquiry validation, quote list store, API client |
+| `src/server/` | Lead delivery endpoint and redirect map |
+| `src/styles/`, `src/app/core/theme/` | Design tokens, global styles, PrimeNG preset |
+| `src/app/ui/`, `src/app/layout/`, `src/app/pages/` | Components, shell and routes |
+| `scripts/` | SEO file generation, icon rendering, QA, end-to-end and accessibility checks |
+| `docs/` | Discovery and routes, brand guide, leads and analytics, verification, dependencies and release plan, screenshots |
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## QA scripts (against a running server)
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```bash
+node scripts/qa.mjs http://localhost:4000 qa-output      # every route, both themes, mobile and desktop, axe
+node scripts/e2e-journey.mjs http://localhost:4000       # home to delivered lead
+node scripts/a11y-interactions.mjs http://localhost:4000 # keyboard, focus, theme, motion
+```

@@ -1,0 +1,165 @@
+/*
+ * Samaki Express design tokens.
+ * Light theme: sunlit water over warm limestone. Dark theme: the pond at night,
+ * deep water lit by a bright teal. Dark mode is designed, not inverted.
+ */
+@layer tokens {
+  :root {
+    /* Type */
+    --font-display:
+      'Bricolage Grotesque', 'Bricolage Fallback', ui-sans-serif, system-ui, sans-serif;
+    --font-body:
+      'Inter', 'Inter Fallback', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --fs-xs: 0.8125rem;
+    --fs-sm: 0.9375rem;
+    --fs-base: 1.0625rem;
+    --fs-lg: 1.1875rem;
+    --fs-xl: clamp(1.3125rem, 1.2rem + 0.5vw, 1.5rem);
+    --fs-2xl: clamp(1.625rem, 1.35rem + 1.2vw, 2.25rem);
+    --fs-3xl: clamp(2rem, 1.5rem + 2.4vw, 3.25rem);
+    --fs-display: clamp(2.5rem, 1.6rem + 4.4vw, 5rem);
+    --lh-tight: 1.05;
+    --lh-snug: 1.2;
+    --lh-body: 1.6;
+    --tracking-display: -0.035em;
+    --tracking-caps: 0.08em;
+
+    /* Space: a 4px base */
+    --s-1: 0.25rem;
+    --s-2: 0.5rem;
+    --s-3: 0.75rem;
+    --s-4: 1rem;
+    --s-5: 1.25rem;
+    --s-6: 1.5rem;
+    --s-8: 2rem;
+    --s-10: 2.5rem;
+    --s-12: 3rem;
+    --s-16: 4rem;
+    --s-20: 5rem;
+    --s-24: 6rem;
+    --section-y: clamp(3.5rem, 2rem + 6vw, 7.5rem);
+    --gutter: clamp(1rem, 0.5rem + 2.5vw, 2.5rem);
+    --container: clamp(76rem, 60rem + 16vw, 86rem);
+    --measure: 38rem;
+
+    /* Radius */
+    --r-xs: 6px;
+    --r-sm: 10px;
+    --r-md: 14px;
+    --r-lg: 22px;
+    --r-xl: 32px;
+    --r-pill: 999px;
+
+    /* Motion */
+    --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+    --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+    --dur-1: 120ms;
+    --dur-2: 200ms;
+    --dur-3: 320ms;
+    --dur-4: 560ms;
+
+    /* Layers */
+    --z-header: 50;
+    --z-actionbar: 40;
+    --z-overlay: 100;
+
+    /* Tap targets */
+    --tap: 44px;
+
+    /* Colour: light */
+    --c-bg: #f6f4ee;
+    --c-bg-tint: #eef0e8;
+    --c-surface: #ffffff;
+    --c-surface-2: #f1f3ee;
+    --c-surface-3: #e6ebe4;
+    --c-ink: #0b1f22;
+    --c-ink-2: #3a4f53;
+    --c-ink-3: #56696c;
+    --c-line: #d8ded6;
+    --c-line-strong: #b9c3ba;
+    --c-brand: #0b6e5f;
+    --c-brand-hover: #085a4e;
+    --c-brand-ink: #ffffff;
+    --c-brand-text: #0a6356;
+    --c-brand-soft: #d9efe7;
+    --c-brand-soft-ink: #07463d;
+    --c-deep: #0b2b2e;
+    --c-deep-ink: #e9f3ef;
+    --c-deep-ink-2: #a8c4bd;
+    --c-accent: #f2b33d;
+    --c-accent-soft: #fbecc8;
+    --c-accent-ink: #6b4200;
+    --c-danger: #b42318;
+    --c-danger-soft: #fdebe9;
+    --c-success: #0f6f45;
+    --c-success-soft: #e0f3e8;
+    --c-focus: #0b6e5f;
+    --c-scrim: rgb(11 31 34 / 0.45);
+
+    /* Illustration palette */
+    --ill-water-1: #cfe9e1;
+    --ill-water-2: #9fd3c5;
+    --ill-water-3: #3f9e8c;
+    --ill-deep: #0b6e5f;
+    --ill-fish: #f2b33d;
+    --ill-fish-2: #e08a2c;
+    --ill-line: #0b2b2e;
+    --ill-paper: #ffffff;
+    --ill-sand: #e9dcc0;
+
+    /* Elevation */
+    --shadow-1: 0 1px 2px rgb(11 31 34 / 0.06), 0 1px 1px rgb(11 31 34 / 0.04);
+    --shadow-2: 0 2px 6px rgb(11 31 34 / 0.06), 0 10px 24px -8px rgb(11 31 34 / 0.12);
+    --shadow-3: 0 4px 12px rgb(11 31 34 / 0.08), 0 24px 48px -16px rgb(11 31 34 / 0.22);
+    --ring: 0 0 0 3px var(--c-bg), 0 0 0 5px var(--c-focus);
+
+    color-scheme: light;
+  }
+
+  :root[data-theme='dark'] {
+    --c-bg: #071417;
+    --c-bg-tint: #0a1b1f;
+    --c-surface: #0d1f23;
+    --c-surface-2: #11282d;
+    --c-surface-3: #173238;
+    --c-ink: #e8f1ee;
+    --c-ink-2: #b1c4c0;
+    --c-ink-3: #8fa6a2;
+    --c-line: #1f383d;
+    --c-line-strong: #2d4d53;
+    --c-brand: #3fd1ae;
+    --c-brand-hover: #6fe0c4;
+    --c-brand-ink: #03201a;
+    --c-brand-text: #5edcbd;
+    --c-brand-soft: #0e3831;
+    --c-brand-soft-ink: #9ff0da;
+    --c-deep: #0d2a2d;
+    --c-deep-ink: #e8f1ee;
+    --c-deep-ink-2: #a8c4bd;
+    --c-accent: #f5c15a;
+    --c-accent-soft: #3a2c10;
+    --c-accent-ink: #ffd88a;
+    --c-danger: #ff8f80;
+    --c-danger-soft: #3b1512;
+    --c-success: #6adca4;
+    --c-success-soft: #0f3222;
+    --c-focus: #6fe0c4;
+    --c-scrim: rgb(0 0 0 / 0.6);
+
+    --ill-water-1: #0f3036;
+    --ill-water-2: #14484c;
+    --ill-water-3: #1f7d6d;
+    --ill-deep: #3fd1ae;
+    --ill-fish: #f5c15a;
+    --ill-fish-2: #e39a3b;
+    --ill-line: #bfe9dc;
+    --ill-paper: #11282d;
+    --ill-sand: #2c3a33;
+
+    --shadow-1: 0 1px 2px rgb(0 0 0 / 0.4);
+    --shadow-2: 0 2px 6px rgb(0 0 0 / 0.35), 0 12px 28px -10px rgb(0 0 0 / 0.55);
+    --shadow-3: 0 4px 14px rgb(0 0 0 / 0.4), 0 28px 56px -18px rgb(0 0 0 / 0.7);
+
+    color-scheme: dark;
+  }
+}

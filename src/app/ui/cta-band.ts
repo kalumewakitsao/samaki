@@ -28,7 +28,7 @@ import { Icon } from './icon';
               {{ business.phone.display }}
             </a>
             <a
-              class="btn btn--glass btn--lg"
+              class="btn btn--glass btn--xl"
               routerLink="/quote"
               (click)="analytics.track('cta_click', { cta: 'cta_band_quote', page: source() })"
             >
@@ -53,15 +53,8 @@ import { Icon } from './icon';
       align-items: center;
       padding: clamp(1.75rem, 1rem + 3vw, 3.5rem);
       border-radius: var(--r-xl);
-      color: #e9f3ef;
-      background:
-        radial-gradient(100% 120% at 100% 100%, rgb(245 184 63 / 0.2), transparent 55%),
-        linear-gradient(135deg, #0b2b2e, #0d3f40);
-      box-shadow: var(--shadow-3);
-      --c-ink: #fff;
-      --c-ink-2: #cfe9e1;
-      --c-focus: #7be6cb;
-      --ring: 0 0 0 3px #0b2b2e, 0 0 0 5px #7be6cb;
+      color: var(--c-ink);
+      background: var(--c-surface-2);
     }
     @media (min-width: 60rem) {
       .panel {
@@ -86,7 +79,7 @@ import { Icon } from './icon';
       display: inline-flex;
       align-items: center;
       gap: var(--s-2);
-      color: #a8c4bd;
+      color: var(--c-ink-3);
     }
   `,
 })

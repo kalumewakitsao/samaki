@@ -77,14 +77,8 @@ import { Icon } from './icon';
       padding: clamp(1.5rem, 1rem + 2.5vw, 3rem);
       border-radius: var(--r-xl);
       overflow: hidden;
-      color: #e9f3ef;
-      background:
-        radial-gradient(120% 140% at 100% 0%, rgb(245 184 63 / 0.22), transparent 55%),
-        radial-gradient(90% 120% at 0% 100%, rgb(63 209 174 / 0.18), transparent 60%),
-        linear-gradient(135deg, #0d3f40, #072224);
-      box-shadow: var(--shadow-3);
-      --c-focus: #7be6cb;
-      --ring: 0 0 0 3px #072224, 0 0 0 5px #7be6cb;
+      color: var(--c-ink);
+      background: var(--c-surface-2);
     }
     @media (min-width: 56rem) {
       .panel {
@@ -102,27 +96,27 @@ import { Icon } from './icon';
       gap: var(--s-2);
       font-size: var(--fs-sm);
       font-weight: 600;
-      color: #a8c4bd;
+      color: var(--c-ink-3);
     }
     .title {
       display: grid;
       gap: var(--s-1);
-      color: #fff;
+      color: var(--c-ink);
     }
     .pre {
       font-size: var(--fs-xl);
       font-weight: 650;
       letter-spacing: -0.02em;
-      color: #cfe9e1;
+      color: var(--c-ink-2);
     }
     .number {
       justify-self: start;
       font-family: var(--font-display);
       font-size: clamp(2.5rem, 1.2rem + 5.4vw, 5.25rem);
-      font-weight: 780;
+      font-weight: 700;
       line-height: 1;
-      letter-spacing: -0.045em;
-      color: var(--c-accent);
+      letter-spacing: -0.035em;
+      color: var(--c-ink);
       text-decoration: none;
       white-space: nowrap;
       border-radius: var(--r-sm);
@@ -134,7 +128,7 @@ import { Icon } from './icon';
     }
     .note {
       max-width: 34rem;
-      color: #a8c4bd;
+      color: var(--c-ink-3);
     }
     .actions {
       display: grid;
@@ -161,8 +155,8 @@ import { Icon } from './icon';
       align-items: center;
       gap: var(--s-2);
       min-height: var(--tap);
-      color: #e9f3ef;
-      font-weight: 600;
+      color: var(--c-brand-text);
+      font-weight: 500;
       text-decoration: none;
     }
     .alt-link:hover {
@@ -171,7 +165,6 @@ import { Icon } from './icon';
     .alt-link sx-icon {
       width: 1.1rem;
       height: 1.1rem;
-      color: #7be6cb;
     }
   `,
 })

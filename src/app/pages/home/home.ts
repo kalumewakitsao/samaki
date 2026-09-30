@@ -7,7 +7,6 @@ import { SeoService } from '../../core/services/seo.service';
 import { OpenStatus } from '../../core/services/open-status';
 import { CallBand } from '../../ui/call-band';
 import { CtaBand } from '../../ui/cta-band';
-import { HeroScene } from '../../ui/hero-scene';
 import { Icon } from '../../ui/icon';
 import { Illustration } from '../../ui/illustration';
 import { OfferingCard } from '../../ui/offering-card';
@@ -15,7 +14,7 @@ import { OfferingCard } from '../../ui/offering-card';
 @Component({
   selector: 'sx-home',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RouterLink, Icon, Illustration, OfferingCard, CtaBand, CallBand, HeroScene],
+  imports: [RouterLink, Icon, Illustration, OfferingCard, CtaBand, CallBand],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })

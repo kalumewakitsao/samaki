@@ -86,6 +86,37 @@ import { Illustration } from './illustration';
       position: relative;
       z-index: 2;
     }
+    /* Compact rows for "related" lists: small thumbnail beside a short summary. */
+    :host(.card--mini) {
+      display: grid;
+      grid-template-columns: 5.5rem minmax(0, 1fr);
+      grid-template-rows: 1fr auto;
+    }
+    :host(.card--mini) .art {
+      grid-row: 1 / span 2;
+      aspect-ratio: auto;
+      height: 100%;
+      border-bottom: 0;
+      border-right: 1px solid var(--c-line);
+    }
+    :host(.card--mini) .card__body {
+      padding: var(--s-3) var(--s-4) var(--s-1);
+    }
+    :host(.card--mini) .badge {
+      justify-self: start;
+    }
+    :host(.card--mini) .h3 {
+      font-size: var(--fs-base);
+    }
+    :host(.card--mini) .card__body .muted {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    :host(.card--mini) .foot {
+      padding: 0 var(--s-4) var(--s-3);
+    }
     /* Catalogue rows on phones: thumbnail beside the text, so a list of 13 stays scannable. */
     @media (max-width: 35.99rem) {
       :host(.card--row) {

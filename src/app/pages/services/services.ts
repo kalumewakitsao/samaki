@@ -105,10 +105,10 @@ import { OfferingCard } from '../../ui/offering-card';
       width: 2.5rem;
       height: 2.5rem;
       border-radius: var(--r-pill);
-      background: var(--c-accent);
-      color: #1d1400;
+      background: var(--c-ink);
+      color: var(--c-bg);
       font-family: var(--font-display);
-      font-weight: 750;
+      font-weight: 650;
     }
   `,
 })

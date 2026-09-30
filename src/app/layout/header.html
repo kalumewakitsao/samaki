@@ -19,30 +19,14 @@
     <div class="tools">
       <sx-theme-toggle class="theme" />
       <a
-        routerLink="/quote"
-        class="list-link"
-        [attr.aria-label]="
-          'Quote list, ' + list.count() + (list.count() === 1 ? ' item' : ' items')
-        "
-      >
-        <sx-icon name="list" />
-        @if (list.count() > 0) {
-          <span class="count" aria-hidden="true">{{ list.count() }}</span>
-        }
-      </a>
-      <a
         class="call-pill"
         [href]="'tel:' + business.phone.tel"
         (click)="analytics.track('contact_click', { channel: 'phone', page: 'header' })"
       >
-        <span class="pill-ring"><sx-icon name="phone" /></span>
-        <span class="pill-text">
-          <span class="pill-k"
-            ><span class="status-dot" [class.is-open]="status()?.open" aria-hidden="true"></span
-            >{{ status()?.open ? 'Open now, call' : 'Call us' }}</span
-          >
-          <strong>{{ business.phone.display }}</strong>
-        </span>
+        <sx-icon name="phone" />
+        <span
+          >Call <strong>{{ business.phone.display }}</strong></span
+        >
       </a>
       <a
         class="call-icon"
@@ -54,9 +38,9 @@
       </a>
       <a
         routerLink="/quote"
-        class="btn btn--sm quote-btn"
+        class="quote-btn"
         (click)="analytics.track('cta_click', { cta: 'header_quote' })"
-        >Request a quote</a
+        >{{ list.count() > 0 ? 'Quote list (' + list.count() + ')' : 'Get a quote' }}</a
       >
       <button
         #menuTrigger

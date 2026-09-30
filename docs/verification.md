@@ -57,6 +57,15 @@ Before and after images: `docs/screenshots/responsive/`.
 
 These are lab numbers from a local server, not field Core Web Vitals. LCP is text (no hero image), so it depends mostly on HTML and CSS delivery; a CDN in front of the Node server should bring LCP under 2.5 s. The largest remaining cost is the PrimeNG theme engine in the initial bundle (about 106 KB raw of preset tokens).
 
+## Premium pass (sticky navbar, phone-first calls to action)
+
+- Navbar stays pinned while scrolling (checked in `scripts/a11y-interactions.mjs`); the call button with the number is always in it.
+- Overflow sweep: 12 routes x 15 widths (320 to 2560), dark theme, 0 pages with sideways scroll.
+- axe: 80 page views (320, 768, 1024, 1920; light and dark), 0 violations. Keyboard checks: 18 of 18 pass.
+- Unit tests: 19 of 19 (adds the open-now status in Nairobi time).
+- Lighthouse mobile: home 88/100/100/100 (LCP 3.0 s, CLS 0.004), fingerlings 90/100/100/100, contact 86/100/100/100 (performance, accessibility, best practices, SEO).
+- Screenshots in `docs/screenshots/premium/`.
+
 ## Browsers
 
 Chromium (Playwright 1.56) was used for every automated run. Safari and Firefox were not available in this environment; the site uses no Chromium-only features for content (scroll-driven entrance animations and view transitions are progressive enhancements that simply do not run elsewhere).

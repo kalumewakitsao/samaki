@@ -4,7 +4,10 @@ import { BUSINESS } from '../../core/data/business';
 import { CATEGORIES, PROCESS, SERVICES, findProduct } from '../../core/data/catalogue';
 import { AnalyticsService } from '../../core/services/analytics.service';
 import { SeoService } from '../../core/services/seo.service';
+import { OpenStatus } from '../../core/services/open-status';
+import { CallBand } from '../../ui/call-band';
 import { CtaBand } from '../../ui/cta-band';
+import { HeroScene } from '../../ui/hero-scene';
 import { Icon } from '../../ui/icon';
 import { Illustration } from '../../ui/illustration';
 import { OfferingCard } from '../../ui/offering-card';
@@ -12,7 +15,7 @@ import { OfferingCard } from '../../ui/offering-card';
 @Component({
   selector: 'sx-home',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RouterLink, Icon, Illustration, OfferingCard, CtaBand],
+  imports: [RouterLink, Icon, Illustration, OfferingCard, CtaBand, CallBand, HeroScene],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
@@ -28,6 +31,7 @@ export class HomePage {
     'vento-airpump',
   ].map((s) => findProduct(s)!);
   protected readonly analytics = inject(AnalyticsService);
+  protected readonly status = inject(OpenStatus).state;
 
   protected readonly audiences = [
     {

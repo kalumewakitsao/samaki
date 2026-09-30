@@ -28,6 +28,11 @@ export const BUSINESS = {
     display: 'Monday to Friday, 9:00 am to 6:00 pm',
     short: 'Mon to Fri, 9 am to 6 pm',
     schema: ['Mo-Fr 09:00-18:00'],
+    /** Machine-readable version of the hours above, in Nairobi time (UTC+3, no daylight saving). */
+    days: [1, 2, 3, 4, 5],
+    opensHour: 9,
+    closesHour: 18,
+    utcOffsetHours: 3,
   },
   /**
    * WhatsApp is off until Samaki Express confirms which number answers

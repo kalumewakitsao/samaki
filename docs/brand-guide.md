@@ -73,6 +73,10 @@ Both are self-hosted (Latin subset, about 90 KB together), preloaded, `font-disp
 | CTA band | Deep band with one gold action and a phone action |
 | Breadcrumbs, FAQ disclosure, notices | Native elements first (`details`, lists), styled by tokens |
 
+## Calling us is the main action
+
+Phone calls are the main way customers reach Samaki Express, so the number is the primary call to action everywhere: amber `.btn--call` buttons (with `.call-ring`) in the sticky navbar, the hero, product pages, the call band, the closing band and the phone action bar. Quote requests are secondary. An open-now dot and label (Mon to Fri, 9 am to 6 pm, Nairobi time) sits next to the number when the browser can compute it; the server render shows the hours instead.
+
 ## Voice
 
 Confident, warm, concise, specific. Say what happens next ("We confirm price, availability and delivery with you"), use the farmer's words (ponds, cages, stocking date), avoid jargon and superlatives, and never claim numbers, certifications or guarantees we cannot show.

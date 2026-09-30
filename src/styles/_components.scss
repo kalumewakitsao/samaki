@@ -4,35 +4,36 @@
     display: inline-flex;
     align-items: center;
     gap: var(--s-2);
-    font-size: var(--fs-xs);
+    font-size: var(--fs-sm);
     font-weight: 650;
-    letter-spacing: var(--tracking-caps);
-    text-transform: uppercase;
+    letter-spacing: 0.01em;
     color: var(--c-brand-text);
   }
   .eyebrow::before {
     content: '';
-    width: 1.25rem;
-    height: 2px;
-    border-radius: 2px;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: var(--r-pill);
     background: var(--c-accent);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--c-accent) 25%, transparent);
   }
   .display {
     font-size: var(--fs-display);
     line-height: var(--lh-tight);
     letter-spacing: var(--tracking-display);
-    font-weight: 750;
+    font-weight: 760;
   }
   .h1 {
     font-size: var(--fs-3xl);
-    line-height: 1.08;
-    letter-spacing: -0.03em;
-    font-weight: 720;
+    line-height: 1.04;
+    letter-spacing: -0.04em;
+    font-weight: 740;
   }
   .h2 {
     font-size: var(--fs-2xl);
-    line-height: 1.12;
-    letter-spacing: -0.025em;
+    line-height: 1.06;
+    letter-spacing: -0.035em;
+    font-weight: 720;
   }
   .h3 {
     font-size: var(--fs-xl);
@@ -40,11 +41,29 @@
   }
   .lead {
     font-size: var(--fs-lg);
+    line-height: 1.5;
     color: var(--c-ink-2);
     max-width: var(--measure);
   }
+  /* A gradient on one or two words of a big headline. Text stays readable if clipping is unsupported. */
+  .grad {
+    color: var(--c-brand-text);
+    @supports (background-clip: text) or (-webkit-background-clip: text) {
+      background: linear-gradient(
+        100deg,
+        var(--c-brand-text),
+        color-mix(in srgb, var(--c-brand-text) 55%, var(--c-accent))
+      );
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+  }
   .muted {
     color: var(--c-ink-2);
+  }
+  .nowrap {
+    white-space: nowrap;
   }
   .small {
     font-size: var(--fs-sm);
@@ -144,6 +163,89 @@
   }
   .btn--block {
     width: 100%;
+  }
+  .btn--xl {
+    min-height: 64px;
+    padding: 0.75rem 1.9rem 0.75rem 0.8rem;
+    font-size: clamp(1.125rem, 1rem + 0.5vw, 1.3125rem);
+    font-weight: 680;
+    letter-spacing: -0.01em;
+  }
+  @media (max-width: 23.99rem) {
+    .btn--xl {
+      padding-right: 1.2rem;
+      font-size: 1.0625rem;
+    }
+  }
+  /* The call button: the phone is the main way people order. */
+  .btn--call {
+    --btn-bg: var(--c-accent);
+    --btn-ink: #1d1400;
+    --btn-bg-hover: #f7c665;
+    box-shadow: 0 10px 30px -10px color-mix(in srgb, var(--c-accent) 70%, transparent);
+  }
+  .btn--call:hover {
+    box-shadow: 0 14px 36px -10px color-mix(in srgb, var(--c-accent) 85%, transparent);
+  }
+  .call-ring {
+    position: relative;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 2.6rem;
+    height: 2.6rem;
+    border-radius: var(--r-pill);
+    background: #1d1400;
+    color: var(--c-accent);
+  }
+  .btn .call-ring .icon {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+  .call-ring::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    border: 2px solid #1d1400;
+    opacity: 0;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .call-ring::after {
+      animation: call-pulse 2.6s var(--ease-out) infinite;
+    }
+  }
+  @keyframes call-pulse {
+    0% {
+      transform: scale(1);
+      opacity: 0.5;
+    }
+    70%,
+    100% {
+      transform: scale(1.6);
+      opacity: 0;
+    }
+  }
+  .btn--glass {
+    --btn-bg: rgb(255 255 255 / 0.1);
+    --btn-ink: #fff;
+    --btn-border: rgb(255 255 255 / 0.28);
+    --btn-bg-hover: rgb(255 255 255 / 0.18);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+  /* Open or closed dot next to the phone number */
+  .status-dot {
+    display: inline-block;
+    flex-shrink: 0;
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: var(--r-pill);
+    background: var(--c-ink-3);
+  }
+  .status-dot.is-open {
+    background: #22c55e;
+    box-shadow: 0 0 0 3px rgb(34 197 94 / 0.25);
   }
 
   .text-link {

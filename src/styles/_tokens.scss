@@ -13,15 +13,15 @@
     --fs-xs: 0.8125rem;
     --fs-sm: 0.9375rem;
     --fs-base: 1.0625rem;
-    --fs-lg: 1.1875rem;
-    --fs-xl: clamp(1.3125rem, 1.2rem + 0.5vw, 1.5rem);
-    --fs-2xl: clamp(1.625rem, 1.35rem + 1.2vw, 2.25rem);
-    --fs-3xl: clamp(2rem, 1.5rem + 2.4vw, 3.25rem);
-    --fs-display: clamp(2.5rem, 1.6rem + 4.4vw, 5rem);
-    --lh-tight: 1.05;
+    --fs-lg: clamp(1.125rem, 1rem + 0.45vw, 1.3125rem);
+    --fs-xl: clamp(1.3125rem, 1.15rem + 0.6vw, 1.625rem);
+    --fs-2xl: clamp(1.875rem, 1.2rem + 2.6vw, 3.5rem);
+    --fs-3xl: clamp(2.25rem, 1.2rem + 4vw, 4.75rem);
+    --fs-display: clamp(2.75rem, 1rem + 6.6vw, 7.25rem);
+    --lh-tight: 1;
     --lh-snug: 1.2;
     --lh-body: 1.6;
-    --tracking-display: -0.035em;
+    --tracking-display: -0.045em;
     --tracking-caps: 0.08em;
 
     /* Space: a 4px base */
@@ -37,7 +37,7 @@
     --s-16: 4rem;
     --s-20: 5rem;
     --s-24: 6rem;
-    --section-y: clamp(3.5rem, 2rem + 6vw, 7.5rem);
+    --section-y: clamp(3.5rem, 2rem + 4.5vw, 6.5rem);
     --gutter: clamp(1rem, 0.5rem + 2.5vw, 2.5rem);
     --container: clamp(76rem, 60rem + 16vw, 86rem);
     --measure: 38rem;
@@ -46,8 +46,8 @@
     --r-xs: 6px;
     --r-sm: 10px;
     --r-md: 14px;
-    --r-lg: 22px;
-    --r-xl: 32px;
+    --r-lg: 24px;
+    --r-xl: 36px;
     --r-pill: 999px;
 
     /* Motion */
@@ -60,6 +60,7 @@
 
     /* Layers */
     --z-header: 50;
+    --header-h: 4.5rem;
     --z-actionbar: 40;
     --z-overlay: 100;
 

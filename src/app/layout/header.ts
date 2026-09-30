@@ -6,6 +6,7 @@ import { Drawer } from 'primeng/drawer';
 import { BUSINESS } from '../core/data/business';
 import { QuoteListStore } from '../core/enquiry/quote-list.store';
 import { AnalyticsService } from '../core/services/analytics.service';
+import { OpenStatus } from '../core/services/open-status';
 import { Icon } from '../ui/icon';
 import { Logo } from '../ui/logo';
 import { ThemeToggle } from '../ui/theme-toggle';
@@ -24,6 +25,7 @@ export class Header {
   protected readonly list = inject(QuoteListStore);
   protected readonly analytics = inject(AnalyticsService);
   protected readonly menuOpen = signal(false);
+  protected readonly status = inject(OpenStatus).state;
 
   constructor() {
     inject(Router)

@@ -46,13 +46,13 @@ import { Illustration } from './illustration';
       container-type: inline-size;
     }
     .art {
-      aspect-ratio: 4 / 3;
+      aspect-ratio: 16 / 10;
       border-bottom: 1px solid var(--c-line);
     }
     /* Wide cards (two across on tablets) get a shorter picture. */
     @container (min-width: 24rem) {
       .art {
-        aspect-ratio: 16 / 9;
+        aspect-ratio: 2 / 1;
       }
     }
     .art ::ng-deep svg {
@@ -62,7 +62,14 @@ import { Illustration } from './illustration';
       transform: scale(1.04);
     }
     .card__body {
-      padding-bottom: var(--s-3);
+      gap: var(--s-1);
+      padding: var(--s-4) var(--s-5) var(--s-3);
+    }
+    .card__body .h3 {
+      font-size: var(--fs-lg);
+    }
+    .card__body .muted {
+      font-size: var(--fs-sm);
     }
     .foot {
       display: flex;
@@ -70,7 +77,7 @@ import { Illustration } from './illustration';
       align-items: center;
       justify-content: space-between;
       gap: var(--s-2) var(--s-3);
-      padding: 0 var(--s-6) var(--s-5);
+      padding: 0 var(--s-5) var(--s-4);
     }
     .foot .text-link {
       font-size: var(--fs-sm);

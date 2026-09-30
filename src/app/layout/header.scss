@@ -1,17 +1,43 @@
-.bar {
+:host {
   position: sticky;
   top: 0;
   z-index: var(--z-header);
-  background: color-mix(in srgb, var(--c-bg) 82%, transparent);
-  backdrop-filter: saturate(1.4) blur(14px);
-  -webkit-backdrop-filter: saturate(1.4) blur(14px);
-  border-bottom: 1px solid var(--c-line);
+  display: block;
+}
+.bar {
+  background: color-mix(in srgb, var(--c-bg) 78%, transparent);
+  backdrop-filter: saturate(1.6) blur(18px);
+  -webkit-backdrop-filter: saturate(1.6) blur(18px);
+  border-bottom: 1px solid transparent;
+  transition:
+    box-shadow var(--dur-3) var(--ease-out),
+    border-color var(--dur-3);
+}
+/* Once the page scrolls, the bar lifts off the content (no script needed where supported). */
+@supports (animation-timeline: scroll()) {
+  .bar {
+    animation: bar-lift linear both;
+    animation-timeline: scroll(root);
+    animation-range: 0 96px;
+  }
+}
+@supports not (animation-timeline: scroll()) {
+  .bar {
+    border-bottom-color: var(--c-line);
+  }
+}
+@keyframes bar-lift {
+  to {
+    border-bottom-color: var(--c-line);
+    box-shadow: 0 8px 30px -18px rgb(11 31 34 / 0.35);
+    background: color-mix(in srgb, var(--c-bg) 88%, transparent);
+  }
 }
 .row {
   display: flex;
   align-items: center;
   gap: var(--s-3);
-  min-height: 4.25rem;
+  min-height: var(--header-h);
 }
 .brand {
   --logo-size: clamp(1.1rem, 0.9rem + 1vw, 1.3rem);
@@ -55,15 +81,6 @@
   align-items: center;
   gap: var(--s-2);
   flex-shrink: 0;
-}
-/* Small phones: the theme switch moves into the menu so the bar never scrolls sideways. */
-@media (max-width: 23.99rem) {
-  .tools {
-    gap: var(--s-1);
-  }
-  .tools sx-theme-toggle {
-    display: none;
-  }
 }
 .list-link,
 .menu-btn {
@@ -110,13 +127,113 @@
     transform: scale(1);
   }
 }
-.quote-btn {
+/* Phone first: a filled call button on phones, the number itself from tablets up. */
+.call-icon {
+  display: grid;
+  place-items: center;
+  width: var(--tap);
+  height: var(--tap);
+  border-radius: var(--r-pill);
+  background: var(--c-accent);
+  color: #1d1400;
+  box-shadow: 0 6px 18px -8px color-mix(in srgb, var(--c-accent) 80%, transparent);
+}
+.call-icon sx-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+.call-pill {
+  display: none;
+  align-items: center;
+  gap: var(--s-2);
+  min-height: var(--tap);
+  padding: 0.25rem 1rem 0.25rem 0.3rem;
+  border-radius: var(--r-pill);
+  background: var(--c-accent);
+  color: #1d1400;
+  text-decoration: none;
+  box-shadow: 0 6px 18px -8px color-mix(in srgb, var(--c-accent) 80%, transparent);
+  transition:
+    background-color var(--dur-2),
+    transform var(--dur-1);
+}
+.call-pill:hover {
+  background: #f7c665;
+  text-decoration: none;
+}
+.call-pill:active {
+  transform: scale(0.98);
+}
+.pill-ring {
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: var(--r-pill);
+  background: #1d1400;
+  color: var(--c-accent);
+}
+.pill-ring sx-icon {
+  width: 1.05rem;
+  height: 1.05rem;
+}
+.pill-text {
+  display: grid;
+  line-height: 1.1;
+}
+.pill-k {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  opacity: 0.8;
+}
+.pill-k .status-dot {
+  width: 0.45rem;
+  height: 0.45rem;
+  background: rgb(29 20 0 / 0.45);
+}
+.pill-k .status-dot.is-open {
+  background: #0e7a3a;
+  box-shadow: 0 0 0 2px rgb(14 122 58 / 0.25);
+}
+.call-pill strong {
+  font-size: 1rem;
+  font-weight: 750;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+.quote-btn,
+.theme {
   display: none;
 }
-
+@media (max-width: 24.99rem) {
+  .list-link {
+    display: none;
+  }
+}
 @media (min-width: 40rem) {
+  .call-icon {
+    display: none;
+  }
+  .call-pill {
+    display: inline-flex;
+  }
+  .theme {
+    display: block;
+  }
+}
+@media (min-width: 48rem) {
   .quote-btn {
     display: inline-flex;
+  }
+}
+/* Laptops: the full menu needs the room, so the list and theme switch wait for wider screens. */
+@media (min-width: 62rem) and (max-width: 79.99rem) {
+  .list-link,
+  .theme {
+    display: none;
   }
 }
 @media (min-width: 62rem) {
@@ -134,7 +251,8 @@
   }
 }
 
-:host ::ng-deep .sx-menu {
+/* The menu is moved to <body> so it stacks above the sticky header. */
+::ng-deep .sx-menu {
   width: min(22rem, 88vw);
 }
 .m-links {
@@ -161,6 +279,11 @@
 .m-actions {
   display: grid;
   gap: var(--s-3);
+}
+.m-hours {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
 }
 .m-theme {
   display: flex;

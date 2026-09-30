@@ -4,6 +4,7 @@ import { BUSINESS, whatsappLink } from '../../core/data/business';
 import { AnalyticsService } from '../../core/services/analytics.service';
 import { SeoService, breadcrumbJsonLd } from '../../core/services/seo.service';
 import { Breadcrumbs } from '../../ui/breadcrumbs';
+import { CallBand } from '../../ui/call-band';
 import { EnquiryForm } from '../../ui/enquiry-form/enquiry-form';
 import { Icon } from '../../ui/icon';
 import { Illustration } from '../../ui/illustration';
@@ -11,7 +12,7 @@ import { Illustration } from '../../ui/illustration';
 @Component({
   selector: 'sx-contact',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RouterLink, Breadcrumbs, EnquiryForm, Icon, Illustration],
+  imports: [RouterLink, Breadcrumbs, CallBand, EnquiryForm, Icon, Illustration],
   template: `
     <section class="head">
       <div class="container">
@@ -19,24 +20,18 @@ import { Illustration } from '../../ui/illustration';
         <div class="intro">
           <h1 class="h1">Talk to Samaki Express</h1>
           <p class="lead">
-            Call, email or visit us in Nairobi. For prices and orders, a
-            <a routerLink="/quote">quote request</a> is the fastest way to get everything confirmed.
+            The quickest way to reach us is a phone call. You can also email, visit us in Nairobi,
+            or send a <a routerLink="/quote">quote request</a> for prices and orders.
           </p>
         </div>
       </div>
     </section>
 
+    <sx-call-band source="contact" />
+
     <section class="channels-wrap">
       <div class="container">
         <ul class="channels" role="list">
-          <li>
-            <a class="channel" [href]="'tel:' + business.phone.tel" (click)="track('phone')">
-              <span class="icon-tile"><sx-icon name="phone" /></span>
-              <span class="c-label">Call us</span>
-              <strong>{{ business.phone.display }}</strong>
-              <span class="small muted">{{ business.hours.short }}</span>
-            </a>
-          </li>
           @if (whatsapp) {
             <li>
               <a
@@ -136,7 +131,7 @@ import { Illustration } from '../../ui/illustration';
       display: grid;
       gap: var(--s-1);
       height: 100%;
-      padding: var(--s-6);
+      padding: var(--s-5);
       border-radius: var(--r-lg);
       background: var(--c-surface);
       border: 1px solid var(--c-line);

@@ -28,11 +28,11 @@ import { Icon } from '../ui/icon';
   template: `
     <div class="bar" role="region" aria-label="Quick contact">
       <a
-        class="btn btn--secondary"
+        class="btn btn--call call"
         [href]="'tel:' + business.phone.tel"
         (click)="analytics.track('contact_click', { channel: 'phone', page: 'action_bar' })"
       >
-        <sx-icon name="phone" /> Call
+        <sx-icon name="phone" /> Call {{ business.phone.display }}
       </a>
       @if (whatsapp) {
         <a
@@ -55,11 +55,11 @@ import { Icon } from '../ui/icon';
         </a>
       } @else {
         <a
-          class="btn"
+          class="btn btn--secondary"
           routerLink="/quote"
           (click)="analytics.track('cta_click', { cta: 'action_bar_quote' })"
         >
-          {{ list.count() ? 'Quote list (' + list.count() + ')' : 'Request a quote' }}
+          {{ list.count() ? 'Quote (' + list.count() + ')' : 'Get a quote' }}
         </a>
       }
     </div>
@@ -83,12 +83,18 @@ import { Icon } from '../ui/icon';
     .bar {
       display: grid;
       grid-auto-flow: column;
-      grid-auto-columns: 1fr;
+      grid-template-columns: minmax(0, 1.7fr);
+      grid-auto-columns: minmax(0, 1fr);
       gap: var(--s-2);
     }
     .btn {
-      min-height: 48px;
+      min-height: 50px;
       padding-inline: var(--s-3);
+      font-size: 0.975rem;
+    }
+    .call {
+      font-weight: 720;
+      box-shadow: none;
     }
     @media (min-width: 48rem) {
       :host {

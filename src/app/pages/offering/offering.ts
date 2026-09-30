@@ -1,8 +1,26 @@
 import { isPlatformBrowser } from '@angular/common';
-import { ChangeDetectionStrategy, Component, PLATFORM_ID, RESPONSE_INIT, computed, effect, inject, input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  PLATFORM_ID,
+  RESPONSE_INIT,
+  computed,
+  effect,
+  inject,
+  input,
+} from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { BUSINESS, mailtoLink, whatsappLink } from '../../core/data/business';
-import { IllustrationId, Offering, findCategory, findOffering, offeringArt, findProduct, findService, offeringUrl } from '../../core/data/catalogue';
+import {
+  IllustrationId,
+  Offering,
+  findCategory,
+  findOffering,
+  offeringArt,
+  findProduct,
+  findService,
+  offeringUrl,
+} from '../../core/data/catalogue';
 import { QuoteListStore } from '../../core/enquiry/quote-list.store';
 import { AnalyticsService } from '../../core/services/analytics.service';
 import { SeoService, breadcrumbJsonLd } from '../../core/services/seo.service';
@@ -36,7 +54,9 @@ export class OfferingPage {
   );
   protected readonly inList = computed(() => this.list.items().some((i) => i.slug === this.slug()));
   protected readonly section = computed(() =>
-    this.kind() === 'product' ? { label: 'Products', path: '/products' } : { label: 'Services', path: '/services' },
+    this.kind() === 'product'
+      ? { label: 'Products', path: '/products' }
+      : { label: 'Services', path: '/services' },
   );
   protected readonly trail = computed<Crumb[]>(() => [
     { label: 'Home', path: '/' },
@@ -55,8 +75,12 @@ export class OfferingPage {
   protected readonly related = computed(() =>
     (this.item()?.related ?? []).map((s) => findOffering(s)).filter((o): o is Offering => !!o),
   );
-  protected readonly askEmail = computed(() => mailtoLink(`Question about ${this.item()?.name ?? ''}`));
-  protected readonly askWhatsapp = computed(() => whatsappLink(`Hello Samaki Express, I have a question about ${this.item()?.name ?? ''}.`));
+  protected readonly askEmail = computed(() =>
+    mailtoLink(`Question about ${this.item()?.name ?? ''}`),
+  );
+  protected readonly askWhatsapp = computed(() =>
+    whatsappLink(`Hello Samaki Express, I have a question about ${this.item()?.name ?? ''}.`),
+  );
 
   constructor() {
     const browser = isPlatformBrowser(inject(PLATFORM_ID));
@@ -64,7 +88,12 @@ export class OfferingPage {
       const o = this.item();
       if (!o) {
         if (this.response) this.response.status = 404;
-        this.seo.set({ title: 'Page not found', description: 'This page does not exist.', path: this.router.url, noindex: true });
+        this.seo.set({
+          title: 'Page not found',
+          description: 'This page does not exist.',
+          path: this.router.url,
+          noindex: true,
+        });
         return;
       }
       const path = offeringUrl(o);

@@ -97,7 +97,10 @@ const GROUPS: { title: string; items: Qa[] }[] = [
         <sx-breadcrumbs [trail]="[{ label: 'Home', path: '/' }, { label: 'FAQ' }]" />
         <div class="intro">
           <h1 class="h1">Questions and answers</h1>
-          <p class="lead">How ordering, delivery and farm visits work. Cannot find your answer? Call {{ business.phone.display }}.</p>
+          <p class="lead">
+            How ordering, delivery and farm visits work. Cannot find your answer? Call
+            {{ business.phone.display }}.
+          </p>
         </div>
       </div>
     </section>
@@ -106,7 +109,9 @@ const GROUPS: { title: string; items: Qa[] }[] = [
         <nav class="toc" aria-label="Topics">
           <ul role="list">
             @for (g of groups; track g.title) {
-              <li><a [href]="'/faq#' + slug(g.title)">{{ g.title }}</a></li>
+              <li>
+                <a [href]="'/faq#' + slug(g.title)">{{ g.title }}</a>
+              </li>
             }
           </ul>
         </nav>
@@ -116,11 +121,16 @@ const GROUPS: { title: string; items: Qa[] }[] = [
               <h2 class="h3 g-title" [id]="slug(g.title) + '-h'">{{ g.title }}</h2>
               @for (item of g.items; track item.q) {
                 <details>
-                  <summary><span>{{ item.q }}</span><sx-icon name="plus" /></summary>
+                  <summary>
+                    <span>{{ item.q }}</span
+                    ><sx-icon name="plus" />
+                  </summary>
                   <div class="answer">
                     <p>{{ item.a }}</p>
                     @if (item.link; as l) {
-                      <a class="text-link" [routerLink]="l.path">{{ l.label }} <sx-icon name="arrow-right" /></a>
+                      <a class="text-link" [routerLink]="l.path"
+                        >{{ l.label }} <sx-icon name="arrow-right"
+                      /></a>
                     }
                   </div>
                 </details>
@@ -130,33 +140,129 @@ const GROUPS: { title: string; items: Qa[] }[] = [
         </div>
       </div>
     </section>
-    <sx-cta-band source="faq" heading="Still have a question?" body="Ask it in a quote request, or call us during business hours. A person on our team will answer." />
+    <sx-cta-band
+      source="faq"
+      heading="Still have a question?"
+      body="Ask it in a quote request, or call us during business hours. A person on our team will answer."
+    />
   `,
   styles: `
-    .head { padding-block: var(--s-6) 0; }
-    .intro { display: grid; gap: var(--s-4); margin-top: var(--s-6); max-width: 44rem; }
-    .body { padding-top: var(--s-10); }
-    .layout { display: grid; gap: var(--s-8); }
-    @media (min-width: 62rem) { .layout { grid-template-columns: 14rem 1fr; gap: var(--s-16); } .toc { position: sticky; top: 6rem; align-self: start; } }
-    .toc ul { display: flex; flex-wrap: wrap; gap: var(--s-2); list-style: none; padding: 0; }
-    @media (min-width: 62rem) { .toc ul { display: grid; gap: 0; } }
-    .toc a { display: inline-flex; align-items: center; min-height: var(--tap); padding: 0 var(--s-3); border-radius: var(--r-pill); color: var(--c-ink-2); text-decoration: none; font-weight: 560; }
-    .toc a:hover { color: var(--c-ink); background: var(--c-surface-2); }
-    .groups { display: grid; gap: var(--s-12); max-width: 48rem; }
-    .g-title { margin-bottom: var(--s-3); scroll-margin-top: 6rem; }
-    details { border-bottom: 1px solid var(--c-line); }
-    summary {
-      display: flex; justify-content: space-between; align-items: center; gap: var(--s-4);
-      min-height: 3.5rem; padding: var(--s-4) 0; cursor: pointer; list-style: none;
-      font-weight: 620; font-size: var(--fs-lg); color: var(--c-ink);
+    .head {
+      padding-block: var(--s-6) 0;
     }
-    summary::-webkit-details-marker { display: none; }
-    summary sx-icon { width: 1.25rem; height: 1.25rem; color: var(--c-brand-text); transition: transform var(--dur-3) var(--ease-out); }
-    details[open] summary sx-icon { transform: rotate(45deg); }
-    summary:focus-visible { border-radius: var(--r-xs); }
-    .answer { display: grid; gap: var(--s-3); padding-bottom: var(--s-5); color: var(--c-ink-2); max-width: var(--measure); }
-    @media (prefers-reduced-motion: no-preference) { details[open] .answer { animation: open var(--dur-3) var(--ease-out); } }
-    @keyframes open { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+    .intro {
+      display: grid;
+      gap: var(--s-4);
+      margin-top: var(--s-6);
+      max-width: 44rem;
+    }
+    .body {
+      padding-top: var(--s-10);
+    }
+    .layout {
+      display: grid;
+      gap: var(--s-8);
+    }
+    @media (min-width: 62rem) {
+      .layout {
+        grid-template-columns: 14rem 1fr;
+        gap: var(--s-16);
+      }
+      .toc {
+        position: sticky;
+        top: 6rem;
+        align-self: start;
+      }
+    }
+    .toc ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--s-2);
+      list-style: none;
+      padding: 0;
+    }
+    @media (min-width: 62rem) {
+      .toc ul {
+        display: grid;
+        gap: 0;
+      }
+    }
+    .toc a {
+      display: inline-flex;
+      align-items: center;
+      min-height: var(--tap);
+      padding: 0 var(--s-3);
+      border-radius: var(--r-pill);
+      color: var(--c-ink-2);
+      text-decoration: none;
+      font-weight: 560;
+    }
+    .toc a:hover {
+      color: var(--c-ink);
+      background: var(--c-surface-2);
+    }
+    .groups {
+      display: grid;
+      gap: var(--s-12);
+      max-width: 48rem;
+    }
+    .g-title {
+      margin-bottom: var(--s-3);
+      scroll-margin-top: 6rem;
+    }
+    details {
+      border-bottom: 1px solid var(--c-line);
+    }
+    summary {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--s-4);
+      min-height: 3.5rem;
+      padding: var(--s-4) 0;
+      cursor: pointer;
+      list-style: none;
+      font-weight: 620;
+      font-size: var(--fs-lg);
+      color: var(--c-ink);
+    }
+    summary::-webkit-details-marker {
+      display: none;
+    }
+    summary sx-icon {
+      width: 1.25rem;
+      height: 1.25rem;
+      color: var(--c-brand-text);
+      transition: transform var(--dur-3) var(--ease-out);
+    }
+    details[open] summary sx-icon {
+      transform: rotate(45deg);
+    }
+    summary:focus-visible {
+      border-radius: var(--r-xs);
+    }
+    .answer {
+      display: grid;
+      gap: var(--s-3);
+      padding-bottom: var(--s-5);
+      color: var(--c-ink-2);
+      max-width: var(--measure);
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      details[open] .answer {
+        animation: open var(--dur-3) var(--ease-out);
+      }
+    }
+    @keyframes open {
+      from {
+        opacity: 0;
+        transform: translateY(-4px);
+      }
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
   `,
 })
 export class FaqPage {
@@ -166,10 +272,14 @@ export class FaqPage {
   constructor() {
     inject(SeoService).set({
       title: 'Questions and answers',
-      description: 'How to order fingerlings, feeds and equipment from Samaki Express, how delivery and farm visits work, and where to find us.',
+      description:
+        'How to order fingerlings, feeds and equipment from Samaki Express, how delivery and farm visits work, and where to find us.',
       path: '/faq',
       jsonLd: [
-        breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'FAQ', path: '/faq' }]),
+        breadcrumbJsonLd([
+          { name: 'Home', path: '/' },
+          { name: 'FAQ', path: '/faq' },
+        ]),
         {
           '@context': 'https://schema.org',
           '@type': 'FAQPage',

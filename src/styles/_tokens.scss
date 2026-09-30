@@ -6,8 +6,10 @@
 @layer tokens {
   :root {
     /* Type */
-    --font-display: 'Bricolage Grotesque', 'Bricolage Fallback', ui-sans-serif, system-ui, sans-serif;
-    --font-body: 'Inter', 'Inter Fallback', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --font-display:
+      'Bricolage Grotesque', 'Bricolage Fallback', ui-sans-serif, system-ui, sans-serif;
+    --font-body:
+      'Inter', 'Inter Fallback', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
     --fs-xs: 0.8125rem;
     --fs-sm: 0.9375rem;
     --fs-base: 1.0625rem;

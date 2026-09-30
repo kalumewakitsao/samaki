@@ -67,7 +67,12 @@ export const LIMITS = {
   minElapsedMs: 2500,
 } as const;
 
-export type FieldErrors = Partial<Record<'items' | 'location' | 'name' | 'phone' | 'email' | 'message' | 'contactMethod' | 'form', string>>;
+export type FieldErrors = Partial<
+  Record<
+    'items' | 'location' | 'name' | 'phone' | 'email' | 'message' | 'contactMethod' | 'form',
+    string
+  >
+>;
 
 const PHONE_RE = /^\+?[0-9][0-9\s-]{7,18}$/;
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
@@ -119,7 +124,10 @@ export function sanitiseEnquiry(input: unknown): EnquiryPayload {
     marketingConsent: raw['marketingConsent'] === true,
     idempotencyKey: text(raw['idempotencyKey'], 64).replace(/[^a-zA-Z0-9-]/g, ''),
     website: text(raw['website'], 200),
-    elapsedMs: typeof raw['elapsedMs'] === 'number' && Number.isFinite(raw['elapsedMs']) ? raw['elapsedMs'] : 0,
+    elapsedMs:
+      typeof raw['elapsedMs'] === 'number' && Number.isFinite(raw['elapsedMs'])
+        ? raw['elapsedMs']
+        : 0,
     sourcePath: text(raw['sourcePath'], 200),
   };
 }
@@ -128,16 +136,20 @@ export function sanitiseEnquiry(input: unknown): EnquiryPayload {
 export function validateEnquiry(p: EnquiryPayload): FieldErrors {
   const errors: FieldErrors = {};
   if (p.type === 'quote') {
-    if (p.items.length === 0) errors.items = 'Add at least one product or service you would like a quote for.';
+    if (p.items.length === 0)
+      errors.items = 'Add at least one product or service you would like a quote for.';
     if (!p.location) errors.location = 'Tell us your town or county so we can check delivery.';
   } else if (!p.message) {
     errors.message = 'Tell us how we can help.';
   }
   if (!p.name) errors.name = 'Enter your name.';
   if (!p.phone) errors.phone = 'Enter a phone number so we can reach you.';
-  else if (!isValidPhone(p.phone)) errors.phone = 'Enter a phone number like 0712 345 678 or +254 712 345 678.';
-  if (p.email && !isValidEmail(p.email)) errors.email = 'Enter an email address like name@example.com, or leave it empty.';
-  if (p.contactMethod === 'email' && !p.email) errors.email = 'Add your email address, or choose another way for us to contact you.';
+  else if (!isValidPhone(p.phone))
+    errors.phone = 'Enter a phone number like 0712 345 678 or +254 712 345 678.';
+  if (p.email && !isValidEmail(p.email))
+    errors.email = 'Enter an email address like name@example.com, or leave it empty.';
+  if (p.contactMethod === 'email' && !p.email)
+    errors.email = 'Add your email address, or choose another way for us to contact you.';
   return errors;
 }
 

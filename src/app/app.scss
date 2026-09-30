@@ -1,11 +1,34 @@
-:host { display: flex; flex-direction: column; min-height: 100dvh; }
-main { flex: 1; outline: none; }
-/* Room for the mobile contact bar, so it never covers the end of the page. */
-@media (max-width: 47.99rem) { :host { padding-bottom: calc(76px + env(safe-area-inset-bottom)); } }
-.skip {
-  position: absolute; left: var(--s-4); top: -100px; z-index: var(--z-overlay);
-  padding: var(--s-3) var(--s-4); border-radius: var(--r-sm);
-  background: var(--c-ink); color: var(--c-bg); font-weight: 620; text-decoration: none;
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
 }
-.skip:focus { top: var(--s-3); }
-:host ::ng-deep main h1:focus { outline: none; box-shadow: none; }
+main {
+  flex: 1;
+  outline: none;
+}
+/* Room for the mobile contact bar, so it never covers the end of the page. */
+@media (max-width: 47.99rem) {
+  :host {
+    padding-bottom: calc(76px + env(safe-area-inset-bottom));
+  }
+}
+.skip {
+  position: absolute;
+  left: var(--s-4);
+  top: -100px;
+  z-index: var(--z-overlay);
+  padding: var(--s-3) var(--s-4);
+  border-radius: var(--r-sm);
+  background: var(--c-ink);
+  color: var(--c-bg);
+  font-weight: 620;
+  text-decoration: none;
+}
+.skip:focus {
+  top: var(--s-3);
+}
+:host ::ng-deep main h1:focus {
+  outline: none;
+  box-shadow: none;
+}

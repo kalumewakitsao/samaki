@@ -17,7 +17,9 @@ export class ThemeService {
 
   constructor() {
     if (!this.browser) return;
-    this.theme.set(this.doc.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light');
+    this.theme.set(
+      this.doc.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light',
+    );
     window.matchMedia?.('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
       if (!this.saved()) this.apply(e.matches ? 'dark' : 'light');
     });

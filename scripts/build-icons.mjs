@@ -5,7 +5,10 @@
 import { readFileSync, writeFileSync } from 'node:fs';
 import { chromium } from 'playwright';
 
-const mark = readFileSync('public/favicon.svg', 'utf8').replace(/@media[^}]*\}[^}]*\}[^}]*\}[^}]*\}/, '');
+const mark = readFileSync('public/favicon.svg', 'utf8').replace(
+  /@media[^}]*\}[^}]*\}[^}]*\}[^}]*\}/,
+  '',
+);
 const browser = await chromium.launch();
 const page = await browser.newPage();
 
@@ -13,7 +16,10 @@ async function png(html, size, file, height = size) {
   await page.setViewportSize({ width: size, height });
   await page.setContent(`<html><body style="margin:0">${html}</body></html>`);
   await page.evaluate(() => document.fonts.ready);
-  const buf = await page.screenshot({ omitBackground: true, clip: { x: 0, y: 0, width: size, height } });
+  const buf = await page.screenshot({
+    omitBackground: true,
+    clip: { x: 0, y: 0, width: size, height },
+  });
   writeFileSync(file, buf);
   return buf;
 }

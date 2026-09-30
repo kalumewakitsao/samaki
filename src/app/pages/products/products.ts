@@ -1,4 +1,11 @@
-import { ChangeDetectionStrategy, Component, computed, inject, input, linkedSignal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  input,
+  linkedSignal,
+} from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { InputText } from 'primeng/inputtext';
 import { CATEGORIES, CategoryId, PRODUCTS, findCategory } from '../../core/data/catalogue';
@@ -35,11 +42,15 @@ export class ProductsPage {
     const cat = this.active();
     const term = this.search().trim().toLowerCase();
     return PRODUCTS.filter((p) => !cat || p.category === cat).filter(
-      (p) => !term || `${p.name} ${p.summary} ${findCategory(p.category).name}`.toLowerCase().includes(term),
+      (p) =>
+        !term ||
+        `${p.name} ${p.summary} ${findCategory(p.category).name}`.toLowerCase().includes(term),
     );
   });
   protected readonly counts = computed(() =>
-    Object.fromEntries(CATEGORIES.map((c) => [c.id, PRODUCTS.filter((p) => p.category === c.id).length])),
+    Object.fromEntries(
+      CATEGORIES.map((c) => [c.id, PRODUCTS.filter((p) => p.category === c.id).length]),
+    ),
   );
   protected readonly heading = computed(() => {
     const c = this.active();
@@ -52,7 +63,12 @@ export class ProductsPage {
       description:
         'Fingerlings, Artemia and Wean Mix feeds, Ovaprim and Ovatide, water test kits, dissolved oxygen meters, air pumps and filters for fish farms. Request a quote.',
       path: '/products',
-      jsonLd: [breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Products', path: '/products' }])],
+      jsonLd: [
+        breadcrumbJsonLd([
+          { name: 'Home', path: '/' },
+          { name: 'Products', path: '/products' },
+        ]),
+      ],
     });
   }
 
@@ -68,7 +84,8 @@ export class ProductsPage {
   }
 
   commitSearch(): void {
-    if (this.search().trim()) this.analytics.track('catalogue_search', { results: this.results().length });
+    if (this.search().trim())
+      this.analytics.track('catalogue_search', { results: this.results().length });
   }
 
   clear(): void {

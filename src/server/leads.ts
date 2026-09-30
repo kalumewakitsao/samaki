@@ -59,8 +59,15 @@ export function configuredChannels(env: Env, fetchImpl: typeof fetch = fetch): C
         const body = JSON.stringify(record);
         const headers: Record<string, string> = { 'content-type': 'application/json' };
         const secret = env['LEAD_WEBHOOK_SECRET'];
-        if (secret) headers['x-samaki-signature'] = `sha256=${createHmac('sha256', secret).update(body).digest('hex')}`;
-        const res = await fetchImpl(webhook, { method: 'POST', headers, body, signal: AbortSignal.timeout(TIMEOUT_MS) });
+        if (secret)
+          headers['x-samaki-signature'] =
+            `sha256=${createHmac('sha256', secret).update(body).digest('hex')}`;
+        const res = await fetchImpl(webhook, {
+          method: 'POST',
+          headers,
+          body,
+          signal: AbortSignal.timeout(TIMEOUT_MS),
+        });
         if (!res.ok) throw new Error(`webhook responded ${res.status}`);
       },
     });
@@ -128,7 +135,13 @@ export function leadRouter(options: LeadRouterOptions = {}): Router {
     const ip = req.ip ?? 'unknown';
     const recent = (hits.get(ip) ?? []).filter((at) => t - at < RATE_WINDOW_MS);
     if (recent.length >= RATE_MAX) {
-      res.status(429).json({ code: 'rate_limited', message: 'You have sent several requests in a short time. Please wait a few minutes, or call us.' });
+      res
+        .status(429)
+        .json({
+          code: 'rate_limited',
+          message:
+            'You have sent several requests in a short time. Please wait a few minutes, or call us.',
+        });
       return;
     }
     recent.push(t);
@@ -136,7 +149,9 @@ export function leadRouter(options: LeadRouterOptions = {}): Router {
 
     const payload = sanitiseEnquiry(req.body);
     if (!payload.idempotencyKey) {
-      res.status(400).json({ code: 'bad_request', message: 'Please reload the page and try again.' });
+      res
+        .status(400)
+        .json({ code: 'bad_request', message: 'Please reload the page and try again.' });
       return;
     }
 
@@ -154,7 +169,12 @@ export function leadRouter(options: LeadRouterOptions = {}): Router {
       return;
     }
     if (looksAutomated(payload)) {
-      res.status(400).json({ code: 'too_fast', message: 'That was quicker than we expected. Please check your details and send again.' });
+      res
+        .status(400)
+        .json({
+          code: 'too_fast',
+          message: 'That was quicker than we expected. Please check your details and send again.',
+        });
       return;
     }
 
@@ -165,7 +185,9 @@ export function leadRouter(options: LeadRouterOptions = {}): Router {
     }
 
     if (channels.length === 0) {
-      res.status(503).json({ code: 'not_configured', message: 'Online requests are unavailable right now.' });
+      res
+        .status(503)
+        .json({ code: 'not_configured', message: 'Online requests are unavailable right now.' });
       return;
     }
 
@@ -180,19 +202,25 @@ export function leadRouter(options: LeadRouterOptions = {}): Router {
     };
 
     const results = await Promise.allSettled(channels.map((c) => c.send(record)));
-    const delivered = channels.filter((_, i) => results[i].status === 'fulfilled').map((c) => c.name);
+    const delivered = channels
+      .filter((_, i) => results[i].status === 'fulfilled')
+      .map((c) => c.name);
     results.forEach((r, i) => {
-      if (r.status === 'rejected') log(`[leads] ${channels[i].name} failed for ${record.reference}: ${String(r.reason)}`);
+      if (r.status === 'rejected')
+        log(`[leads] ${channels[i].name} failed for ${record.reference}: ${String(r.reason)}`);
     });
 
     if (env['LEAD_STORE_FILE']) {
-      await appendFile(env['LEAD_STORE_FILE'], JSON.stringify({ ...record, deliveredVia: delivered }) + '\n').catch((err) =>
-        log(`[leads] could not write store: ${String(err)}`),
-      );
+      await appendFile(
+        env['LEAD_STORE_FILE'],
+        JSON.stringify({ ...record, deliveredVia: delivered }) + '\n',
+      ).catch((err) => log(`[leads] could not write store: ${String(err)}`));
     }
 
     if (delivered.length === 0) {
-      res.status(502).json({ code: 'delivery_failed', message: 'We could not send your request just now.' });
+      res
+        .status(502)
+        .json({ code: 'delivery_failed', message: 'We could not send your request just now.' });
       return;
     }
 

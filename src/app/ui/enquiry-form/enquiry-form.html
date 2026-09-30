@@ -1,52 +1,98 @@
 @if (status() === 'success' && sent(); as s) {
   <section class="success" #success tabindex="-1" aria-labelledby="success-title">
     <div class="tick" aria-hidden="true"><sx-icon name="check" /></div>
-    <h2 class="h2" id="success-title">{{ type() === 'quote' ? 'Your request is on its way' : 'Message sent' }}</h2>
-    <p class="lead">Thank you, {{ s.name.split(' ')[0] }}. We have received it and will contact you {{ successMethod() }} during business hours ({{ business.hours.short }}).</p>
+    <h2 class="h2" id="success-title">
+      {{ type() === 'quote' ? 'Your request is on its way' : 'Message sent' }}
+    </h2>
+    <p class="lead">
+      Thank you, {{ s.name.split(' ')[0] }}. We have received it and will contact you
+      {{ successMethod() }} during business hours ({{ business.hours.short }}).
+    </p>
     <dl class="ref">
-      <div><dt>Your reference</dt><dd>{{ reference() }}</dd></div>
-      <div><dt>We will reach you on</dt><dd>{{ s.contactMethod === 'email' ? s.email : s.phone }}</dd></div>
+      <div>
+        <dt>Your reference</dt>
+        <dd>{{ reference() }}</dd>
+      </div>
+      <div>
+        <dt>We will reach you on</dt>
+        <dd>{{ s.contactMethod === 'email' ? s.email : s.phone }}</dd>
+      </div>
     </dl>
     @if (s.items.length) {
       <div class="sent-items">
         <h3 class="small caps">What you asked for</h3>
         <ul role="list">
           @for (i of s.items; track i.slug) {
-            <li><span>{{ i.name }}</span><span class="muted">{{ i.quantity || 'Quantity to confirm' }}</span></li>
+            <li>
+              <span>{{ i.name }}</span
+              ><span class="muted">{{ i.quantity || 'Quantity to confirm' }}</span>
+            </li>
           }
         </ul>
       </div>
     }
     <ol class="next" role="list">
-      <li><strong>Next:</strong> we check availability and prepare your price, including delivery if you need it.</li>
-      <li><strong>Then:</strong> we contact you to confirm the details. Nothing is final until you agree.</li>
+      <li>
+        <strong>Next:</strong> we check availability and prepare your price, including delivery if
+        you need it.
+      </li>
+      <li>
+        <strong>Then:</strong> we contact you to confirm the details. Nothing is final until you
+        agree.
+      </li>
     </ol>
-    <p class="small muted">Need to add something or change a quantity? Call {{ business.phone.display }} and quote your reference.</p>
+    <p class="small muted">
+      Need to add something or change a quantity? Call {{ business.phone.display }} and quote your
+      reference.
+    </p>
     <div class="cluster">
       <a class="btn" routerLink="/products">Keep browsing</a>
-      <button type="button" class="btn btn--secondary" (click)="startAnother()">Send another request</button>
+      <button type="button" class="btn btn--secondary" (click)="startAnother()">
+        Send another request
+      </button>
     </div>
   </section>
 } @else {
-  <form [formGroup]="form" (ngSubmit)="submit()" novalidate [attr.aria-busy]="status() === 'submitting'" class="form">
+  <form
+    [formGroup]="form"
+    (ngSubmit)="submit()"
+    novalidate
+    [attr.aria-busy]="status() === 'submitting'"
+    class="form"
+  >
     @if (accepting() === false) {
       <div class="notice" role="status">
         <sx-icon name="info" />
         <p>
-          Online requests are unavailable at the moment. You can still fill this in: if it cannot be sent, we will help you send it by email instead.
-          Or call <a [href]="'tel:' + business.phone.tel">{{ business.phone.display }}</a>.
+          Online requests are unavailable at the moment. You can still fill this in: if it cannot be
+          sent, we will help you send it by email instead. Or call
+          <a [href]="'tel:' + business.phone.tel">{{ business.phone.display }}</a
+          >.
         </p>
       </div>
     }
 
     @if (submitted() && errorList().length) {
-      <div class="notice notice--danger summary" #summary tabindex="-1" role="alert" aria-labelledby="summary-title">
+      <div
+        class="notice notice--danger summary"
+        #summary
+        tabindex="-1"
+        role="alert"
+        aria-labelledby="summary-title"
+      >
         <sx-icon name="alert" />
         <div>
-          <h2 class="summary-title" id="summary-title">Please check {{ errorList().length === 1 ? 'one detail' : errorList().length + ' details' }}</h2>
+          <h2 class="summary-title" id="summary-title">
+            Please check
+            {{ errorList().length === 1 ? 'one detail' : errorList().length + ' details' }}
+          </h2>
           <ul role="list">
             @for (e of errorList(); track e.field) {
-              <li><a [href]="'#f-' + e.field" (click)="focusField(e.field, $event)">{{ e.label }}: {{ e.message }}</a></li>
+              <li>
+                <a [href]="'#f-' + e.field" (click)="focusField(e.field, $event)"
+                  >{{ e.label }}: {{ e.message }}</a
+                >
+              </li>
             }
           </ul>
         </div>
@@ -57,13 +103,28 @@
       <ol class="progress" role="list" aria-label="Form progress">
         @for (p of progress(); track p.label; let i = $index) {
           <li [class.done]="p.done">
-            <span class="dot" aria-hidden="true">@if (p.done) { <sx-icon name="check" /> } @else { {{ i + 1 }} }</span>
-            <span>{{ p.label }}<span class="visually-hidden">{{ p.done ? ', complete' : ', not complete yet' }}</span></span>
+            <span class="dot" aria-hidden="true">
+              @if (p.done) {
+                <sx-icon name="check" />
+              } @else {
+                {{ i + 1 }}
+              }
+            </span>
+            <span
+              >{{ p.label
+              }}<span class="visually-hidden">{{
+                p.done ? ', complete' : ', not complete yet'
+              }}</span></span
+            >
           </li>
         }
       </ol>
 
-      <fieldset class="group" data-field="items" [attr.aria-describedby]="fieldError('items') ? 'f-items-error' : null">
+      <fieldset
+        class="group"
+        data-field="items"
+        [attr.aria-describedby]="fieldError('items') ? 'f-items-error' : null"
+      >
         <legend><span class="n">1</span> What you need</legend>
         @if (list.items().length) {
           <ul class="items" role="list">
@@ -73,9 +134,21 @@
                   <strong>{{ item.name }}</strong>
                   <label class="small muted" [for]="'qty-' + item.slug">Quantity or details</label>
                 </div>
-                <input pInputText [id]="'qty-' + item.slug" [value]="item.quantity" (input)="quantityInput(item.slug, $event)"
-                  [attr.placeholder]="hint(item.slug)" [attr.maxlength]="limits.quantity" autocomplete="off" />
-                <button type="button" class="remove" (click)="removeItem(item.slug)" [attr.aria-label]="'Remove ' + item.name">
+                <input
+                  pInputText
+                  [id]="'qty-' + item.slug"
+                  [value]="item.quantity"
+                  (input)="quantityInput(item.slug, $event)"
+                  [attr.placeholder]="hint(item.slug)"
+                  [attr.maxlength]="limits.quantity"
+                  autocomplete="off"
+                />
+                <button
+                  type="button"
+                  class="remove"
+                  (click)="removeItem(item.slug)"
+                  [attr.aria-label]="'Remove ' + item.name"
+                >
                   <sx-icon name="x" />
                 </button>
               </li>
@@ -83,20 +156,37 @@
           </ul>
         } @else {
           <div class="empty">
-            <p><strong>Your quote list is empty.</strong> Add what you need below, or <a routerLink="/products">browse products</a>.</p>
+            <p>
+              <strong>Your quote list is empty.</strong> Add what you need below, or
+              <a routerLink="/products">browse products</a>.
+            </p>
             @if (list.lastRequest().length) {
               <button type="button" class="btn btn--sm btn--secondary" (click)="repeatLast()">
-                <sx-icon name="repeat" /> Repeat my last request ({{ list.lastRequest().length }} {{ list.lastRequest().length === 1 ? 'item' : 'items' }})
+                <sx-icon name="repeat" /> Repeat my last request ({{ list.lastRequest().length }}
+                {{ list.lastRequest().length === 1 ? 'item' : 'items' }})
               </button>
             }
           </div>
         }
         <div class="field">
           <label for="f-items">Add a product or service</label>
-          <p-select inputId="f-items" [options]="addOptions" [group]="true" optionLabel="label" optionValue="value"
-            optionGroupLabel="label" optionGroupChildren="items" placeholder="Choose from the catalogue" [filter]="true"
-            filterPlaceholder="Search" [ngModelOptions]="{ standalone: true }" [ngModel]="addSelection()"
-            (onChange)="addItem($event.value)" [invalid]="!!fieldError('items')" appendTo="body" />
+          <p-select
+            inputId="f-items"
+            [options]="addOptions"
+            [group]="true"
+            optionLabel="label"
+            optionValue="value"
+            optionGroupLabel="label"
+            optionGroupChildren="items"
+            placeholder="Choose from the catalogue"
+            [filter]="true"
+            filterPlaceholder="Search"
+            [ngModelOptions]="{ standalone: true }"
+            [ngModel]="addSelection()"
+            (onChange)="addItem($event.value)"
+            [invalid]="!!fieldError('items')"
+            appendTo="body"
+          />
           @if (fieldError('items'); as e) {
             <p class="error" id="f-items-error"><sx-icon name="alert" /> {{ e }}</p>
           }
@@ -108,40 +198,80 @@
         <div class="row">
           <div class="field">
             <label for="f-location">Town or county <span class="req">Required</span></label>
-            <input pInputText id="f-location" formControlName="location" autocomplete="address-level2" [attr.maxlength]="limits.location"
-              placeholder="For example, Kisumu" [attr.aria-invalid]="!!fieldError('location')"
-              [attr.aria-describedby]="fieldError('location') ? 'f-location-error' : 'f-location-hint'" />
+            <input
+              pInputText
+              id="f-location"
+              formControlName="location"
+              autocomplete="address-level2"
+              [attr.maxlength]="limits.location"
+              placeholder="For example, Kisumu"
+              [attr.aria-invalid]="!!fieldError('location')"
+              [attr.aria-describedby]="
+                fieldError('location') ? 'f-location-error' : 'f-location-hint'
+              "
+            />
             @if (fieldError('location'); as e) {
               <p class="error" id="f-location-error"><sx-icon name="alert" /> {{ e }}</p>
             } @else {
-              <p class="hint" id="f-location-hint">So we can check delivery and visits to your area.</p>
+              <p class="hint" id="f-location-hint">
+                So we can check delivery and visits to your area.
+              </p>
             }
           </div>
           <div class="field">
             <label for="f-farmType">Farm type <span class="opt">Optional</span></label>
-            <p-select inputId="f-farmType" formControlName="farmType" [options]="farmTypes" optionLabel="label" optionValue="value"
-              placeholder="Choose one" [showClear]="true" appendTo="body" />
+            <p-select
+              inputId="f-farmType"
+              formControlName="farmType"
+              [options]="farmTypes"
+              optionLabel="label"
+              optionValue="value"
+              placeholder="Choose one"
+              [showClear]="true"
+              appendTo="body"
+            />
           </div>
         </div>
       </fieldset>
     }
 
     <fieldset class="group">
-      <legend>@if (type() === 'quote') { <span class="n">3</span> } How we reach you</legend>
+      <legend>
+        @if (type() === 'quote') {
+          <span class="n">3</span>
+        }
+        How we reach you
+      </legend>
       <div class="row">
         <div class="field">
           <label for="f-name">Your name <span class="req">Required</span></label>
-          <input pInputText id="f-name" formControlName="name" autocomplete="name" [attr.maxlength]="limits.name"
-            [attr.aria-invalid]="!!fieldError('name')" [attr.aria-describedby]="fieldError('name') ? 'f-name-error' : null" />
+          <input
+            pInputText
+            id="f-name"
+            formControlName="name"
+            autocomplete="name"
+            [attr.maxlength]="limits.name"
+            [attr.aria-invalid]="!!fieldError('name')"
+            [attr.aria-describedby]="fieldError('name') ? 'f-name-error' : null"
+          />
           @if (fieldError('name'); as e) {
             <p class="error" id="f-name-error"><sx-icon name="alert" /> {{ e }}</p>
           }
         </div>
         <div class="field">
           <label for="f-phone">Phone number <span class="req">Required</span></label>
-          <input pInputText id="f-phone" type="tel" formControlName="phone" autocomplete="tel" inputmode="tel" [attr.maxlength]="limits.phone"
-            placeholder="0712 345 678" [attr.aria-invalid]="!!fieldError('phone')"
-            [attr.aria-describedby]="fieldError('phone') ? 'f-phone-error' : null" />
+          <input
+            pInputText
+            id="f-phone"
+            type="tel"
+            formControlName="phone"
+            autocomplete="tel"
+            inputmode="tel"
+            [attr.maxlength]="limits.phone"
+            placeholder="0712 345 678"
+            [attr.aria-invalid]="!!fieldError('phone')"
+            [attr.aria-describedby]="fieldError('phone') ? 'f-phone-error' : null"
+          />
           @if (fieldError('phone'); as e) {
             <p class="error" id="f-phone-error"><sx-icon name="alert" /> {{ e }}</p>
           }
@@ -149,8 +279,16 @@
       </div>
       <div class="field">
         <label for="f-email">Email address <span class="opt">Optional</span></label>
-        <input pInputText id="f-email" type="email" formControlName="email" autocomplete="email" [attr.maxlength]="limits.email"
-          [attr.aria-invalid]="!!fieldError('email')" [attr.aria-describedby]="fieldError('email') ? 'f-email-error' : null" />
+        <input
+          pInputText
+          id="f-email"
+          type="email"
+          formControlName="email"
+          autocomplete="email"
+          [attr.maxlength]="limits.email"
+          [attr.aria-invalid]="!!fieldError('email')"
+          [attr.aria-describedby]="fieldError('email') ? 'f-email-error' : null"
+        />
         @if (fieldError('email'); as e) {
           <p class="error" id="f-email-error"><sx-icon name="alert" /> {{ e }}</p>
         }
@@ -158,21 +296,49 @@
       <div class="field" role="radiogroup" aria-labelledby="f-method-label">
         <span class="label" id="f-method-label">How should we contact you?</span>
         <div class="methods">
-          <label class="method"><input type="radio" formControlName="contactMethod" value="phone" /><sx-icon name="phone" /> Phone call</label>
+          <label class="method"
+            ><input type="radio" formControlName="contactMethod" value="phone" /><sx-icon
+              name="phone"
+            />
+            Phone call</label
+          >
           @if (whatsappEnabled) {
-            <label class="method"><input type="radio" formControlName="contactMethod" value="whatsapp" /><sx-icon name="chat" /> WhatsApp</label>
+            <label class="method"
+              ><input type="radio" formControlName="contactMethod" value="whatsapp" /><sx-icon
+                name="chat"
+              />
+              WhatsApp</label
+            >
           }
-          <label class="method"><input type="radio" formControlName="contactMethod" value="email" /><sx-icon name="mail" /> Email</label>
+          <label class="method"
+            ><input type="radio" formControlName="contactMethod" value="email" /><sx-icon
+              name="mail"
+            />
+            Email</label
+          >
         </div>
       </div>
       <div class="field">
         <label for="f-message">
           {{ type() === 'quote' ? 'Anything else we should know?' : 'How can we help?' }}
-          <span [class]="type() === 'quote' ? 'opt' : 'req'">{{ type() === 'quote' ? 'Optional' : 'Required' }}</span>
+          <span [class]="type() === 'quote' ? 'opt' : 'req'">{{
+            type() === 'quote' ? 'Optional' : 'Required'
+          }}</span>
         </label>
-        <textarea pTextarea id="f-message" formControlName="message" rows="4" [attr.maxlength]="limits.message"
-          [attr.placeholder]="type() === 'quote' ? 'For example, your stocking date or delivery timing' : 'Ask about a product, a farm visit or an order'"
-          [attr.aria-invalid]="!!fieldError('message')" [attr.aria-describedby]="fieldError('message') ? 'f-message-error' : null"></textarea>
+        <textarea
+          pTextarea
+          id="f-message"
+          formControlName="message"
+          rows="4"
+          [attr.maxlength]="limits.message"
+          [attr.placeholder]="
+            type() === 'quote'
+              ? 'For example, your stocking date or delivery timing'
+              : 'Ask about a product, a farm visit or an order'
+          "
+          [attr.aria-invalid]="!!fieldError('message')"
+          [attr.aria-describedby]="fieldError('message') ? 'f-message-error' : null"
+        ></textarea>
         @if (fieldError('message'); as e) {
           <p class="error" id="f-message-error"><sx-icon name="alert" /> {{ e }}</p>
         }
@@ -186,9 +352,15 @@
 
     <div class="consent">
       <p-checkbox inputId="f-consent" formControlName="marketingConsent" [binary]="true" />
-      <label for="f-consent">Also send me occasional farming tips and offers. <span class="muted">Optional. You can stop them at any time.</span></label>
+      <label for="f-consent"
+        >Also send me occasional farming tips and offers.
+        <span class="muted">Optional. You can stop them at any time.</span></label
+      >
     </div>
-    <p class="small muted privacy">We use your details only to reply to this {{ type() === 'quote' ? 'request' : 'message' }}. Read our <a routerLink="/privacy">privacy notice</a>.</p>
+    <p class="small muted privacy">
+      We use your details only to reply to this {{ type() === 'quote' ? 'request' : 'message' }}.
+      Read our <a routerLink="/privacy">privacy notice</a>.
+    </p>
 
     @if (status() === 'error' && errorKind() && errorKind() !== 'invalid') {
       <div class="notice notice--danger problem" #problem tabindex="-1" role="alert">
@@ -196,10 +368,17 @@
         <div class="stack">
           @switch (errorKind()) {
             @case ('unavailable') {
-              <p><strong>We could not send this online.</strong> Nothing has been sent yet, and your details are still here. Send the same request by email or call us, and we will take it from there.</p>
+              <p>
+                <strong>We could not send this online.</strong> Nothing has been sent yet, and your
+                details are still here. Send the same request by email or call us, and we will take
+                it from there.
+              </p>
             }
             @case ('offline') {
-              <p><strong>You seem to be offline.</strong> Nothing was sent. Check your connection and try again. Your details are still here.</p>
+              <p>
+                <strong>You seem to be offline.</strong> Nothing was sent. Check your connection and
+                try again. Your details are still here.
+              </p>
             }
             @case ('rate_limited') {
               <p><strong>Please wait a moment.</strong> {{ errorMessage() }}</p>
@@ -208,20 +387,33 @@
               <p><strong>Please try again.</strong> {{ errorMessage() }}</p>
             }
             @default {
-              <p><strong>Your request did not go through.</strong> Nothing was sent. Try again, or send it by email or phone. Your details are still here.</p>
+              <p>
+                <strong>Your request did not go through.</strong> Nothing was sent. Try again, or
+                send it by email or phone. Your details are still here.
+              </p>
             }
           }
           <div class="cluster">
             @if (errorKind() !== 'unavailable') {
-              <button type="submit" class="btn btn--sm"><sx-icon name="refresh" /> Try again</button>
+              <button type="submit" class="btn btn--sm">
+                <sx-icon name="refresh" /> Try again
+              </button>
             }
-            <a class="btn btn--sm" [class.btn--secondary]="errorKind() !== 'unavailable'" [href]="fallbackEmail()">
+            <a
+              class="btn btn--sm"
+              [class.btn--secondary]="errorKind() !== 'unavailable'"
+              [href]="fallbackEmail()"
+            >
               <sx-icon name="mail" /> Send by email
             </a>
             @if (fallbackWhatsapp(); as wa) {
-              <a class="btn btn--sm btn--secondary" [href]="wa" target="_blank" rel="noopener"><sx-icon name="chat" /> Send on WhatsApp</a>
+              <a class="btn btn--sm btn--secondary" [href]="wa" target="_blank" rel="noopener"
+                ><sx-icon name="chat" /> Send on WhatsApp</a
+              >
             }
-            <a class="btn btn--sm btn--secondary" [href]="'tel:' + business.phone.tel"><sx-icon name="phone" /> Call {{ business.phone.display }}</a>
+            <a class="btn btn--sm btn--secondary" [href]="'tel:' + business.phone.tel"
+              ><sx-icon name="phone" /> Call {{ business.phone.display }}</a
+            >
           </div>
         </div>
       </div>
@@ -232,10 +424,13 @@
         @if (status() === 'submitting') {
           <span class="spinner" aria-hidden="true"></span> Sending...
         } @else {
-          {{ type() === 'quote' ? 'Send quote request' : 'Send message' }} <sx-icon name="arrow-right" class="icon--arrow" />
+          {{ type() === 'quote' ? 'Send quote request' : 'Send message' }}
+          <sx-icon name="arrow-right" class="icon--arrow" />
         }
       </button>
-      <p class="visually-hidden" aria-live="polite">{{ status() === 'submitting' ? 'Sending your request' : '' }}</p>
+      <p class="visually-hidden" aria-live="polite">
+        {{ status() === 'submitting' ? 'Sending your request' : '' }}
+      </p>
     </div>
   </form>
 }

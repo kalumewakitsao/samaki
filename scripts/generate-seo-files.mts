@@ -38,7 +38,9 @@ Sitemap: ${SITE}/sitemap.xml
 // Netlify / Cloudflare Pages style redirects, for static hosting without the Node server.
 const redirects = [
   ...Object.entries(REDIRECTS).flatMap(([from, to]) => [`${from} ${to} 301`, `${from}/ ${to} 301`]),
-  ...['/products', '/services', '/about', '/contact', '/quote', '/faq', '/privacy'].map((p) => `${p}/ ${p} 301`),
+  ...['/products', '/services', '/about', '/contact', '/quote', '/faq', '/privacy'].map(
+    (p) => `${p}/ ${p} 301`,
+  ),
 ].join('\n');
 
 writeFileSync('public/sitemap.xml', sitemap);

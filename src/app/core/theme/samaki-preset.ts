@@ -57,7 +57,11 @@ const scheme = {
   },
   overlay: {
     select: { background: 'var(--c-surface)', borderColor: 'var(--c-line)', color: 'var(--c-ink)' },
-    popover: { background: 'var(--c-surface)', borderColor: 'var(--c-line)', color: 'var(--c-ink)' },
+    popover: {
+      background: 'var(--c-surface)',
+      borderColor: 'var(--c-line)',
+      color: 'var(--c-ink)',
+    },
     modal: { background: 'var(--c-surface)', borderColor: 'var(--c-line)', color: 'var(--c-ink)' },
   },
   list: {
@@ -80,7 +84,11 @@ const scheme = {
       color: 'var(--c-ink)',
       focusColor: 'var(--c-ink)',
       activeColor: 'var(--c-ink)',
-      icon: { color: 'var(--c-ink-3)', focusColor: 'var(--c-ink-2)', activeColor: 'var(--c-ink-2)' },
+      icon: {
+        color: 'var(--c-ink-3)',
+        focusColor: 'var(--c-ink-2)',
+        activeColor: 'var(--c-ink-2)',
+      },
     },
   },
 };
@@ -103,12 +111,24 @@ export const SamakiPreset = definePreset(Aura, {
       900: '#052823',
       950: '#031915',
     },
-    focusRing: { width: '2px', style: 'solid', color: 'var(--c-focus)', offset: '2px', shadow: 'none' },
+    focusRing: {
+      width: '2px',
+      style: 'solid',
+      color: 'var(--c-focus)',
+      offset: '2px',
+      shadow: 'none',
+    },
     formField: {
       paddingX: '0.9rem',
       paddingY: '0.7rem',
       borderRadius: 'var(--r-sm)',
-      focusRing: { width: '0', style: 'none', color: 'transparent', offset: '0', shadow: '0 0 0 3px color-mix(in srgb, var(--c-brand) 28%, transparent)' },
+      focusRing: {
+        width: '0',
+        style: 'none',
+        color: 'transparent',
+        offset: '0',
+        shadow: '0 0 0 3px color-mix(in srgb, var(--c-brand) 28%, transparent)',
+      },
     },
     colorScheme: { light: scheme, dark: scheme },
   },

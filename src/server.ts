@@ -4,6 +4,7 @@ import {
   isMainModule,
   writeResponseToNodeResponse,
 } from '@angular/ssr/node';
+import compression from 'compression';
 import express from 'express';
 import { join } from 'node:path';
 import { leadRouter } from './server/leads';
@@ -15,6 +16,7 @@ const app = express();
 const angularApp = new AngularNodeAppEngine();
 
 app.disable('x-powered-by');
+app.use(compression());
 app.set('trust proxy', 1);
 
 app.use((_req, res, next) => {

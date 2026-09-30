@@ -24,7 +24,8 @@ export function organisationJsonLd(): object {
     url: BUSINESS.siteUrl,
     logo: `${BUSINESS.siteUrl}/icon-512.png`,
     image: OG_IMAGE,
-    description: 'Fingerlings, hatchery feeds, water testing, aeration equipment and farm support for fish farmers.',
+    description:
+      'Fingerlings, hatchery feeds, water testing, aeration equipment and farm support for fish farmers.',
     telephone: BUSINESS.phone.tel,
     email: BUSINESS.email,
     address: {

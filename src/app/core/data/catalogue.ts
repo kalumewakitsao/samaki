@@ -8,7 +8,8 @@
  * scripts/generate-seo-files.mts reads it directly with Node.
  */
 
-export type CategoryId = 'fingerlings' | 'feeds' | 'hatchery' | 'testing' | 'aeration' | 'filtration';
+export type CategoryId =
+  'fingerlings' | 'feeds' | 'hatchery' | 'testing' | 'aeration' | 'filtration';
 
 export type IllustrationId =
   | 'fingerlings'
@@ -145,7 +146,11 @@ export const PRODUCTS: readonly Product[] = [
       'Tell us how many larvae you rear per cycle and we will help you work out a sensible quantity.',
     ],
     goodFor: ['Hatcheries rearing larvae', 'The first days of feeding'],
-    tellUs: ['How many larvae you rear per cycle', 'How much you need', 'What you feed at the moment'],
+    tellUs: [
+      'How many larvae you rear per cycle',
+      'How much you need',
+      'What you feed at the moment',
+    ],
     quantityHint: 'For example, 2 tins',
     related: ['wean-mix', 'internal-filter', 'ovaprim'],
   },
@@ -266,7 +271,11 @@ export const PRODUCTS: readonly Product[] = [
       'Share your pond sizes and how many diffusers you run so we can help you choose the right setup.',
     ],
     goodFor: ['Large ponds', 'Farms stocking at higher densities', 'Many tanks on one air line'],
-    tellUs: ['The size and number of ponds or tanks', 'Your power supply', 'How many units you need'],
+    tellUs: [
+      'The size and number of ponds or tanks',
+      'Your power supply',
+      'How many units you need',
+    ],
     quantityHint: 'For example, 1 unit',
     related: ['vento-airpump', 'dissolved-oxygen-analyzer', 'submersible-pump'],
   },
@@ -323,7 +332,8 @@ export const SERVICES: readonly Service[] = [
     name: 'Fingerlings and hatchery supply',
     icon: 'fish',
     illustration: 'fingerlings',
-    summary: 'Fingerlings and hatchery inputs supplied to your stocking plan, with breeding support for hatcheries.',
+    summary:
+      'Fingerlings and hatchery inputs supplied to your stocking plan, with breeding support for hatcheries.',
     description: [
       'We supply fingerlings for stocking and the inputs hatcheries rely on, from spawning hormones to first feeds. For hatcheries, we also support setup and breeding programmes.',
     ],
@@ -363,7 +373,11 @@ export const SERVICES: readonly Service[] = [
     description: [
       'A specialist visits your farm, looks at how it runs day to day, and leaves you with a clear action plan. We confirm whether a visit is possible in your area when we reply to your request.',
     ],
-    includes: ['A farm visit by a field specialist', 'A written action plan', 'Follow-up support by phone'],
+    includes: [
+      'A farm visit by a field specialist',
+      'A written action plan',
+      'Follow-up support by phone',
+    ],
     tellUs: ['Where your farm is', 'Your farm type and size', 'What you want help with'],
     related: ['farm-audits-advisory', 'health-biosecurity', 'training'],
   },
@@ -373,11 +387,16 @@ export const SERVICES: readonly Service[] = [
     name: 'Health and biosecurity',
     icon: 'shield',
     illustration: 'health',
-    summary: 'Routine health screening, vaccination guidance and biosecurity routines suited to your farm.',
+    summary:
+      'Routine health screening, vaccination guidance and biosecurity routines suited to your farm.',
     description: [
       'Disease is easier to keep out than to treat. We help you set up routines that protect your stock, and screen fish so problems are caught early.',
     ],
-    includes: ['Routine health screening', 'Vaccination guidance', 'Biosecurity routines for your farm'],
+    includes: [
+      'Routine health screening',
+      'Vaccination guidance',
+      'Biosecurity routines for your farm',
+    ],
     tellUs: ['Your farm type and species', 'Any signs of disease you have noticed'],
     related: ['on-site-farm-support', 'water-tester-7-in-1', 'feed-water-management'],
   },
@@ -387,7 +406,8 @@ export const SERVICES: readonly Service[] = [
     name: 'Farm audits and advisory',
     icon: 'clipboard',
     illustration: 'audit',
-    summary: 'Operational audits, yield forecasting and performance tracking for each production cycle.',
+    summary:
+      'Operational audits, yield forecasting and performance tracking for each production cycle.',
     description: [
       'Know where your farm stands and what to fix first. An audit looks at stocking, feeding, water, labour and records, and turns them into a forecast and a short list of priorities.',
     ],
@@ -419,7 +439,11 @@ export const SERVICES: readonly Service[] = [
     description: [
       'We deliver fingerlings, feeds and equipment. Delivery date, handling and cost are agreed with you when we confirm your order, so you know exactly what to expect.',
     ],
-    includes: ['Delivery of fingerlings, feeds and equipment', 'A delivery date agreed with you', 'Handling suited to live fish'],
+    includes: [
+      'Delivery of fingerlings, feeds and equipment',
+      'A delivery date agreed with you',
+      'Handling suited to live fish',
+    ],
     tellUs: ['Your location', 'What needs delivering', 'When you need it'],
     related: ['fingerlings', 'hatchery-supply', 'air-compressor'],
   },
@@ -428,8 +452,14 @@ export const SERVICES: readonly Service[] = [
 export const PROCESS = [
   { title: 'Assess and plan', body: 'We review your farm setup and agree a plan that fits it.' },
   { title: 'Supply', body: 'We deliver fingerlings, feeds and equipment on an agreed schedule.' },
-  { title: 'Train and support', body: 'On-site training plus support by phone when you need a second opinion.' },
-  { title: 'Track and improve', body: 'We look at the results of each cycle and adjust what you do next.' },
+  {
+    title: 'Train and support',
+    body: 'On-site training plus support by phone when you need a second opinion.',
+  },
+  {
+    title: 'Track and improve',
+    body: 'We look at the results of each cycle and adjust what you do next.',
+  },
 ] as const;
 
 export function findProduct(slug: string): Product | undefined {

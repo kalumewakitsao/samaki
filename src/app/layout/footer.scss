@@ -1,15 +1,83 @@
-.footer { background: var(--c-surface); border-top: 1px solid var(--c-line); padding-block: var(--s-16) var(--s-8); }
-.top { display: grid; gap: var(--s-12); }
-@media (min-width: 64rem) { .top { grid-template-columns: 20rem 1fr; gap: var(--s-16); } }
-.about { max-width: 22rem; }
-.about .btn { justify-self: start; }
-.cols { display: grid; gap: var(--s-8); grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)); }
-@media (min-width: 72rem) { .cols { grid-template-columns: 1fr 1.2fr 0.9fr 1.5fr; } }
-.col-title { font-family: var(--font-body); font-size: var(--fs-xs); font-weight: 650; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--c-ink-3); margin-bottom: var(--s-3); }
-ul { display: grid; gap: 0; }
-li a, li span { display: inline-flex; align-items: center; min-height: 36px; color: var(--c-ink-2); text-decoration: none; font-size: var(--fs-sm); }
-li a:hover { color: var(--c-ink); text-decoration: underline; }
-.contact li { display: grid; grid-template-columns: 1.25rem 1fr; gap: var(--s-2); align-items: center; }
-.contact sx-icon { width: 1.05rem; height: 1.05rem; color: var(--c-brand-text); }
-.contact a, .contact span { overflow-wrap: break-word; min-width: 0; }
-.bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--s-2); margin-top: var(--s-12); padding-top: var(--s-6); border-top: 1px solid var(--c-line); color: var(--c-ink-3); }
+.footer {
+  background: var(--c-surface);
+  border-top: 1px solid var(--c-line);
+  padding-block: var(--s-16) var(--s-8);
+}
+.top {
+  display: grid;
+  gap: var(--s-12);
+}
+@media (min-width: 64rem) {
+  .top {
+    grid-template-columns: 20rem 1fr;
+    gap: var(--s-16);
+  }
+}
+.about {
+  max-width: 22rem;
+}
+.about .btn {
+  justify-self: start;
+}
+.cols {
+  display: grid;
+  gap: var(--s-8);
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+}
+@media (min-width: 72rem) {
+  .cols {
+    grid-template-columns: 1fr 1.2fr 0.9fr 1.5fr;
+  }
+}
+.col-title {
+  font-family: var(--font-body);
+  font-size: var(--fs-xs);
+  font-weight: 650;
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--c-ink-3);
+  margin-bottom: var(--s-3);
+}
+ul {
+  display: grid;
+  gap: 0;
+}
+li a,
+li span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  color: var(--c-ink-2);
+  text-decoration: none;
+  font-size: var(--fs-sm);
+}
+li a:hover {
+  color: var(--c-ink);
+  text-decoration: underline;
+}
+.contact li {
+  display: grid;
+  grid-template-columns: 1.25rem 1fr;
+  gap: var(--s-2);
+  align-items: center;
+}
+.contact sx-icon {
+  width: 1.05rem;
+  height: 1.05rem;
+  color: var(--c-brand-text);
+}
+.contact a,
+.contact span {
+  overflow-wrap: break-word;
+  min-width: 0;
+}
+.bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--s-2);
+  margin-top: var(--s-12);
+  padding-top: var(--s-6);
+  border-top: 1px solid var(--c-line);
+  color: var(--c-ink-3);
+}

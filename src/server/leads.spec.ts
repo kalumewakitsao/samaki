@@ -22,7 +22,11 @@ async function start(env: Record<string, string>, fetchImpl?: typeof fetch) {
   await new Promise((r) => server.once('listening', r));
   const url = `http://127.0.0.1:${(server.address() as AddressInfo).port}/api`;
   const post = (b: unknown) =>
-    fetch(`${url}/enquiries`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(b) });
+    fetch(`${url}/enquiries`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify(b),
+    });
   return { url, post, close: () => server.close() };
 }
 
@@ -41,7 +45,10 @@ describe('lead endpoint', () => {
       calls.push({ url, init });
       return new Response('{}', { status: 200 });
     }) as unknown as typeof fetch;
-    const s = await start({ LEAD_WEBHOOK_URL: 'https://hooks.example/lead', LEAD_WEBHOOK_SECRET: 's' }, fake);
+    const s = await start(
+      { LEAD_WEBHOOK_URL: 'https://hooks.example/lead', LEAD_WEBHOOK_SECRET: 's' },
+      fake,
+    );
     const first = await s.post(body());
     expect(first.status).toBe(201);
     const { reference } = await first.json();
@@ -50,7 +57,9 @@ describe('lead endpoint', () => {
     expect(lead.status).toBe('received');
     expect(lead.enquiry.phone).toBe('+254712345678');
     expect(lead.enquiry.website).toBeUndefined();
-    expect((calls[0].init.headers as Record<string, string>)['x-samaki-signature']).toMatch(/^sha256=/);
+    expect((calls[0].init.headers as Record<string, string>)['x-samaki-signature']).toMatch(
+      /^sha256=/,
+    );
 
     const retry = await s.post(body());
     expect(retry.status).toBe(200);
@@ -84,7 +93,8 @@ describe('lead endpoint', () => {
     const fake = (async () => new Response('{}')) as unknown as typeof fetch;
     const s = await start({ LEAD_WEBHOOK_URL: 'https://hooks.example/lead' }, fake);
     const statuses = [];
-    for (let i = 0; i < 8; i++) statuses.push((await s.post(body({ idempotencyKey: `r${i}` }))).status);
+    for (let i = 0; i < 8; i++)
+      statuses.push((await s.post(body({ idempotencyKey: `r${i}` }))).status);
     expect(statuses.slice(0, 6).every((x) => x === 201)).toBe(true);
     expect(statuses[7]).toBe(429);
     s.close();

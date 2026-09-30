@@ -40,7 +40,14 @@ type ErrorKind = 'unavailable' | 'failed' | 'offline' | 'rate_limited' | 'retry'
 
 const DRAFT_KEY = 'samaki-enquiry-draft';
 
-const FIELD_ORDER: (keyof FieldErrors)[] = ['items', 'message', 'location', 'name', 'phone', 'email'];
+const FIELD_ORDER: (keyof FieldErrors)[] = [
+  'items',
+  'message',
+  'location',
+  'name',
+  'phone',
+  'email',
+];
 const FIELD_LABELS: Record<string, string> = {
   items: 'What you need',
   location: 'Town or county',
@@ -53,7 +60,16 @@ const FIELD_LABELS: Record<string, string> = {
 @Component({
   selector: 'sx-enquiry-form',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [FormsModule, ReactiveFormsModule, RouterLink, InputText, Select, Textarea, Checkbox, Icon],
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    RouterLink,
+    InputText,
+    Select,
+    Textarea,
+    Checkbox,
+    Icon,
+  ],
   templateUrl: './enquiry-form.html',
   styleUrl: './enquiry-form.scss',
 })
@@ -75,7 +91,10 @@ export class EnquiryForm {
   protected readonly addOptions = [
     ...CATEGORIES.map((c) => ({
       label: c.name,
-      items: PRODUCTS.filter((p) => p.category === c.id).map((p) => ({ label: p.name, value: p.slug })),
+      items: PRODUCTS.filter((p) => p.category === c.id).map((p) => ({
+        label: p.name,
+        value: p.slug,
+      })),
     })),
     { label: 'Farm services', items: SERVICES.map((s) => ({ label: s.name, value: s.slug })) },
   ];
@@ -102,7 +121,9 @@ export class EnquiryForm {
   protected readonly accepting = signal<boolean | null>(null);
   protected readonly addSelection = signal<string | null>(null);
 
-  private readonly value = toSignal(this.form.valueChanges, { initialValue: this.form.getRawValue() });
+  private readonly value = toSignal(this.form.valueChanges, {
+    initialValue: this.form.getRawValue(),
+  });
   private idempotencyKey = '';
   private shownAt = 0;
   private started = false;
@@ -113,7 +134,11 @@ export class EnquiryForm {
 
   protected readonly errorList = computed(() => {
     const e = this.errors();
-    return FIELD_ORDER.filter((k) => e[k]).map((k) => ({ field: k, label: FIELD_LABELS[k], message: e[k]! }));
+    return FIELD_ORDER.filter((k) => e[k]).map((k) => ({
+      field: k,
+      label: FIELD_LABELS[k],
+      message: e[k]!,
+    }));
   });
 
   /** Live progress for the three parts of the quote form. */
@@ -132,7 +157,11 @@ export class EnquiryForm {
   protected readonly successMethod = computed(() => {
     const s = this.sent();
     if (!s) return '';
-    return s.contactMethod === 'email' ? 'by email' : s.contactMethod === 'whatsapp' ? 'on WhatsApp' : 'by phone';
+    return s.contactMethod === 'email'
+      ? 'by email'
+      : s.contactMethod === 'whatsapp'
+        ? 'on WhatsApp'
+        : 'by phone';
   });
 
   protected readonly fallbackEmail = computed(() => {
@@ -186,7 +215,9 @@ export class EnquiryForm {
     event.preventDefault();
     const el =
       this.doc.getElementById(`f-${field}`) ??
-      this.doc.querySelector<HTMLElement>(`#f-${field} input, [data-field="${field}"] input, [data-field="${field}"] [tabindex]`);
+      this.doc.querySelector<HTMLElement>(
+        `#f-${field} input, [data-field="${field}"] input, [data-field="${field}"] [tabindex]`,
+      );
     el?.focus();
     el?.scrollIntoView({ block: 'center' });
   }
@@ -216,7 +247,11 @@ export class EnquiryForm {
       this.status.set('success');
       if (this.type() === 'quote') this.list.completed(payload.items);
       this.clearDraft();
-      this.analytics.track('enquiry_success', { type: this.type(), items: payload.items.length, contact: payload.contactMethod });
+      this.analytics.track('enquiry_success', {
+        type: this.type(),
+        items: payload.items.length,
+        contact: payload.contactMethod,
+      });
       setTimeout(() => {
         this.successEl()?.nativeElement.focus();
         this.successEl()?.nativeElement.scrollIntoView({ block: 'start' });
@@ -230,7 +265,9 @@ export class EnquiryForm {
     if (result.kind === 'invalid') this.errors.set(result.errors);
     if (result.kind === 'unavailable') this.accepting.set(false);
     this.analytics.track('enquiry_error', { type: this.type(), reason: result.kind });
-    setTimeout(() => (result.kind === 'invalid' ? this.summaryEl() : this.problemEl())?.nativeElement.focus());
+    setTimeout(() =>
+      (result.kind === 'invalid' ? this.summaryEl() : this.problemEl())?.nativeElement.focus(),
+    );
   }
 
   protected startAnother(): void {

@@ -1,4 +1,11 @@
-import { EnquiryPayload, enquiryToText, looksAutomated, normalisePhone, sanitiseEnquiry, validateEnquiry } from './enquiry-schema';
+import {
+  EnquiryPayload,
+  enquiryToText,
+  looksAutomated,
+  normalisePhone,
+  sanitiseEnquiry,
+  validateEnquiry,
+} from './enquiry-schema';
 
 const valid = (over: Partial<EnquiryPayload> = {}): EnquiryPayload => ({
   ...sanitiseEnquiry({
@@ -35,7 +42,12 @@ describe('enquiry schema', () => {
   });
 
   it('sanitises unknown input to safe types and lengths', () => {
-    const p = sanitiseEnquiry({ name: 'x'.repeat(500), items: [{ slug: 'Bad Slug!<>', name: 1 }], contactMethod: 'fax', farmType: 'moon' });
+    const p = sanitiseEnquiry({
+      name: 'x'.repeat(500),
+      items: [{ slug: 'Bad Slug!<>', name: 1 }],
+      contactMethod: 'fax',
+      farmType: 'moon',
+    });
     expect(p.name.length).toBe(80);
     expect(p.items[0].slug).toBe('adlug');
     expect(p.contactMethod).toBe('phone');

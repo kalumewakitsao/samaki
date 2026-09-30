@@ -21,7 +21,12 @@ export class HomePage {
   protected readonly categories = CATEGORIES;
   protected readonly services = SERVICES.slice(0, 6);
   protected readonly process = PROCESS;
-  protected readonly featured = ['fingerlings', 'artemia', 'dissolved-oxygen-analyzer', 'vento-airpump'].map((s) => findProduct(s)!);
+  protected readonly featured = [
+    'fingerlings',
+    'artemia',
+    'dissolved-oxygen-analyzer',
+    'vento-airpump',
+  ].map((s) => findProduct(s)!);
   protected readonly analytics = inject(AnalyticsService);
 
   protected readonly audiences = [
@@ -60,10 +65,26 @@ export class HomePage {
   ];
 
   protected readonly journey = [
-    { icon: 'list', title: 'Build your list', body: 'Add the products and services you need. Your list is saved on this device.' },
-    { icon: 'mail', title: 'Send one request', body: 'Add quantities and your location. It takes about two minutes.' },
-    { icon: 'phone', title: 'We confirm the details', body: 'Our team contacts you to confirm availability, price and delivery.' },
-    { icon: 'truck', title: 'Delivery or a visit', body: 'Your order is delivered, or a specialist visits your farm, on the date you agree.' },
+    {
+      icon: 'list',
+      title: 'Build your list',
+      body: 'Add the products and services you need. Your list is saved on this device.',
+    },
+    {
+      icon: 'mail',
+      title: 'Send one request',
+      body: 'Add quantities and your location. It takes about two minutes.',
+    },
+    {
+      icon: 'phone',
+      title: 'We confirm the details',
+      body: 'Our team contacts you to confirm availability, price and delivery.',
+    },
+    {
+      icon: 'truck',
+      title: 'Delivery or a visit',
+      body: 'Your order is delivered, or a specialist visits your farm, on the date you agree.',
+    },
   ];
 
   constructor() {

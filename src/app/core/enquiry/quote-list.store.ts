@@ -58,7 +58,8 @@ export class QuoteListStore {
 
   repeatLast(): void {
     const merged = [...this._items()];
-    for (const item of this._last()) if (!merged.some((m) => m.slug === item.slug)) merged.push(item);
+    for (const item of this._last())
+      if (!merged.some((m) => m.slug === item.slug)) merged.push(item);
     this.update(merged);
   }
 

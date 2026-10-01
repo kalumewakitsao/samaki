@@ -1,4 +1,4 @@
-import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { DOCUMENT, ViewportScroller, isPlatformBrowser } from '@angular/common';
 import { ChangeDetectionStrategy, Component, PLATFORM_ID, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
@@ -18,6 +18,12 @@ export class App {
   constructor() {
     if (!isPlatformBrowser(inject(PLATFORM_ID))) return;
     const doc = inject(DOCUMENT);
+    // Router anchor scrolling uses window coordinates, not CSS scroll-margin.
+    // Measure the sticky header at scroll time so every breakpoint stays clear.
+    inject(ViewportScroller).setOffset(() => [
+      0,
+      (doc.querySelector('header')?.getBoundingClientRect().height ?? 80) + 16,
+    ]);
     // After in-app navigation, move focus to the new page's heading so keyboard
     // and screen-reader users start at the top of the new content.
     inject(Router)

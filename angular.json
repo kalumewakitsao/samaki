@@ -63,7 +63,15 @@
             "development": {
               "optimization": false,
               "extractLicenses": false,
-              "sourceMap": true
+              "sourceMap": true,
+              "ssr": {
+                "entry": "src/server.node.ts"
+              }
+            },
+            "node": {
+              "ssr": {
+                "entry": "src/server.node.ts"
+              }
             }
           },
           "defaultConfiguration": "production"

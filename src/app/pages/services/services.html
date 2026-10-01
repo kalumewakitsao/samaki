@@ -1,0 +1,137 @@
+<section class="head">
+  <div class="container">
+    <sx-breadcrumbs [trail]="[{ label: 'Home', path: '/' }, { label: 'Services' }]" />
+    <div class="intro">
+      <div class="intro-copy">
+        <p class="eyebrow">For your first pond. And your next harvest.</p>
+        <h1>Your farm has potential.<br /><em class="type-accent">Let’s help it grow.</em></h1>
+        <p class="lead">
+          Starting out, solving a problem, or planning your next cycle? Tell us where you are. We’ll
+          help you work out the supplies, skills and on-farm support you need.
+        </p>
+        <div class="cluster">
+          <a class="btn" routerLink="/contact"
+            >Let’s talk about your farm <sx-icon name="arrow-right"
+          /></a>
+          <a class="text-link" [href]="'tel:' + business.phone.tel"
+            ><sx-icon name="phone" />{{ business.phone.display }}</a
+          >
+        </div>
+      </div>
+      <div class="start-panel">
+        <p class="eyebrow">Find your starting point</p>
+        <h2>What brings<br /><em class="type-accent">you here?</em></h2>
+        <nav aria-label="Find support for your farm">
+          @for (point of startingPoints; track point.slug) {
+            <a routerLink="/services" [fragment]="point.slug">
+              <span class="start-icon"><sx-icon [name]="point.icon" /></span>
+              <span
+                ><strong>{{ point.title }}</strong
+                ><small>{{ point.detail }}</small></span
+              >
+              <sx-icon name="arrow-right" />
+            </a>
+          }
+        </nav>
+        <p class="start-note">Not sure? You don’t need a service name to start a conversation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section catalogue" aria-labelledby="list-title">
+  <div class="container">
+    <div class="section-head section-head--split">
+      <div class="stack">
+        <p class="eyebrow">Support that fits your farm</p>
+        <h2 class="h2" id="list-title">
+          What does your farm<br /><em class="type-accent">need next?</em>
+        </h2>
+      </div>
+      <p class="lead">
+        Start with what you want to improve. Explore the support below, or add services to a quote
+        request. We’ll confirm the details with you before you commit.
+      </p>
+    </div>
+    <ul class="service-grid" role="list">
+      @for (s of services; track s.slug; let i = $index) {
+        <li class="service-card" [id]="s.slug">
+          <div class="service-top">
+            <span class="service-icon"><sx-icon [name]="s.icon" /></span
+            ><span class="service-number">SERVICE / 0{{ i + 1 }}</span>
+          </div>
+          <p class="service-label">{{ s.name }}</p>
+          <h3>
+            <a [routerLink]="['/services', s.slug]">{{ s.outcome }}</a>
+          </h3>
+          <p class="service-summary">{{ s.need }}</p>
+          <ul class="includes" role="list">
+            @for (item of s.includes; track item) {
+              <li>
+                <sx-icon name="check" /><span>{{ item }}</span>
+              </li>
+            }
+          </ul>
+          <div class="service-actions">
+            <a
+              class="text-link"
+              [routerLink]="['/services', s.slug]"
+              [attr.aria-label]="'Explore ' + s.name"
+              >See how we help <sx-icon name="arrow-right" /></a
+            ><button
+              type="button"
+              class="btn btn--sm"
+              [class.btn--secondary]="!list.has(s.slug)"
+              [attr.aria-pressed]="list.has(s.slug)"
+              [attr.aria-label]="(list.has(s.slug) ? 'In quote list: ' : 'Add to quote: ') + s.name"
+              (click)="toggle(s.slug)"
+            >
+              <sx-icon [name]="list.has(s.slug) ? 'check' : 'plus'" />{{
+                list.has(s.slug) ? 'Added to your request' : 'Add to my request'
+              }}
+            </button>
+          </div>
+        </li>
+      }
+      <li class="guidance-card">
+        <sx-icon name="chat" />
+        <p class="eyebrow">You don't have to know it all</p>
+        <h3>Start with<br /><em class="type-accent">a conversation.</em></h3>
+        <p>
+          Tell us about your farm and what you want to improve. We'll help you find the right
+          starting point.
+        </p>
+        <a class="btn" routerLink="/contact">Talk to our team <sx-icon name="arrow-right" /></a>
+      </li>
+    </ul>
+  </div>
+</section>
+<section class="section working" aria-labelledby="how-title">
+  <div class="container">
+    <div class="section-head section-head--split">
+      <div class="stack">
+        <p class="eyebrow">How we work with you</p>
+        <h2 class="h2" id="how-title">
+          A simple first step.<br /><em class="type-accent">A clear way forward.</em>
+        </h2>
+      </div>
+      <p class="lead">
+        No need to have every answer. Start with your farm, your location and what you want to
+        change.
+      </p>
+    </div>
+    <ol class="cycle" role="list">
+      @for (p of process; track p.title; let i = $index) {
+        <li>
+          <span class="num">0{{ i + 1 }}</span>
+          <h3>{{ p.title }}</h3>
+          <p>{{ p.body }}</p>
+        </li>
+      }
+    </ol>
+  </div>
+</section>
+<sx-cta-band
+  source="services"
+  heading="What would you like to improve on your farm?"
+  body="Tell us where you are, what you farm and what you need help with. We’ll work out the next step with you and confirm costs before you commit."
+/>

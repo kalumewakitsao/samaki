@@ -78,7 +78,14 @@ import { Icon } from './icon';
       border-radius: var(--r-xl);
       overflow: hidden;
       color: var(--c-ink);
-      background: var(--c-surface-2);
+      background: #d8ef79;
+      --c-ink: #173f35;
+      --c-ink-2: #34583c;
+      --c-ink-3: #405c38;
+      --c-brand-text: #173f35;
+      --c-brand: #174c39;
+      --c-brand-ink: #fffef9;
+      --c-brand-hover: #0b382a;
     }
     @media (min-width: 56rem) {
       .panel {

@@ -1,0 +1,5 @@
+Typography assets copied unchanged from schul-erp/uis/sso-ui/src/assets/fonts/kit on 2026-10-01.
+outfit.woff2: Outfit variable, weights 100–900.
+serif-italic.woff2: Instrument Serif Italic, weight 400.
+mono.woff2: JetBrains Mono variable, weights 100–800.
+Font identities and fallback metrics documented in the source project src/styles/public-kit.css.

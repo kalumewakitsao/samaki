@@ -1,7 +1,7 @@
 <header class="bar">
   <div class="container row">
     <a routerLink="/" class="brand" aria-label="Samaki Express home">
-      <sx-logo />
+      <sx-logo /><span class="brand-caption">FISH FARMING, TOGETHER.</span>
     </a>
 
     <nav class="primary" aria-label="Main">
@@ -40,8 +40,9 @@
         routerLink="/quote"
         class="quote-btn"
         (click)="analytics.track('cta_click', { cta: 'header_quote' })"
-        >{{ list.count() > 0 ? 'Quote list (' + list.count() + ')' : 'Get a quote' }}</a
-      >
+        >{{ list.count() > 0 ? 'Quote list (' + list.count() + ')' : 'Get a quote' }}
+        <sx-icon name="arrow-right"
+      /></a>
       <button
         #menuTrigger
         type="button"

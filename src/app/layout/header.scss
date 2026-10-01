@@ -40,7 +40,8 @@
 }
 .brand {
   --logo-size: clamp(1.1rem, 0.9rem + 1vw, 1.3rem);
-  display: inline-flex;
+  display: grid;
+  gap: 0.3rem;
   min-width: 0;
   text-decoration: none;
   margin-right: auto;
@@ -117,7 +118,7 @@
   gap: var(--s-2);
   min-height: 40px;
   padding: 0 1.1rem;
-  border-radius: var(--r-pill);
+  border-radius: var(--r-md);
   background: var(--c-brand);
   color: var(--c-brand-ink);
   font-size: var(--fs-sm);
@@ -233,4 +234,101 @@
   border-top: 1px solid var(--c-line);
   color: var(--c-ink-2);
   font-size: var(--fs-sm);
+}
+
+.brand-caption {
+  font: 0.5rem var(--font-label);
+  letter-spacing: 0.14em;
+  color: var(--c-ink-3);
+  padding-left: 2.65rem;
+}
+.primary ul {
+  background: var(--c-bg-tint);
+  border: 1px solid var(--c-line);
+  border-radius: 14px;
+  padding: 4px;
+  gap: 0;
+}
+.primary a {
+  border-radius: 10px;
+  font-weight: 500;
+  min-height: 38px;
+  padding-inline: 0.75rem;
+}
+.primary a:hover {
+  background: var(--c-surface);
+}
+.primary a.is-active {
+  color: var(--c-brand-ink);
+  background: var(--c-brand);
+  font-weight: 650;
+  box-shadow: 0 2px 6px #073d3926;
+}
+.call-pill {
+  background: transparent;
+  color: var(--c-ink);
+  padding-inline: 0.65rem;
+}
+.call-pill:hover {
+  background: var(--c-brand-soft);
+}
+.quote-btn {
+  background: var(--c-brand);
+  color: var(--c-brand-ink);
+  border-radius: 14px;
+  gap: 0.6rem;
+  padding-inline: 1.1rem;
+  font-weight: 550;
+  min-height: 46px;
+}
+.quote-btn:hover {
+  background: var(--c-brand-hover);
+  text-decoration: none;
+}
+.quote-btn sx-icon {
+  width: 16px;
+  height: 16px;
+}
+.menu-btn {
+  border-radius: 12px;
+  border: 1px solid var(--c-line);
+  background: var(--c-surface);
+}
+.m-links a {
+  border-bottom: 1px solid var(--c-line);
+  border-radius: 0;
+  padding-inline: 0.5rem;
+  font-weight: 500;
+}
+.m-links a.is-active {
+  color: var(--c-brand-ink);
+  background: var(--c-brand);
+  border-color: transparent;
+  border-radius: 12px;
+  padding-inline: 1rem;
+  font-weight: 650;
+}
+.m-links a.is-active::after {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+  margin-left: auto;
+}
+@media (min-width: 62rem) and (max-width: 79.99rem) {
+  .call-pill {
+    display: none;
+  }
+  .call-icon {
+    display: grid;
+  }
+  .primary a {
+    padding-inline: 0.65rem;
+  }
+}
+@media (max-width: 39.99rem) {
+  .brand-caption {
+    display: none;
+  }
 }

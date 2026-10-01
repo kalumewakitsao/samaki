@@ -12,7 +12,7 @@
 }
 .controls {
   position: sticky;
-  top: 4.3rem;
+  top: var(--header-h);
   z-index: 5;
   display: grid;
   gap: var(--s-3);
@@ -108,4 +108,19 @@ ul.grid {
   .services-teaser {
     grid-template-columns: 1.4fr 1fr;
   }
+}
+
+.head {
+  background: var(--c-brand-soft);
+  padding-block: 2rem 3rem;
+  border-bottom: 1px solid var(--c-line);
+}
+.intro {
+  max-width: 52rem;
+}
+.intro .h1 {
+  font-size: clamp(2.6rem, 5vw, 4.8rem);
+}
+.catalogue {
+  padding-top: 1.5rem;
 }

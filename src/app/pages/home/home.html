@@ -1,55 +1,13 @@
-<section class="hero" aria-labelledby="hero-title">
-  <div class="container hero-inner">
-    <p class="hero-kicker">
-      <span class="status-dot" [class.is-open]="status()?.open" aria-hidden="true"></span>
-      Aquaculture supplies and support, Nairobi
-    </p>
-    <h1 class="display" id="hero-title">Everything your fish farm needs.</h1>
-    <p class="lead hero-lead">
-      Fingerlings, hatchery feeds, water testing and aeration, with specialists who visit your farm.
-      Call us and we will confirm price, availability and delivery.
-    </p>
-    <div class="hero-ctas">
-      <a
-        class="btn btn--call btn--xl"
-        [href]="'tel:' + business.phone.tel"
-        (click)="analytics.track('contact_click', { channel: 'phone', page: 'home_hero' })"
-      >
-        <span class="call-ring"><sx-icon name="phone" /></span>
-        Call {{ business.phone.display }}
-      </a>
-      <a
-        class="btn btn--glass btn--xl"
-        routerLink="/quote"
-        (click)="analytics.track('cta_click', { cta: 'hero_quote' })"
-      >
-        Request a quote <sx-icon name="arrow-right" class="icon--arrow" />
-      </a>
-    </div>
-    <p class="hero-meta small">
-      @if (status(); as st) {
-        <span class="nowrap">{{ st.label }}</span
-        ><span aria-hidden="true"> · </span>
-      }
-      <span class="nowrap">{{ business.hours.short }}</span
-      ><span aria-hidden="true"> · </span><span class="nowrap">Kairo, Waiyaki Way, Nairobi</span>
-    </p>
-    <nav class="hero-links" aria-label="Product categories">
-      @for (c of categories; track c.id) {
-        <a routerLink="/products" [queryParams]="{ category: c.id }"
-          ><sx-icon [name]="c.icon" /> {{ c.shortName }}</a
-        >
-      }
-    </nav>
-  </div>
-</section>
+<sx-home-hero />
 
 <section class="section discover" aria-labelledby="discover-title">
   <div class="container">
     <div class="section-head section-head--split">
       <div class="stack">
         <p class="eyebrow">Shop by need</p>
-        <h2 class="h2" id="discover-title">What does your farm need today?</h2>
+        <h2 class="h2" id="discover-title">
+          What does your farm <em class="type-accent">need today?</em>
+        </h2>
       </div>
       <p class="muted">
         Pick a category to see what we stock, or add several items to one quote request.
@@ -101,7 +59,9 @@
     <div class="section-head section-head--split">
       <div class="stack">
         <p class="eyebrow">Popular requests</p>
-        <h2 class="h2" id="featured-title">Start with the essentials</h2>
+        <h2 class="h2" id="featured-title">
+          Start with <em class="type-accent">the essentials.</em>
+        </h2>
       </div>
       <a class="text-link" routerLink="/products"
         >See all products <sx-icon name="arrow-right"
@@ -144,7 +104,7 @@
       <div class="stack">
         <p class="eyebrow">Beyond supply</p>
         <h2 class="h1" id="services-title">
-          Inputs are half the job. We help with the other half.
+          Inputs are half the job. <em class="type-accent">We help with the other half.</em>
         </h2>
       </div>
       <p class="muted">
@@ -242,5 +202,7 @@
     </ul>
   </div>
 </section>
+
+<sx-testimonials />
 
 <sx-cta-band source="home" />

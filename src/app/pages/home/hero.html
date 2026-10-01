@@ -1,0 +1,67 @@
+<section class="hero" aria-labelledby="hero-title">
+  <div class="container hero-inner">
+    <div class="hero-copy">
+      <p class="hero-kicker"><span aria-hidden="true"></span> ROOTED IN KENYA. GROWING WITH YOU.</p>
+      <h1 class="display" id="hero-title">Small beginnings.<br /><em>Thriving farms.</em></h1>
+      <p class="lead hero-lead">
+        From your first fingerlings to your next harvest. Get the supplies, equipment and hands-on
+        support to move your fish farm forward.
+      </p>
+      <div class="hero-ctas">
+        <a
+          class="btn btn--xl hero-primary"
+          routerLink="/products"
+          (click)="analytics.track('cta_click', { cta: 'hero_products' })"
+          >Explore products <sx-icon name="arrow-right"
+        /></a>
+        <a
+          class="hero-call"
+          [href]="'tel:' + business.phone.tel"
+          (click)="analytics.track('contact_click', { channel: 'phone', page: 'home_hero' })"
+          ><sx-icon name="phone" /> Talk to a specialist</a
+        >
+      </div>
+      <div class="hero-assurance">
+        <span class="assurance-icon"><sx-icon name="sprout" /></span>
+        <p>More than supplies.<br /><strong>A team that grows with you.</strong></p>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <img
+        class="hero-image"
+        src="/images/tilapia-editorial.webp"
+        width="1122"
+        height="1402"
+        fetchpriority="high"
+        alt="Illustrative image of silver tilapia swimming in sunlit teal water"
+      />
+      <span class="image-label">A WORLD OF POSSIBILITY, BELOW THE SURFACE</span>
+      <a class="visual-card" routerLink="/products" [queryParams]="{ category: 'fingerlings' }"
+        ><span class="visual-icon"><sx-icon name="fish" /></span
+        ><span
+          ><small>START SOMETHING GOOD</small><strong>Your next cycle starts here.</strong
+          ><span>Explore fingerlings</span></span
+        ><sx-icon name="arrow-right"
+      /></a>
+      <span class="hero-stamp" aria-hidden="true"
+        >GOOD STOCK.<br />GREAT POTENTIAL.<sx-icon name="sprout"
+      /></span>
+    </div>
+  </div>
+  <nav class="hero-links container" aria-label="Product categories">
+    <span class="range-label">YOUR FARM. COVERED.</span>
+    @for (c of categories; track c.id) {
+      <a routerLink="/products" [queryParams]="{ category: c.id }"
+        ><sx-icon [name]="c.icon" />{{ c.shortName }}<span aria-hidden="true">↗</span></a
+      >
+    }
+  </nav>
+</section>
+<div class="promise-strip">
+  <div class="container">
+    <span><sx-icon name="fish" /> Stock your farm</span
+    ><span><sx-icon name="droplet" /> Know your water</span
+    ><span><sx-icon name="sprout" /> Grow your confidence</span
+    ><a routerLink="/services">All the support you need <sx-icon name="arrow-right" /></a>
+  </div>
+</div>

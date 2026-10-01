@@ -1,0 +1,99 @@
+<section class="head">
+  <div class="container">
+    <sx-breadcrumbs [trail]="[{ label: 'Home', path: '/' }, { label: 'FAQ' }]" />
+    <div class="intro">
+      <div>
+        <p class="eyebrow">Questions and answers</p>
+        <h1>A little clarity.<br /><em class="type-accent">A lot of confidence.</em></h1>
+        <p class="lead">
+          Your questions about ordering, delivery and getting started, answered in plain language.
+        </p>
+      </div>
+      <div class="help-note">
+        <span class="help-symbol" aria-hidden="true">?</span>
+        <p>Sometimes it's easier<br /><strong>to talk it through.</strong></p>
+        <a [href]="'tel:' + business.phone.tel"
+          ><sx-icon name="phone" />{{ business.phone.display }}</a
+        >
+      </div>
+    </div>
+    <nav class="topic-cards" aria-label="Jump to a topic">
+      @for (g of groups; track g.title; let i = $index) {
+        <a routerLink="/faq" [fragment]="slug(g.title)"
+          ><span class="topic-icon"><sx-icon [name]="topicIcons[i]" /></span
+          ><span
+            ><strong>{{ g.title }}</strong
+            ><small>{{ g.items.length }} answers</small></span
+          ><sx-icon name="arrow-right"
+        /></a>
+      }
+    </nav>
+  </div>
+</section>
+<section class="section body">
+  <div class="container layout">
+    <aside class="sidebar">
+      <p class="eyebrow">Find your answer</p>
+      <nav class="toc" aria-label="Topics">
+        <ul role="list">
+          @for (g of groups; track g.title; let i = $index) {
+            <li>
+              <a routerLink="/faq" [fragment]="slug(g.title)"
+                ><span>0{{ i + 1 }}</span
+                >{{ g.title }}</a
+              >
+            </li>
+          }
+        </ul>
+      </nav>
+      <div class="sidebar-note">
+        <sx-icon name="chat" />
+        <h2>Every farm is different.</h2>
+        <p>Have a question about yours? We're here to help.</p>
+        <a class="text-link" routerLink="/contact">Ask our team <sx-icon name="arrow-right" /></a>
+      </div>
+    </aside>
+    <div class="groups">
+      @for (g of groups; track g.title; let gi = $index) {
+        <section
+          class="question-group"
+          [id]="slug(g.title)"
+          [attr.aria-labelledby]="slug(g.title) + '-h'"
+        >
+          <div class="group-heading">
+            <span aria-hidden="true">0{{ gi + 1 }}</span>
+            <h2 [id]="slug(g.title) + '-h'">{{ g.title }}</h2>
+            <small>{{ g.items.length }} questions</small>
+          </div>
+          @for (item of g.items; track item.q; let qi = $index) {
+            <details [open]="gi === 0 && qi === 0">
+              <summary>
+                <span>{{ item.q }}</span
+                ><span class="expand-icon"><sx-icon name="plus" /></span>
+              </summary>
+              <div class="answer">
+                <div class="answer-copy">
+                  <span class="answer-mark" aria-hidden="true"><sx-icon name="chat" /></span>
+                  <p>{{ item.a }}</p>
+                </div>
+                @if (item.link; as l) {
+                  <div class="answer-next">
+                    <span>Let’s take the next step</span>
+                    <a class="answer-link" [routerLink]="l.path">
+                      {{ l.label }} <sx-icon name="arrow-right" />
+                    </a>
+                  </div>
+                }
+              </div>
+            </details>
+          }
+        </section>
+      }
+    </div>
+  </div>
+</section>
+<sx-cta-band
+  source="faq"
+  heading="Your question deserves a real conversation."
+  body="Tell us what you are working on. Our team can help you choose supplies, plan a visit or work out where to start."
+/>

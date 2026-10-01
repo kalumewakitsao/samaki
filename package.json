@@ -9,12 +9,13 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test --watch=false",
     "serve:ssr": "node dist/samaki/server/server.mjs",
-    "icons": "node scripts/build-icons.mjs"
+    "icons": "node scripts/build-icons.mjs",
+    "build:node": "npm run prebuild && ng build --configuration production,node"
   },
   "private": true,
   "packageManager": "npm@10.9.7",
   "engines": {
-    "node": ">=20.19"
+    "node": "^22.22.0 || ^24.13.1"
   },
   "dependencies": {
     "@angular/cdk": "^21.2.0",
@@ -31,12 +32,14 @@
     "express": "^5.1.0",
     "primeng": "^21.1.10",
     "rxjs": "~7.8.0",
+    "serverless-http": "^4.0.0",
     "tslib": "^2.3.0"
   },
   "devDependencies": {
     "@angular/build": "^21.2.24",
     "@angular/cli": "^21.2.24",
     "@angular/compiler-cli": "^21.2.0",
+    "@netlify/angular-runtime": "^4.0.0",
     "@types/compression": "^1.8.1",
     "@types/express": "^5.0.1",
     "@types/node": "^20.17.19",

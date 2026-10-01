@@ -1,5 +1,5 @@
 /**
- * Renders the PNG icons and the social preview image from SVG sources with
+ * Renders the PNG icons from SVG sources with
  * Playwright's Chromium. Run with `npm run icons` after changing the mark.
  */
 import { readFileSync, writeFileSync } from 'node:fs';
@@ -55,30 +55,8 @@ images.forEach((img, i) => {
 });
 writeFileSync('public/favicon.ico', Buffer.concat([header, ...images]));
 
-// Social preview, 1200 x 630.
-const fonts = `
-  @font-face { font-family: B; src: url(data:font/woff2;base64,${readFileSync('public/fonts/bricolage-latin-wght.woff2').toString('base64')}) format('woff2'); font-weight: 200 800; }
-  @font-face { font-family: I; src: url(data:font/woff2;base64,${readFileSync('public/fonts/inter-latin-wght.woff2').toString('base64')}) format('woff2'); font-weight: 100 900; }`;
-await png(
-  `<style>${fonts}</style>
-  <div style="width:1200px;height:630px;box-sizing:border-box;padding:72px 80px;background:#0b2b2e;color:#e9f3ef;font-family:I;position:relative;overflow:hidden">
-    <svg style="position:absolute;left:0;bottom:0" width="1200" height="260" viewBox="0 0 1200 260">
-      <path d="M0 60 Q100 40 200 60 T400 60 T600 60 T800 60 T1000 60 T1200 60 V260 H0 Z" fill="#14484c"/>
-      <path d="M0 170 Q100 152 200 170 T400 170 T600 170 T800 170 T1000 170 T1200 170 V260 H0 Z" fill="#1f7d6d" opacity=".7"/>
-      <g transform="translate(960 130) scale(2.4)"><path d="M-27 0 L-44 -13 Q-39 0 -44 13 Z" fill="#e39a3b"/><path d="M-30 0 C-18 -17 10 -19 30 0 C10 19 -18 17 -30 0 Z" fill="#f5c15a"/><circle cx="19" cy="-3" r="3" fill="#0b2b2e"/></g>
-      <g transform="translate(1110 200) scale(1.3)"><path d="M-27 0 L-44 -13 Q-39 0 -44 13 Z" fill="#e39a3b"/><path d="M-30 0 C-18 -17 10 -19 30 0 C10 19 -18 17 -30 0 Z" fill="#f5c15a"/><circle cx="19" cy="-3" r="3" fill="#0b2b2e"/></g>
-    </svg>
-    <div style="display:flex;align-items:center;gap:18px">
-      <div style="width:64px;height:64px">${mark.replace('<svg ', '<svg width="100%" height="100%" ')}</div>
-      <div style="font-family:B;font-size:40px;letter-spacing:-.03em"><b style="font-weight:780">Samaki</b> <span style="font-weight:480;color:#7be6cb">Express</span></div>
-    </div>
-    <div style="font-family:B;font-weight:740;font-size:76px;line-height:1.04;letter-spacing:-.035em;margin-top:56px;max-width:820px;position:relative">Fingerlings, feeds and expert help for your fish farm.</div>
-    <div style="font-size:28px;color:#a8c4bd;margin-top:24px;position:relative">Request a quote at samakiexpress.co.ke</div>
-  </div>`,
-  1200,
-  'public/og-image.png',
-  630,
-);
+// The social artwork is maintained separately as public/og-samaki-farm-support-v2.png.
+// Keep icon regeneration from replacing the approved share-card design.
 
 await browser.close();
-console.log('Icons and social image written to public/');
+console.log('Icons written to public/');

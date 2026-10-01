@@ -7,12 +7,14 @@ export interface PageSeo {
   title: string;
   description: string;
   path: string;
+  socialTitle?: string;
+  socialDescription?: string;
   /** Extra JSON-LD blocks for this page. The organisation block is always added. */
   jsonLd?: object[];
   noindex?: boolean;
 }
 
-const OG_IMAGE = `${BUSINESS.siteUrl}/og-image.png`;
+const OG_IMAGE = `${BUSINESS.siteUrl}/og-samaki-farm-support-v2.png`;
 
 export function organisationJsonLd(): object {
   return {
@@ -62,6 +64,8 @@ export class SeoService {
     const url = `${BUSINESS.siteUrl}${page.path === '/' ? '/' : page.path}`;
     const fullTitle = page.path === '/' ? page.title : `${page.title} | ${BUSINESS.name}`;
     this.title.setTitle(fullTitle);
+    const socialTitle = page.socialTitle ?? fullTitle;
+    const socialDescription = page.socialDescription ?? page.description;
 
     const tags: [string, string, 'name' | 'property'][] = [
       ['description', page.description, 'name'],
@@ -69,17 +73,28 @@ export class SeoService {
       ['og:type', 'website', 'property'],
       ['og:site_name', BUSINESS.name, 'property'],
       ['og:locale', 'en_KE', 'property'],
-      ['og:title', fullTitle, 'property'],
-      ['og:description', page.description, 'property'],
+      ['og:title', socialTitle, 'property'],
+      ['og:description', socialDescription, 'property'],
       ['og:url', url, 'property'],
       ['og:image', OG_IMAGE, 'property'],
+      ['og:image:secure_url', OG_IMAGE, 'property'],
+      ['og:image:type', 'image/png', 'property'],
       ['og:image:width', '1200', 'property'],
       ['og:image:height', '630', 'property'],
-      ['og:image:alt', 'Samaki Express: fingerlings, feeds and farm support', 'property'],
+      [
+        'og:image:alt',
+        'Samaki Express — your fish farm, supplied and supported. Fingerlings, feeds, equipment and farm support.',
+        'property',
+      ],
       ['twitter:card', 'summary_large_image', 'name'],
-      ['twitter:title', fullTitle, 'name'],
-      ['twitter:description', page.description, 'name'],
+      ['twitter:title', socialTitle, 'name'],
+      ['twitter:description', socialDescription, 'name'],
       ['twitter:image', OG_IMAGE, 'name'],
+      [
+        'twitter:image:alt',
+        'Samaki Express — your fish farm, supplied and supported. Fingerlings, feeds, equipment and farm support.',
+        'name',
+      ],
     ];
     for (const [key, content, attr] of tags) {
       this.meta.updateTag({ [attr]: key, content }, `${attr}="${key}"`);

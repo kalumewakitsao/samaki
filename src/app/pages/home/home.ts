@@ -105,6 +105,9 @@ export class HomePage {
       description:
         'Fingerlings, hatchery feeds, water testing kits, aeration equipment and hands-on farm support for fish farmers. Based in Nairobi. Request a quote.',
       path: '/',
+      socialTitle: 'Your fish farm. Supplied. Supported. | Samaki Express',
+      socialDescription:
+        'Fingerlings, feeds, equipment and hands-on farm support in Kenya. Tell us what your farm needs — we’ll help you plan your next step.',
     });
   }
 }

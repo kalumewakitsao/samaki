@@ -267,10 +267,10 @@ import { Illustration } from '../../ui/illustration';
       --purpose-line: #ffffff30;
     }
     .purpose-card--vision {
-      background: #e5edcb;
+      background: #dcebfb;
       color: #0b2a4a;
-      --purpose-muted: #456047;
-      --purpose-accent: #376045;
+      --purpose-muted: #3d5a78;
+      --purpose-accent: #124a8a;
       --purpose-line: #0b2a4a26;
     }
     .purpose-top {
@@ -363,8 +363,8 @@ import { Illustration } from '../../ui/illustration';
       place-items: center;
       aspect-ratio: 1 / 1.1;
       overflow: hidden;
-      background: #dce8b8;
-      color: #234936;
+      background: #dcebfb;
+      color: #124a8a;
     }
     .person:nth-child(2) .person-art {
       background: #f1d4c0;

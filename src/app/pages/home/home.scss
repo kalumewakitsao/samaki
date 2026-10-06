@@ -286,28 +286,36 @@ ul.grid:not(.rail) {
   box-shadow: 0 3px 16px #0b2a4a07;
 }
 .tile--call {
-  background: #8ccaff;
-  color: #0b2a4a;
+  background: var(--c-panel);
+  color: var(--c-panel-ink);
+  --c-ink: var(--c-panel-ink);
+  --c-ink-2: var(--c-panel-ink-2);
+  --c-ink-3: var(--c-panel-ink-2);
+  --c-focus: var(--c-panel-ink);
 }
 .tile--call .small {
-  color: #27543c;
+  color: var(--c-panel-ink);
+}
+.tile--call .tile-call-icon {
+  background: var(--c-sun);
+  color: var(--c-sun-ink);
 }
 .section--deep {
   background: #0a2f5c;
   --c-deep-ink: #f8fbff;
-  --c-deep-ink-2: #bdd5c9;
-  --c-surface: #164b42;
-  --c-line: #38665a;
-  --c-line-strong: #557e70;
+  --c-deep-ink-2: #c3d9f0;
+  --c-surface: #123d70;
+  --c-line: #2a5080;
+  --c-line-strong: #3d6a9e;
 }
 .section--deep .num {
-  background: #8ccaff;
-  color: #0b2a4a;
+  background: var(--c-sun);
+  color: var(--c-sun-ink);
 }
 .section--deep .process li {
   border: 0;
   border-radius: 0;
-  border-top: 1px solid #52776b;
+  border-top: 1px solid #3d6a9e;
   padding-inline: 0;
   background: transparent;
 }
@@ -346,7 +354,7 @@ ul.grid:not(.rail) {
   --ill-water-2: #e8c4ad;
 }
 :host-context([data-theme='dark']) .tiles > li {
-  --ill-line: #234537;
+  --ill-line: #0b2a4a;
   --ill-paper: #f8fbff;
-  --ill-deep: #285a4b;
+  --ill-deep: #0d4a8f;
 }

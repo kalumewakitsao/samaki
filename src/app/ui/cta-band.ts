@@ -122,9 +122,9 @@ import { Icon } from './icon';
       gap: 0.85rem;
       padding: clamp(1.25rem, 2.5vw, 2rem);
       border-radius: 18px;
-      background: #f6f5e9;
+      background: #f8fbff;
       color: #0b2a4a;
-      box-shadow: 0 12px 30px #001f1c26;
+      box-shadow: 0 12px 30px #061a3026;
       --c-brand: #8ccaff;
       --c-brand-ink: #0b2a4a;
       --c-brand-hover: #b0daff;
@@ -155,7 +155,7 @@ import { Icon } from './icon';
     }
     .contact-intro p {
       font-size: 0.85rem;
-      color: #52685a;
+      color: #3d5a78;
       margin-top: 0.2rem;
     }
     .actions .btn {
@@ -170,7 +170,7 @@ import { Icon } from './icon';
       min-height: 52px;
     }
     .quote-link:hover {
-      background: #e8eddb;
+      background: #eaf3fc;
       border-color: #0b2a4a;
     }
     .hours {
@@ -178,15 +178,15 @@ import { Icon } from './icon';
       justify-content: center;
       align-items: center;
       gap: 0.5rem;
-      color: #52685a;
+      color: #3d5a78;
       font-size: 0.75rem;
       margin-top: 0.25rem;
     }
     .status-dot {
-      background: #718475;
+      background: #546e88;
     }
     .status-dot.is-open {
-      background: #347751;
+      background: #1d7f3a;
     }
     @media (max-width: 55rem) {
       .panel {

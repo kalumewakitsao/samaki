@@ -18,6 +18,7 @@ import {
   findOffering,
   offeringArt,
   offeringImage,
+  offeringImageFit,
   findProduct,
   findService,
   offeringUrl,
@@ -72,6 +73,10 @@ export class OfferingPage {
   protected readonly image = computed(() => {
     const o = this.item();
     return o ? offeringImage(o) : undefined;
+  });
+  protected readonly imageFit = computed(() => {
+    const o = this.item();
+    return o ? offeringImageFit(o) : 'contain';
   });
   protected readonly tag = computed(() => {
     const o = this.item();

@@ -55,8 +55,8 @@ import { Icon } from '../../ui/icon';
       place-items: center;
       height: 160px;
       overflow: hidden;
-      background: #e4eccb;
-      color: #315443;
+      background: #dcebfb;
+      color: #124a8a;
     }
     .values li:nth-child(2) .value-art {
       background: #e0deef;

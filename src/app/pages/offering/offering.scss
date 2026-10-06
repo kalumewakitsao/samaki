@@ -21,17 +21,16 @@
 }
 /* Phones: a shorter picture so the name and the quote button show sooner. */
 @media (max-width: 47.99rem) {
-  .media img,
+  .media .photo-stage,
   .media sx-illustration {
     aspect-ratio: 16 / 10;
   }
 }
-.media img,
+.media .photo-stage,
 .media sx-illustration {
   display: block;
   width: 100%;
   aspect-ratio: 4 / 3;
-  object-fit: cover;
   border-radius: var(--r-xl);
   border: 1px solid var(--c-line);
   box-shadow: var(--shadow-2);

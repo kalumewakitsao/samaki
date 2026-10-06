@@ -77,15 +77,33 @@ import { Icon } from './icon';
       padding: clamp(1.5rem, 1rem + 2.5vw, 3rem);
       border-radius: var(--r-xl);
       overflow: hidden;
+      isolation: isolate;
       color: var(--c-ink);
-      background: #8ccaff;
-      --c-ink: #0b2a4a;
-      --c-ink-2: #34583c;
-      --c-ink-3: #405c38;
-      --c-brand-text: #0b2a4a;
-      --c-brand: #174c39;
-      --c-brand-ink: #fffef9;
-      --c-brand-hover: #0b382a;
+      background: var(--c-panel);
+      --c-ink: var(--c-panel-ink);
+      --c-ink-2: var(--c-panel-ink-2);
+      --c-ink-3: var(--c-panel-ink-2);
+      --c-brand-text: var(--c-panel-ink);
+      --c-brand: var(--c-sun);
+      --c-brand-ink: var(--c-sun-ink);
+      --c-brand-hover: var(--c-sun-hover);
+      --c-focus: var(--c-panel-ink);
+    }
+    /* A soft glow so the panel has depth instead of a flat fill. */
+    .panel::before {
+      content: '';
+      position: absolute;
+      inset: auto -10% -60% auto;
+      width: 60%;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: radial-gradient(closest-side, #ffffff26, transparent);
+      z-index: -1;
+      pointer-events: none;
+    }
+    .panel .status-dot.is-open {
+      background: #5ee38a;
+      box-shadow: 0 0 0 4px #5ee38a33;
     }
     @media (min-width: 56rem) {
       .panel {

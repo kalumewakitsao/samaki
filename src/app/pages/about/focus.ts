@@ -173,16 +173,16 @@ import { Icon } from '../../ui/icon';
       gap: clamp(2rem, 5vw, 5rem);
       padding: clamp(1.5rem, 4vw, 4rem);
       border-radius: 28px;
-      background: #dfecc2;
+      background: #dcebfb;
       color: #0b2a4a;
       --c-ink: #0b2a4a;
-      --c-ink-2: #456047;
-      --c-brand: #174c39;
-      --c-brand-hover: #0b382a;
+      --c-ink-2: #3d5a78;
+      --c-brand: #0a2f5c;
+      --c-brand-hover: #061a30;
       --c-brand-ink: #f8fbff;
     }
     .visit-copy .eyebrow {
-      color: #456047;
+      color: #3d5a78;
       font-size: 0.65rem;
       letter-spacing: 0.08em;
     }
@@ -194,7 +194,7 @@ import { Icon } from '../../ui/icon';
       margin-block: 2rem 1.5rem;
     }
     .visit-copy > p:not(.eyebrow) {
-      color: #456047;
+      color: #3d5a78;
       max-width: 32ch;
       font-size: 1.1rem;
     }
@@ -235,7 +235,7 @@ import { Icon } from '../../ui/icon';
       width: 40px;
       height: 40px;
       border-radius: 12px;
-      background: #eaf0dc;
+      background: #eaf3fc;
     }
     .option-icon sx-icon {
       width: 21px;
@@ -247,7 +247,7 @@ import { Icon } from '../../ui/icon';
       margin-bottom: 0.5rem;
     }
     .visit-options article p {
-      color: #456047;
+      color: #3d5a78;
       font-size: 0.95rem;
     }
     .visit-hours {
@@ -276,10 +276,10 @@ import { Icon } from '../../ui/icon';
       align-items: center;
       gap: 0.5rem;
       font-size: 0.8rem;
-      color: #456047;
+      color: #3d5a78;
     }
     .open-status .status-dot {
-      background: #58704a;
+      background: #546e88;
     }
     .open-status .is-open {
       background: #1d7f3a;

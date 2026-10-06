@@ -82,7 +82,7 @@ h1 em {
   height: 36px;
   flex-shrink: 0;
   border-radius: 10px;
-  background: #e8eddb;
+  background: #eaf3fc;
 }
 .start-icon sx-icon {
   width: 20px;
@@ -97,7 +97,7 @@ h1 em {
   display: block;
   font-size: 0.8rem;
   line-height: 1.5;
-  color: #52685a;
+  color: #3d5a78;
   margin-top: 0.2rem;
 }
 .start-panel nav a > sx-icon {
@@ -153,8 +153,8 @@ h1 em {
   width: 40px;
   height: 40px;
   border-radius: 12px;
-  background: #e4eccb;
-  color: #315443;
+  background: #dcebfb;
+  color: #124a8a;
 }
 .service-card:nth-child(3n + 2) .service-icon {
   background: #e0deef;
@@ -235,20 +235,23 @@ h1 em {
   justify-content: center;
   padding: 1.5rem;
   border-radius: 16px;
-  background: #8ccaff;
-  color: #0b2a4a;
+  background: var(--c-panel);
+  color: var(--c-panel-ink);
 }
 .guidance-card > sx-icon {
   width: 44px;
   height: 44px;
   margin-bottom: 1.5rem;
 }
+.guidance-card > sx-icon {
+  color: var(--c-sun);
+}
 .guidance-card .eyebrow {
-  color: #405c38;
+  color: var(--c-panel-ink-2);
   font-size: 0.65rem;
 }
 .guidance-card h3 {
-  color: #0b2a4a;
+  color: var(--c-panel-ink);
   font-size: 2.25rem;
   line-height: 1.05;
   margin-block: 1rem;
@@ -256,13 +259,16 @@ h1 em {
 }
 .guidance-card > p:not(.eyebrow) {
   max-width: 34ch;
-  color: #405c38;
+  color: var(--c-panel-ink-2);
+}
+.guidance-card .type-accent {
+  color: var(--c-sun-hover);
 }
 .guidance-card .btn {
   margin-top: 1.5rem;
-  --btn-bg: #174c39;
-  --btn-ink: #f8fbff;
-  --btn-bg-hover: #0b382a;
+  --btn-bg: var(--c-sun);
+  --btn-ink: var(--c-sun-ink);
+  --btn-bg-hover: var(--c-sun-hover);
 }
 .guidance-card .btn sx-icon {
   width: 18px;
@@ -291,7 +297,7 @@ h1 em {
 }
 .num {
   font: italic 3rem var(--font-accent);
-  color: #8ccaff;
+  color: var(--c-sun);
 }
 .cycle h3 {
   font-size: 1.4rem;

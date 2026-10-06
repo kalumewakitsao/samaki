@@ -44,8 +44,10 @@ export interface Product {
   category: CategoryId;
   /** Overrides the category illustration. */
   illustration?: IllustrationId;
-    /** Photo in public/images, e.g. '/images/air-stone.jpg'. */
+  /** Photo in public/images, e.g. '/images/air-stone.jpg'. */
   image?: string;
+  /** 'contain' (default) frames a product shot; 'cover' fills the frame with a scene photo. */
+  imageFit?: 'contain' | 'cover';
   summary: string;
   description: string[];
   goodFor: string[];
@@ -121,6 +123,7 @@ export const PRODUCTS: readonly Product[] = [
     name: 'Fingerlings',
     category: 'fingerlings',
     image: '/images/tilapia-editorial.webp',
+    imageFit: 'cover',
     summary: 'Young fish for stocking ponds, cages and tanks, planned around your stocking date.',
     description: [
       'A good cycle starts with good stock. Tell us which species you farm, how many fingerlings you need and when you plan to stock, and we will confirm what is available, at what size, and how it will reach your farm.',
@@ -293,7 +296,7 @@ export const PRODUCTS: readonly Product[] = [
   },
   {
     kind: 'product',
-    slug: 'air pump',
+    slug: 'vento-airpump',
     name: 'Air bubble pump',
     category: 'aeration',
     image: '/images/air-bubble-pump.jpg',
@@ -499,6 +502,10 @@ export function offeringArt(o: Offering): IllustrationId {
 
 export function offeringImage(o: Offering): string | undefined {
   return o.kind === 'product' ? o.image : undefined;
+}
+
+export function offeringImageFit(o: Offering): 'contain' | 'cover' {
+  return (o.kind === 'product' && o.imageFit) || 'contain';
 }
 
 export function offeringUrl(offering: Offering): string {

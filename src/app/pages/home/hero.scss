@@ -166,21 +166,32 @@
   position: absolute;
   top: 1.5rem;
   left: -2.5rem;
-  width: 105px;
-  height: 105px;
+  box-sizing: border-box;
+  width: 116px;
+  height: 116px;
+  /* Keep text inside the circle's inscribed square (about 70% of the diameter). */
+  padding: 17px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 0.5rem;
-  background: #8ccaff;
-  color: #0b2a4a;
+  gap: 0.3rem;
+  background: var(--c-sun);
+  color: var(--c-sun-ink);
   border-radius: 50%;
+  box-shadow: 0 8px 24px #061a3040;
   transform: rotate(-12deg);
   text-align: center;
   font-size: 0.6rem;
   font-weight: 750;
-  letter-spacing: 0.06em;
+  line-height: 1.2;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.stamp-text {
+  display: block;
+  max-width: 100%;
+  overflow-wrap: anywhere;
 }
 .hero-links {
   display: flex;
@@ -280,8 +291,11 @@
     left: auto;
     right: 1.25rem;
     top: -1.5rem;
-    width: 88px;
-    height: 88px;
+    width: 96px;
+    height: 96px;
+    padding: 14px;
+    gap: 0.2rem;
+    font-size: 0.5rem;
   }
   .image-label {
     display: none;
@@ -358,8 +372,8 @@
   flex: 0 0 auto;
 }
 .hero-stamp sx-icon {
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1.25rem;
+  height: 1.25rem;
 }
 .visual-icon sx-icon {
   width: 1.5rem;

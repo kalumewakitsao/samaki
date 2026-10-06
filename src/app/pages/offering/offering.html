@@ -5,7 +5,12 @@
       <div class="layout">
         <div class="media">
           @if (image(); as photo) {
-            <img [src]="photo" [alt]="o.name" />
+            <div class="photo-stage" [class.photo-stage--cover]="imageFit() === 'cover'">
+              @if (imageFit() === 'contain') {
+                <img class="photo-stage__backdrop" [src]="photo" alt="" />
+              }
+              <img [src]="photo" [alt]="o.name" width="800" height="600" fetchpriority="high" />
+            </div>
           } @else {
             <sx-illustration [name]="art()" [label]="'Illustration: ' + o.name" />
           }

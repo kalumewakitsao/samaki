@@ -88,14 +88,18 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
       color: #0b2a4a;
     }
     .story--0 {
-      background: #8ccaff;
+      background: var(--c-sun-soft);
+      color: #3b2a0a;
+    }
+    .story--0 .quote-mark {
+      color: #c77d0a;
     }
     .story--1 {
       background: #0a2f5c;
       color: #f8fbff;
     }
     .story--2 {
-      background: #f1e5d6;
+      background: #dcebfb;
     }
     .story-top {
       display: flex;

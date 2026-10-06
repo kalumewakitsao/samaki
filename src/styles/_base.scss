@@ -60,6 +60,11 @@
   svg {
     flex-shrink: 0;
   }
+  /* Icons fill their box; default the box to the text size so an unstyled icon never balloons. */
+  sx-icon {
+    width: 1em;
+    height: 1em;
+  }
   input,
   button,
   textarea,

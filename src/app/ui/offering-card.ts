@@ -6,6 +6,7 @@ import {
   findCategory,
   offeringArt,
   offeringImage,
+  offeringImageFit,
   offeringUrl,
 } from '../core/data/catalogue';
 import { QuoteListStore } from '../core/enquiry/quote-list.store';
@@ -19,7 +20,12 @@ import { Illustration } from './illustration';
   host: { class: 'card card--interactive' },
   template: `
     @if (image(); as photo) {
-      <img class="art photo" [src]="photo" [alt]="offering().name" />
+      <div class="art photo-stage" [class.photo-stage--cover]="imageFit() === 'cover'">
+        @if (imageFit() === 'contain') {
+          <img class="photo-stage__backdrop" [src]="photo" alt="" loading="lazy" decoding="async" />
+        }
+        <img class="photo-stage__img" [src]="photo" alt="" width="800" height="600" loading="lazy" decoding="async" />
+      </div>
     } @else {
       <sx-illustration class="art" [name]="art()" />
     }
@@ -68,7 +74,7 @@ import { Illustration } from './illustration';
       transition: transform var(--dur-4) var(--ease-out);
     }
     :host:hover .art ::ng-deep svg,
-    :host:hover .photo {
+    :host:hover .photo-stage__img {
       transform: scale(1.04);
     }
     .card__body {
@@ -178,6 +184,7 @@ export class OfferingCard {
     return offeringArt(o);
   });
   protected readonly image = computed(() => offeringImage(this.offering()));
+  protected readonly imageFit = computed(() => offeringImageFit(this.offering()));
   protected readonly tag = computed(() => {
     const o = this.offering();
     return o.kind === 'product' ? findCategory(o.category).shortName : 'Service';

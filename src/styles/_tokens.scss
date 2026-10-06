@@ -90,6 +90,15 @@
     --c-accent: #0f5bb5;
     --c-accent-soft: #eaf3fc;
     --c-accent-ink: #0b2a4a;
+    /* Warm accent: calls to action on brand-blue panels, step numbers, highlights. */
+    --c-sun: #f5a524;
+    --c-sun-hover: #ffb84a;
+    --c-sun-ink: #0b2a4a;
+    --c-sun-soft: #fdecc8;
+    /* Brand-blue panel: the strong blue used behind white text. */
+    --c-panel: linear-gradient(135deg, #1466c8 0%, #0d4a96 100%);
+    --c-panel-ink: #ffffff;
+    --c-panel-ink-2: #dcebfb;
     --c-danger: #b42318;
     --c-danger-soft: #fdebe9;
     --c-success: #1d7f3a;
@@ -140,6 +149,13 @@
     --c-accent: #7cc0ff;
     --c-accent-soft: #0f2e52;
     --c-accent-ink: #f5f5f7;
+    --c-sun: #f7b23b;
+    --c-sun-hover: #ffc463;
+    --c-sun-ink: #0b2a4a;
+    --c-sun-soft: #fdecc8;
+    --c-panel: linear-gradient(135deg, #1466c8 0%, #0d4a96 100%);
+    --c-panel-ink: #ffffff;
+    --c-panel-ink-2: #dcebfb;
     --c-danger: #ff8f80;
     --c-danger-soft: #3b1512;
     --c-success: #30d158;

@@ -17,6 +17,7 @@ import {
   findCategory,
   findOffering,
   offeringArt,
+  offeringImage,
   findProduct,
   findService,
   offeringUrl,
@@ -67,6 +68,10 @@ export class OfferingPage {
     const o = this.item();
     if (!o) return 'water';
     return offeringArt(o);
+  });
+  protected readonly image = computed(() => {
+    const o = this.item();
+    return o ? offeringImage(o) : undefined;
   });
   protected readonly tag = computed(() => {
     const o = this.item();

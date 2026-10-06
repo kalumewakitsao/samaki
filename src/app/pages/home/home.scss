@@ -283,26 +283,26 @@ ul.grid:not(.rail) {
 }
 .tile {
   border-color: transparent;
-  box-shadow: 0 3px 16px #143c3007;
+  box-shadow: 0 3px 16px #0b2a4a07;
 }
 .tile--call {
-  background: #d8ef79;
-  color: #173f35;
+  background: #8ccaff;
+  color: #0b2a4a;
 }
 .tile--call .small {
   color: #27543c;
 }
 .section--deep {
-  background: #073d39;
-  --c-deep-ink: #fffdf3;
+  background: #0a2f5c;
+  --c-deep-ink: #f8fbff;
   --c-deep-ink-2: #bdd5c9;
   --c-surface: #164b42;
   --c-line: #38665a;
   --c-line-strong: #557e70;
 }
 .section--deep .num {
-  background: #d8ef79;
-  color: #173f35;
+  background: #8ccaff;
+  color: #0b2a4a;
 }
 .section--deep .process li {
   border: 0;
@@ -347,6 +347,6 @@ ul.grid:not(.rail) {
 }
 :host-context([data-theme='dark']) .tiles > li {
   --ill-line: #234537;
-  --ill-paper: #fffdf3;
+  --ill-paper: #f8fbff;
   --ill-deep: #285a4b;
 }

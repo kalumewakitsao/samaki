@@ -85,14 +85,14 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
       padding: clamp(1.5rem, 2.5vw, 2.25rem);
       border-radius: 20px;
       min-height: 24rem;
-      color: #173f35;
+      color: #0b2a4a;
     }
     .story--0 {
-      background: #d8ef79;
+      background: #8ccaff;
     }
     .story--1 {
-      background: #073d39;
-      color: #fffdf3;
+      background: #0a2f5c;
+      color: #f8fbff;
     }
     .story--2 {
       background: #f1e5d6;
@@ -114,7 +114,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
       opacity: 0.65;
     }
     .story--1 .quote-mark {
-      color: #d8ef79;
+      color: #8ccaff;
     }
     blockquote {
       margin: 1.2rem 0 2.5rem;
@@ -145,7 +145,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
     }
     .story--1 .avatar {
       background: #ffffff15;
-      color: #d8ef79;
+      color: #8ccaff;
     }
     figcaption strong {
       display: block;

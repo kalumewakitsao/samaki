@@ -1,13 +1,13 @@
 .footer {
-  background: #092e29;
-  --c-ink: #fffdf3;
-  --c-ink-2: #c4d9cf;
-  --c-ink-3: #adc6b9;
-  --c-brand-text: #d8ef79;
-  --c-line: #36584b;
-  --c-brand: #d8ef79;
-  --c-brand-ink: #173f35;
-  --c-brand-hover: #e6ff91;
+  background: #0a2f5c;
+  --c-ink: #f8fbff;
+  --c-ink-2: #c3d9f0;
+  --c-ink-3: #a9c4e0;
+  --c-brand-text: #8ccaff;
+  --c-line: #2f5a8c;
+  --c-brand: #8ccaff;
+  --c-brand-ink: #0b2a4a;
+  --c-brand-hover: #b0daff;
   border-top: 1px solid var(--c-line);
   padding-block: var(--s-16) var(--s-8);
 }
@@ -136,12 +136,12 @@ li a:hover {
   border-bottom: 1px solid var(--c-line);
 }
 .footer-intro .eyebrow {
-  color: #bbd09b;
+  color: #a9d0f5;
   font-size: 0.65rem;
   letter-spacing: 0.12em;
 }
 .footer-intro h2 {
-  color: #fffdf3;
+  color: #f8fbff;
   font-size: clamp(2.8rem, 5vw, 4.75rem);
   line-height: 1.04;
   font-weight: 500;
@@ -149,13 +149,13 @@ li a:hover {
   margin-top: 1.5rem;
 }
 .footer-intro em {
-  color: #d8ef79;
+  color: #8ccaff;
 }
 .footer-contact {
   display: flex;
   align-items: center;
   gap: 1.5rem;
-  color: #bdd4c8;
+  color: #c3d9f0;
   text-decoration: none;
   padding-block: 1rem;
   font-size: 0.9rem;
@@ -165,14 +165,14 @@ li a:hover {
   margin-top: 0.4rem;
   font-size: 1.75rem;
   font-weight: 500;
-  color: #fffdf3;
+  color: #f8fbff;
 }
 .footer-arrow {
   width: 56px;
   height: 56px;
   border-radius: 16px;
-  background: #d8ef79;
-  color: #173f35;
+  background: #8ccaff;
+  color: #0b2a4a;
   display: grid;
   place-items: center;
 }
@@ -190,26 +190,26 @@ li a:hover {
   letter-spacing: -0.065em;
   line-height: 1;
   margin-top: 2.5rem;
-  color: #d8ef79;
+  color: #8ccaff;
   overflow-wrap: normal;
 }
 .footer-wordmark span {
   font-family: var(--font-accent);
   font-style: italic;
   font-weight: 400;
-  color: #bdd4c8;
+  color: #c3d9f0;
   letter-spacing: -0.04em;
 }
 .bottom {
   margin-top: 2rem;
 }
 .about {
-  --logo-tile: #d8ef79;
-  --logo-fish: #173f35;
+  --logo-tile: #8ccaff;
+  --logo-fish: #0b2a4a;
 }
 .col-title {
   font-size: 0.7rem;
-  color: #d8ef79;
+  color: #8ccaff;
 }
 @media (max-width: 55rem) {
   .footer-intro {

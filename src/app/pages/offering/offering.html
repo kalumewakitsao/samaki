@@ -4,8 +4,14 @@
       <sx-breadcrumbs [trail]="trail()" />
       <div class="layout">
         <div class="media">
-          <sx-illustration [name]="art()" [label]="'Illustration: ' + o.name" />
-          <p class="small muted note">Illustration. Ask us for photos or specifications.</p>
+          @if (image(); as photo) {
+            <img [src]="photo" [alt]="o.name" />
+          } @else {
+            <sx-illustration [name]="art()" [label]="'Illustration: ' + o.name" />
+          }
+          <p class="small muted note">
+            {{ image() ? 'Product photo.' : 'Illustration. Ask us for photos or specifications.' }}
+          </p>
         </div>
         <div class="info">
           <span class="badge">{{ tag() }}</span>

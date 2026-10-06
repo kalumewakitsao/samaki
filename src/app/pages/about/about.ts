@@ -260,18 +260,18 @@ import { Illustration } from '../../ui/illustration';
       border-radius: 24px;
     }
     .purpose-card--mission {
-      background: #073d39;
-      color: #fffdf3;
-      --purpose-muted: #c8ddd4;
-      --purpose-accent: #d8ef79;
+      background: #0a2f5c;
+      color: #f8fbff;
+      --purpose-muted: #c3d9f0;
+      --purpose-accent: #8ccaff;
       --purpose-line: #ffffff30;
     }
     .purpose-card--vision {
       background: #e5edcb;
-      color: #173f35;
+      color: #0b2a4a;
       --purpose-muted: #456047;
       --purpose-accent: #376045;
-      --purpose-line: #173f3526;
+      --purpose-line: #0b2a4a26;
     }
     .purpose-top {
       display: flex;
@@ -424,7 +424,7 @@ import { Illustration } from '../../ui/illustration';
       width: 34px;
       height: 34px;
       border-radius: 50%;
-      background: #fffdf380;
+      background: #f8fbff80;
     }
     .person-symbol sx-icon {
       width: 18px;

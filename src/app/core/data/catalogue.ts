@@ -44,6 +44,8 @@ export interface Product {
   category: CategoryId;
   /** Overrides the category illustration. */
   illustration?: IllustrationId;
+    /** Photo in public/images, e.g. '/images/air-stone.jpg'. */
+  image?: string;
   summary: string;
   description: string[];
   goodFor: string[];
@@ -118,6 +120,7 @@ export const PRODUCTS: readonly Product[] = [
     slug: 'fingerlings',
     name: 'Fingerlings',
     category: 'fingerlings',
+    image: '/images/tilapia-editorial.webp',
     summary: 'Young fish for stocking ponds, cages and tanks, planned around your stocking date.',
     description: [
       'A good cycle starts with good stock. Tell us which species you farm, how many fingerlings you need and when you plan to stock, and we will confirm what is available, at what size, and how it will reach your farm.',
@@ -140,6 +143,7 @@ export const PRODUCTS: readonly Product[] = [
     name: 'Artemia',
     category: 'feeds',
     illustration: 'artemia',
+    image: '/images/artemia.jpg',
     summary: 'High-protein hatchery feed to boost early-stage survival.',
     description: [
       'Artemia, also known as brine shrimp, is one of the most widely used first feeds in fish hatcheries. The cysts hatch into small, protein-rich live food that larvae can eat in their first days of feeding.',
@@ -159,6 +163,7 @@ export const PRODUCTS: readonly Product[] = [
     slug: 'wean-mix',
     name: 'Wean Mix',
     category: 'feeds',
+    image: '/images/weanmix.jpg',
     summary: 'Transition feed blend designed for rapid fry growth.',
     description: [
       'Wean Mix helps fry move from live feed to dry feed. A steady weaning stage keeps fry eating and growing through one of the most delicate parts of the cycle.',
@@ -174,6 +179,7 @@ export const PRODUCTS: readonly Product[] = [
     slug: 'ovaprim',
     name: 'Ovaprim',
     category: 'hatchery',
+    image: '/images/ovaprim.jpg',
     summary: 'Reliable spawning inducer for efficient broodstock cycles.',
     description: [
       'Ovaprim is an injectable hormone preparation that hatcheries use to induce spawning in broodstock, so spawning happens on a planned schedule rather than by chance.',
@@ -189,6 +195,7 @@ export const PRODUCTS: readonly Product[] = [
     slug: 'ovatide',
     name: 'Ovatide',
     category: 'hatchery',
+    image: '/images/ovatide.jpg',
     summary: 'Spawning hormone for consistent fertilisation results.',
     description: [
       'Ovatide is a spawning hormone used by hatcheries to bring broodstock into spawning together, which makes stripping and fertilisation easier to plan.',
@@ -204,6 +211,7 @@ export const PRODUCTS: readonly Product[] = [
     slug: 'dissolved-oxygen-analyzer',
     name: 'Dissolved oxygen analyzer',
     category: 'testing',
+    image: '/images/dissolved-oxygen-analyzer.jpg',
     summary: 'Precision meter for tracking oxygen levels in ponds.',
     description: [
       'Low oxygen is one of the most common reasons fish go off feed, get stressed or die. A dissolved oxygen meter tells you the real level in the water, so you can aerate, reduce feeding or exchange water before fish suffer.',
@@ -220,6 +228,7 @@ export const PRODUCTS: readonly Product[] = [
     name: '7-in-1 water tester',
     category: 'testing',
     illustration: 'pen',
+    image: '/images/water-quality-tester.jpg',
     summary: 'Multi-parameter tester for daily pond monitoring.',
     description: [
       'One handheld tester that checks several water quality readings in one go, making a daily check quick enough to become a habit.',
@@ -236,6 +245,7 @@ export const PRODUCTS: readonly Product[] = [
     name: 'Ammonium test kit',
     category: 'testing',
     illustration: 'kit',
+    image: '/images/nh3-nh4.jpg',
     summary: 'Detect ammonia levels early to prevent stress.',
     description: [
       'Ammonia builds up from fish waste and uneaten feed. Even at low levels it can stress fish and slow growth. Regular testing shows you when to cut feeding or change water.',
@@ -251,6 +261,7 @@ export const PRODUCTS: readonly Product[] = [
     name: 'Nitrite (NO2) test',
     category: 'testing',
     illustration: 'kit',
+    image: '/images/n02.jpg',
     summary: 'Quick nitrite checks so you can act before fish are stressed.',
     description: [
       'Nitrite forms as ammonia breaks down and can harm fish when it builds up, especially in tanks and systems with little water exchange. A quick test tells you whether your water is keeping up.',
@@ -265,6 +276,7 @@ export const PRODUCTS: readonly Product[] = [
     slug: 'air-compressor',
     name: 'Air compressor',
     category: 'aeration',
+    image: '/images/airpump.jpg',
     summary: 'Heavy-duty aeration support for large ponds.',
     description: [
       'A compressor pushes air through diffusers to lift oxygen levels across larger ponds and many tanks at once. It is the backbone of aeration on farms stocking at higher densities.',
@@ -281,9 +293,10 @@ export const PRODUCTS: readonly Product[] = [
   },
   {
     kind: 'product',
-    slug: 'vento-airpump',
-    name: 'Vento air pump',
+    slug: 'air pump',
+    name: 'Air bubble pump',
     category: 'aeration',
+    image: '/images/air-bubble-pump.jpg',
     summary: 'Quiet, efficient air pump for intensive systems.',
     description: [
       'A compact air pump for tanks, hatchery systems and smaller ponds, where steady aeration matters and noise and power use should stay low.',
@@ -299,6 +312,7 @@ export const PRODUCTS: readonly Product[] = [
     name: 'Submersible pump',
     category: 'aeration',
     illustration: 'pump',
+    image: '/images/submersible-pump.jpg',
     summary: 'Reliable water circulation and transfer.',
     description: [
       'A submersible pump moves water where you need it: filling and draining ponds, exchanging water, or circulating water through a filter.',
@@ -314,6 +328,7 @@ export const PRODUCTS: readonly Product[] = [
     slug: 'internal-filter',
     name: 'Internal liquid filter',
     category: 'filtration',
+    image: '/images/internal-liquid-filter.jpg',
     summary: 'Compact filtration for hatchery tanks.',
     description: [
       'An internal filter sits inside the tank and keeps water cleaner between changes, which is especially valuable for larvae and fry in hatchery tanks.',
@@ -480,6 +495,10 @@ export function findCategory(id: CategoryId): Category {
 
 export function offeringArt(o: Offering): IllustrationId {
   return o.kind === 'product' ? (o.illustration ?? o.category) : o.illustration;
+}
+
+export function offeringImage(o: Offering): string | undefined {
+  return o.kind === 'product' ? o.image : undefined;
 }
 
 export function offeringUrl(offering: Offering): string {

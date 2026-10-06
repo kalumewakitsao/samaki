@@ -5,6 +5,7 @@ import {
   Offering,
   findCategory,
   offeringArt,
+  offeringImage,
   offeringUrl,
 } from '../core/data/catalogue';
 import { QuoteListStore } from '../core/enquiry/quote-list.store';
@@ -17,7 +18,11 @@ import { Illustration } from './illustration';
   imports: [RouterLink, Icon, Illustration],
   host: { class: 'card card--interactive' },
   template: `
-    <sx-illustration class="art" [name]="art()" />
+    @if (image(); as photo) {
+      <img class="art photo" [src]="photo" [alt]="offering().name" />
+    } @else {
+      <sx-illustration class="art" [name]="art()" />
+    }
     <div class="card__body">
       <span class="badge">{{ tag() }}</span>
       <h3 class="h3">
@@ -46,8 +51,12 @@ import { Illustration } from './illustration';
       container-type: inline-size;
     }
     .art {
+      display: block;
+      width: 100%;
       aspect-ratio: 16 / 10;
       border-bottom: 1px solid var(--c-line);
+      object-fit: cover;
+      background: var(--c-surface-2);
     }
     /* Wide cards (two across on tablets) get a shorter picture. */
     @container (min-width: 24rem) {
@@ -58,7 +67,8 @@ import { Illustration } from './illustration';
     .art ::ng-deep svg {
       transition: transform var(--dur-4) var(--ease-out);
     }
-    :host:hover .art ::ng-deep svg {
+    :host:hover .art ::ng-deep svg,
+    :host:hover .photo {
       transform: scale(1.04);
     }
     .card__body {
@@ -167,6 +177,7 @@ export class OfferingCard {
     const o = this.offering();
     return offeringArt(o);
   });
+  protected readonly image = computed(() => offeringImage(this.offering()));
   protected readonly tag = computed(() => {
     const o = this.offering();
     return o.kind === 'product' ? findCategory(o.category).shortName : 'Service';

@@ -68,8 +68,8 @@ import { Icon } from './icon';
       align-items: center;
       padding: clamp(1.5rem, 4.5vw, 4rem);
       border-radius: 24px;
-      color: #fffdf3;
-      background: #073d39;
+      color: #f8fbff;
+      background: #0a2f5c;
       position: relative;
       overflow: hidden;
       isolation: isolate;
@@ -91,12 +91,12 @@ import { Icon } from './icon';
       pointer-events: none;
     }
     .eyebrow {
-      color: #d8ef79;
+      color: #8ccaff;
       font-size: 0.65rem;
       margin-bottom: 1.5rem;
     }
     h2 {
-      color: #fffdf3;
+      color: #f8fbff;
       font-size: clamp(2.25rem, 3.7vw, 3.75rem);
       line-height: 1.08;
       font-weight: 500;
@@ -106,12 +106,12 @@ import { Icon } from './icon';
       text-wrap: balance;
     }
     h2 em {
-      color: #d8ef79;
+      color: #8ccaff;
       font-family: var(--font-accent);
       font-weight: 400;
     }
     .lead {
-      color: #c8ddd4;
+      color: #c3d9f0;
       font-size: 1rem;
       line-height: 1.75;
       max-width: 48ch;
@@ -123,12 +123,12 @@ import { Icon } from './icon';
       padding: clamp(1.25rem, 2.5vw, 2rem);
       border-radius: 18px;
       background: #f6f5e9;
-      color: #173f35;
+      color: #0b2a4a;
       box-shadow: 0 12px 30px #001f1c26;
-      --c-brand: #d8ef79;
-      --c-brand-ink: #173f35;
-      --c-brand-hover: #e6ff91;
-      --c-brand-text: #173f35;
+      --c-brand: #8ccaff;
+      --c-brand-ink: #0b2a4a;
+      --c-brand-hover: #b0daff;
+      --c-brand-text: #0b2a4a;
     }
     .contact-intro {
       display: flex;
@@ -141,7 +141,7 @@ import { Icon } from './icon';
       place-items: center;
       width: 46px;
       height: 46px;
-      border: 1px solid #173f3526;
+      border: 1px solid #0b2a4a26;
       border-radius: 14px;
       flex-shrink: 0;
     }
@@ -164,14 +164,14 @@ import { Icon } from './icon';
       font-size: 1rem;
     }
     .quote-link {
-      border: 1px solid #173f3540;
-      color: #173f35;
+      border: 1px solid #0b2a4a40;
+      color: #0b2a4a;
       background: transparent;
       min-height: 52px;
     }
     .quote-link:hover {
       background: #e8eddb;
-      border-color: #173f35;
+      border-color: #0b2a4a;
     }
     .hours {
       display: flex;
@@ -193,7 +193,7 @@ import { Icon } from './icon';
         grid-template-columns: 1fr;
       }
       h2 {
-      color: #fffdf3;
+      color: #f8fbff;
         max-width: 22ch;
       }
       .actions {
@@ -208,7 +208,7 @@ import { Icon } from './icon';
         gap: 1.75rem;
       }
       h2 {
-      color: #fffdf3;
+      color: #f8fbff;
         font-size: 2.35rem;
       }
       .eyebrow {

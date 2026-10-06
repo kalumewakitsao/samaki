@@ -38,16 +38,16 @@ h1 em {
 }
 .start-panel {
   padding: clamp(1.5rem, 3vw, 2.5rem);
-  background: #073d39;
-  color: #fffdf3;
+  background: #0a2f5c;
+  color: #f8fbff;
   border-radius: 24px;
   transform: rotate(1deg);
 }
 .start-panel .eyebrow {
-  color: #d8ef79;
+  color: #8ccaff;
 }
 .start-panel h2 {
-  color: #fffdf3;
+  color: #f8fbff;
   font-size: clamp(2.25rem, 3.5vw, 3.5rem);
   font-weight: 500;
   line-height: 1.05;
@@ -55,7 +55,7 @@ h1 em {
   letter-spacing: -0.035em;
 }
 .start-panel h2 em {
-  color: #d8ef79;
+  color: #8ccaff;
 }
 .start-panel nav {
   display: grid;
@@ -66,14 +66,14 @@ h1 em {
   align-items: center;
   gap: 0.8rem;
   padding: 1rem;
-  background: #fffdf3;
-  color: #173f35;
+  background: #f8fbff;
+  color: #0b2a4a;
   text-decoration: none;
   border-radius: 12px;
   transition: background 180ms;
 }
 .start-panel nav a:hover {
-  background: #d8ef79;
+  background: #8ccaff;
 }
 .start-icon {
   display: grid;
@@ -108,7 +108,7 @@ h1 em {
 }
 .start-note {
   margin-top: 1.25rem;
-  color: #c8ddd4;
+  color: #c3d9f0;
   font-size: 0.85rem;
   line-height: 1.6;
 }
@@ -235,8 +235,8 @@ h1 em {
   justify-content: center;
   padding: 1.5rem;
   border-radius: 16px;
-  background: #d8ef79;
-  color: #173f35;
+  background: #8ccaff;
+  color: #0b2a4a;
 }
 .guidance-card > sx-icon {
   width: 44px;
@@ -248,7 +248,7 @@ h1 em {
   font-size: 0.65rem;
 }
 .guidance-card h3 {
-  color: #173f35;
+  color: #0b2a4a;
   font-size: 2.25rem;
   line-height: 1.05;
   margin-block: 1rem;
@@ -261,7 +261,7 @@ h1 em {
 .guidance-card .btn {
   margin-top: 1.5rem;
   --btn-bg: #174c39;
-  --btn-ink: #fffdf3;
+  --btn-ink: #f8fbff;
   --btn-bg-hover: #0b382a;
 }
 .guidance-card .btn sx-icon {
@@ -269,14 +269,14 @@ h1 em {
   height: 18px;
 }
 .working {
-  background: #073d39;
-  color: #fffdf3;
-  --c-ink: #fffdf3;
-  --c-ink-2: #c8ddd4;
-  --c-ink-3: #c8ddd4;
+  background: #0a2f5c;
+  color: #f8fbff;
+  --c-ink: #f8fbff;
+  --c-ink-2: #c3d9f0;
+  --c-ink-3: #c3d9f0;
 }
 .working .type-accent {
-  color: #d8ef79;
+  color: #8ccaff;
 }
 .cycle {
   list-style: none;
@@ -286,12 +286,12 @@ h1 em {
   gap: 2rem;
 }
 .cycle li {
-  border-top: 1px solid #53776a;
+  border-top: 1px solid #4a7099;
   padding-top: 1.5rem;
 }
 .num {
   font: italic 3rem var(--font-accent);
-  color: #d8ef79;
+  color: #8ccaff;
 }
 .cycle h3 {
   font-size: 1.4rem;
@@ -299,7 +299,7 @@ h1 em {
   margin-block: 1rem 0.6rem;
 }
 .cycle p {
-  color: #c8ddd4;
+  color: #c3d9f0;
 }
 @media (max-width: 70rem) {
   .service-grid {
